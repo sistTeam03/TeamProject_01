@@ -59,6 +59,7 @@ public class DetailManager {
 					
 					content_poster=content_poster+eList.get(j).toString()+",";
 				}
+				content_poster=content_poster.substring(0,content_poster.lastIndexOf(","));
 				String old_count=old_content.text();
 				
 					
@@ -104,7 +105,7 @@ public class DetailManager {
 				System.out.println("============="+i+"번==================");
 				i++;
 				
-				dao.insertList(vo);
+				//dao.insertList(vo);
 				Thread.sleep(100);
 			}
 			
