@@ -104,7 +104,7 @@ public class DetailManager {
 				System.out.println("============="+i+"번==================");
 				i++;
 				
-				//dao.insertList(vo);
+				dao.insertList(vo);
 				Thread.sleep(100);
 			}
 			
