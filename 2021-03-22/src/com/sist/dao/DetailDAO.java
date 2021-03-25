@@ -80,7 +80,7 @@ public class DetailDAO {
 			
 			ps.setString(16, vo.getContent());
 			 
-			//ps.executeUpdate();
+			ps.executeUpdate();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {

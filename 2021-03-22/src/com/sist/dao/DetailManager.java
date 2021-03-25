@@ -1,6 +1,6 @@
 package com.sist.dao;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -54,12 +54,18 @@ public class DetailManager {
 					eList.add(eList_e);
 					
 				} 
+				if(eList.size()==0) {
+					System.out.println("poster 없음");
+					continue;
+				}
 				for(int j=0; j<st.countTokens()-1;j++) {
 					
 					
-					content_poster=content_poster+eList.get(j).toString()+",";
+					content_poster=content_poster+eList.get(j)+",";
 				}
 				content_poster=content_poster.substring(0,content_poster.lastIndexOf(","));
+				
+				
 				String old_count=old_content.text();
 				
 					
