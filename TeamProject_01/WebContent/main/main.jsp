@@ -150,8 +150,16 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
+                            
+                            <li><a href="./contact.html">고객지원</a>
+                            	 <ul class="header__menu__dropdown">
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">이벤트?</a></li>
+                                    <li><a href="#">묻고답하기</a></li>
+                                    <li><a href="#">1:1문의</a></li>
+                                </ul>
+                            </li>
                             <li><a href="./blog.html">마이페이지</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
