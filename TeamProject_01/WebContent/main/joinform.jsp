@@ -23,32 +23,6 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
-    
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
-    <style type="text/css">
-    td{
-    	text-align: center;
-		font-size: 15px;
-		vertical-align: middle;
-    }
-    td.rank{
-    	font-size: 25px;
-    	font-style: bold,italic;
-    	text-align: center;
-    	vertical-align: middle;
-    }
-    th{
-    	text-align: center;
-    	background-color: #7fad39;
-    	color: white;
-    	font-size: 18px;
-    	font-style: bold;
-    }
-    </style>
-    
 </head>
 
 <body>
@@ -165,7 +139,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
+                            <li class="active"><a href="./shop-grid.html">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
@@ -174,7 +148,7 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li class="active"><a href="./blog.html">Blog</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
                             <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
@@ -249,106 +223,139 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Blog Details Hero Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="blog__details__hero__text">
-                        <h2>쉐프 랭킹</h2>
-                        <ul>
-                            <li>January 14, 2019</li>
-                            <li>12863 명의 쉐프</li>
-                        </ul>
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>회원가입</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">Home</a>
+                            <span>회원가입</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Blog Details Hero End -->
+    <!-- Breadcrumb Section End -->
 
-    <!-- Blog Details Section Begin -->
-    <section class="blog-details spad">
-               <div class="container">
-                    <div class="blog__details__content">
-                        <div class="row">
-									  <table class="table table-hover">
-									    <thead>
-									      <tr>  
-									      	<th width=10%>순위</th>
-									      	<th width=20%></th>
-									      	<th width=30%>쉐프명</th>
-									      	<th width=10%>레시피</th>
-									      	<th width=10%>소식 받기</th>
-									      	<th width=10%>조회수</th>
-									      	<th width=10%>팔로워</th>
-									      </tr>
-									    </thead>
-									    <tbody>
-									   		 <tr height=100px>
-										      	<td width=10% class=rank style="vertical-align: middle;">1</td>
-										      	<td width=20% style="vertical-align: middle;"><img src="../img/categories/cat-1.jpg" width=40% height=40%></td>
-										      	<td width=30% style="text-align: left;vertical-align: middle;font-size: 18px" >닉네임</td>
-										      	<td width=10% style="vertical-align: middle;">1,268개</td>
-										      	<td width=10% style="vertical-align: middle;">15,826명</td>
-										      	<td width=10% style="vertical-align: middle;">1,568,456회</td>
-										      	<td width=10% style="vertical-align: middle;">5,185명</td>
-									      	</tr> 
-									      	 <tr height=100px>
-										      	<td width=10% class=rank style="vertical-align: middle;">2</td>
-										      	<td width=20% style="vertical-align: middle;"><img src="../img/categories/cat-1.jpg" width=40% height=40%></td>
-										      	<td width=30% style="text-align: left;vertical-align: middle;font-size: 18px">닉네임</td>
-										      	<td width=10% style="vertical-align: middle;">1,268개</td>
-										      	<td width=10% style="vertical-align: middle;">15,826명</td>
-										      	<td width=10% style="vertical-align: middle;">1,568,456회</td>
-										      	<td width=10% style="vertical-align: middle;">5,185명</td>
-									      	</tr> 
-									      	 <tr height=100px>
-										      	<td width=10% class=rank style="vertical-align: middle;">3</td>
-										      	<td width=20% style="vertical-align: middle;"><img src="../img/categories/cat-1.jpg" width=40% height=40%></td>
-										      	<td width=30% style="text-align: left;vertical-align: middle;font-size: 18px">닉네임</td>
-										      	<td width=10% style="vertical-align: middle;">1,268개</td>
-										      	<td width=10% style="vertical-align: middle;">15,826명</td>
-										      	<td width=10% style="vertical-align: middle;">1,568,456회</td>
-										      	<td width=10% style="vertical-align: middle;">5,185명</td>
-									      	</tr> 
-									      	 <tr height=100px>
-										      	<td width=10% class=rank style="vertical-align: middle;">4</td>
-										      	<td width=20% style="vertical-align: middle;"><img src="../img/categories/cat-1.jpg" width=40% height=40%></td>
-										      	<td width=30% style="text-align: left;vertical-align: middle;font-size: 18px">닉네임</td>
-										      	<td width=10% style="vertical-align: middle;">1,268개</td>
-										      	<td width=10% style="vertical-align: middle;">15,826명</td>
-										      	<td width=10% style="vertical-align: middle;">1,568,456회</td>
-										      	<td width=10% style="vertical-align: middle;">5,185명</td>
-									      	</tr> 
-									      	 <tr height=100px>
-										      	<td width=10% class=rank style="vertical-align: middle;">5</td>
-										      	<td width=20% style="vertical-align: middle;"><img src="../img/categories/cat-1.jpg" width=40% height=40%></td>
-										      	<td width=30% style="text-align: left;vertical-align: middle;font-size: 18px">닉네임</td>
-										      	<td width=10% style="vertical-align: middle;">1,268개</td>
-										      	<td width=10% style="vertical-align: middle;">15,826명</td>
-										      	<td width=10% style="vertical-align: middle;">1,568,456회</td>
-										      	<td width=10% style="vertical-align: middle;">5,185명</td>
-									      	</tr> 
-									    </tbody>
-									  </table>  
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+           <!-- ID, PWD, name, birth, tell, phone, email. post, nickname, addr1, addr2 -->
+            <div class="checkout__form">
+                <h4>회원가입 정보 작성</h4>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>아이디<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>이름<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>닉네임<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input">
+                                <p>비밀번호<span>*</span></p>
+                                <input type="text" placeholder="비밀번호 입력" class="checkout__input__add">
+                                <input type="text" placeholder="비밀번호 확인">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>우편번호<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p><span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>주소<span>*</span></p>
+                                <input type="text" placeholder="Street Address" class="checkout__input__add">
+                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                            </div>
+                            <div class="checkout__input">
+                                <p>생년월일<span>*</span></p>
+                                <input type="text">
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>전화번호<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>이메일<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Your Order</h4>
+                                <div class="checkout__order__products">Products <span>Total</span></div>
+                                <ul>
+                                    <li>Vegetable’s Package <span>$75.99</span></li>
+                                    <li>Fresh Vegetable <span>$151.99</span></li>
+                                    <li>Organic Bananas <span>$53.99</span></li>
+                                </ul>
+                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
+                                <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="acc-or">
+                                        Create an account?
+                                        <input type="checkbox" id="acc-or">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua.</p>
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Check Payment
+                                        <input type="checkbox" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">회원가입</button>
+                            </div>
                         </div>
                     </div>
-                    <div class=row style="margin: 0px auto;">
-                       	 <div  style="margin: 0px auto;">
-                       	 	<ul class="pagination">
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							</ul> 
-                       	 </div>
-                       </div>    
-                </div>
+                </form>
+            </div>
+        </div>
     </section>
-    <!-- Blog Details Section End -->
-
+    <!-- Checkout Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
@@ -428,7 +435,7 @@
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>
 
-
+ 
 
 </body>
 
