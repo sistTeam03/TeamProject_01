@@ -13,7 +13,8 @@ public class RecipeModel {
 	@RequestMapping("main/main.do")  
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{
-		request.setAttribute("main_jsp", "../main/home.jsp");
+		request.setAttribute("msg", "레시피");
+		request.setAttribute("main_jsp", "../main/recipe.jsp");
 		return "../main/main.jsp";
 	}
 }
