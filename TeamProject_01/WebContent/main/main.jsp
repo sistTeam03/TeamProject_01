@@ -68,7 +68,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="#">홈</a></li>
+                <li class="active"><a href="../main/main.jsp">홈</a></li>
                 <li><a href="../recipe/recipe.jsp">레시피</a></li>
                 <li><a href="../recipe/chef.jsp">쉐프</a>
                 </li>
@@ -148,7 +148,7 @@
 	
  	
 	<!-- 본문 내용 인클루드 영역-->
-	<jsp:include page="home.jsp"></jsp:include>
+	<jsp:include page="${main_jsp }"></jsp:include>
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">

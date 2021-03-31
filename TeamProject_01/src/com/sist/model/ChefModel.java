@@ -10,7 +10,7 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 @Controller
 public class ChefModel {
-	@RequestMapping("main/main.do")
+	@RequestMapping("main/chef.do")
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{
 		request.setAttribute("msg", "쉐프");
