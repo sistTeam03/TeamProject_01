@@ -46,7 +46,7 @@ public class ListDAO {
 		{
 			getConnection();
 			String sql="SELECT no, title, poster "
-					+ "FROM list_data_v4 "
+					+ "FROM list_data_v5 "
 					+ "ORDER BY hit DESC";
 			ps=conn.prepareStatement(sql);
 			
