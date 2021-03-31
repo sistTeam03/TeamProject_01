@@ -68,7 +68,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="../main/main.jsp">홈</a></li>
+                <li class="active"><a href="../main/main.do">홈</a></li>
                 <li><a href="../recipe/recipe.jsp">레시피</a></li>
                 <li><a href="../recipe/chef.jsp">쉐프</a>
                 </li>
@@ -114,18 +114,18 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="#">홈</a></li>
-                            <li><a href="#">레시피</a></li>
-                            <li><a href="#">쉐프</a> </li>
+                            <li class="active"><a href="../main/main.do">홈</a></li>
+                            <li><a href="../recipe/recipe.do">레시피</a></li>
+                            <li><a href="../recipe/chef.do">쉐프</a> </li>
                             
-                            <li><a href="#">커뮤니티</a>
+                            <li><a href="../admin/community.do">커뮤니티</a>
                             	 <ul class="header__menu__dropdown">
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">이벤트</a></li>
-                                    <li><a href="#">문의 게시판</a></li>
+                                    <li><a href="../admin/notice.do">공지사항</a></li>
+                                    <li><a href="../admin/event.do">이벤트</a></li>
+                                    <li><a href="../admin/qna_board.do">문의 게시판</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">마이페이지</a></li>
+                            <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
                         </ul>
                     </nav>
                 </div>

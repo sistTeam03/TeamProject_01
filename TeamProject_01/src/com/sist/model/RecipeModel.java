@@ -10,11 +10,11 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 @Controller
 public class RecipeModel {
-	@RequestMapping("main/main.do")  
+	@RequestMapping("recipe/recipe.do")  
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{
 		request.setAttribute("msg", "레시피");
-		request.setAttribute("main_jsp", "../main/recipe.jsp");
+		request.setAttribute("main_jsp", "../recipe/recipe.jsp");
 		return "../main/main.jsp";
 	}
 }
