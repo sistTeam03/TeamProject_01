@@ -9,12 +9,12 @@ import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
 @Controller
-public class MainModel {
-	@RequestMapping("main/main.do")
+public class RecipeModel {
+	@RequestMapping("main/main.do")  
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{
-		request.setAttribute("msg", "홈");
-		request.setAttribute("main_jsp", "../main/home.jsp");
+		request.setAttribute("msg", "레시피");
+		request.setAttribute("main_jsp", "../main/recipe.jsp");
 		return "../main/main.jsp";
 	}
 }
