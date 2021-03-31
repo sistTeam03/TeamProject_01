@@ -116,7 +116,7 @@
                         <ul>
                             <li class="active"><a href="../main/main.do">홈</a></li>
                             <li><a href="../recipe/recipe.do">레시피</a></li>
-                            <li><a href="../recipe/chef.do">쉐프</a> </li>
+                            <li><a href="../main/chef.do">쉐프</a> </li>
                             
                             <li><a href="../admin/community.do">커뮤니티</a>
                             	 <ul class="header__menu__dropdown">
