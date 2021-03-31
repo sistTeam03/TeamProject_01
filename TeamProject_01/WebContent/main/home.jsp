@@ -103,7 +103,7 @@
                     <div class="section-title from-blog__title">
                         <h2>오늘의 레시피</h2>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="row">
             <c:forEach var="vo" items="${list }" begin="1" end="6">

@@ -15,7 +15,7 @@ public class MainModel {
 	{
 		ListDAO dao=ListDAO.newInstance();
 		List<ListVO> list=dao.recipeListData();
-		
+		 
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../main/home.jsp");
 		return "../main/main.jsp";
