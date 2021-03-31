@@ -57,7 +57,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="../img/logo.png" alt=""></a>
+            <a href="../main/main.do"><img src="../img/logo.png" alt=""></a>
         </div>
        
         <div class="humberger__menu__widget">
@@ -69,17 +69,17 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="#">홈</a></li>
-                <li><a href="#">레시피</a></li>
-                <li><a href="#">쉐프</a>
+                <li><a href="../recipe/recipe.jsp">레시피</a></li>
+                <li><a href="../recipe/chef.jsp">쉐프</a>
                 </li>
-                <li><a href="#">커뮤니티</a>
+                <li><a href="../admin/community">커뮤니티</a>
                 <ul class="header__menu__dropdown">
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">이벤트</a></li>
-                        <li><a href="#">질답 게시판</a></li>
+                        <li><a href="../admin/notice.jsp">공지사항</a></li>
+                        <li><a href="../admin/event.jsp">이벤트</a></li>
+                        <li><a href="../admin/qna_board.jsp">질답 게시판</a></li>
                     </ul>
                     </li>
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>

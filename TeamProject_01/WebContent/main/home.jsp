@@ -86,8 +86,17 @@
     <!-- Categories Section End -->
     
         <!-- Blog Section Begin -->
+        
     <section class="from-blog spad">
         <div class="container">
+           <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                </div>
+                </div>
+                </div>
+                </section>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title from-blog__title">
