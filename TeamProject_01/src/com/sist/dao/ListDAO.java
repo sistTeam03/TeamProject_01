@@ -45,9 +45,10 @@ public class ListDAO {
 		try
 		{
 			getConnection();
-			String sql="SELECT no, title, poster "
-					+ "FROM list_data_v5 "
-					+ "ORDER BY hit DESC";
+			String sql="SELECT no, title, poster,rownum "
+					+ "FROM (SELECT no, title, poster from list_data_v5 "
+					+ "ORDER BY hit DESC) "
+					+ "WHERE rownum<=8";
 			ps=conn.prepareStatement(sql);
 			
 			ResultSet rs = ps.executeQuery();
