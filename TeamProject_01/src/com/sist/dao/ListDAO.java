@@ -70,6 +70,55 @@ public class ListDAO {
 		}
 		return list;
 	}
-	
+	//리스트 출력
+	public List<ListVO> listAllData(int page){
+		List<ListVO> list=new ArrayList<ListVO>();
+		try {
+			getConnection();
+			String sql="SELECT no,poster,title,chef_poster,chef,hit,num "
+					+ "FROM (SELECT no,poster,title,chef_poster,chef,hit,rownum as num "
+					+ "FROM (SELECT no,poster,title,chef_poster,chef,hit FROM list_data_v5 "
+					+ "ORDER BY no ASC)) "
+					+ "WHERE num between ? and ?";
+			ps=conn.prepareStatement(sql);
+			int rowSize=20;
+			int start=1+(page-1)*rowSize;
+			int end=page*rowSize;
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ListVO vo=new ListVO();
+				vo.setNo(rs.getInt(1));
+				vo.setPoster(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setChef_poster(rs.getString(4));
+				vo.setChef(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				list.add(vo);
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+		
+	}
+	public int listTotalPage() {
+		int total=0;
+		try {
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/20.0) FROm list_data_v5";
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		
+		return total;
+	}
 	
 }
