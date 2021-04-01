@@ -52,7 +52,7 @@ public class RecipeModel {
 	}
 	
 	//상세
-	@RequestMapping("recipe/recipe_detail.do") 
+	@RequestMapping("recipe/recipe_detail.do")
 	public String recipe_detail(HttpServletRequest request, HttpServletResponse response)
 	{
 		String no=request.getParameter("no");

@@ -172,22 +172,27 @@
                        
                     </div>
                     <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+                    	<c:if test="${startPage>1 }">
+                       <a href="#"><i class="fa fa-long-arrow-left"></i></a>
+                        </c:if>
+                        <c:forEach var="i" begin="${startPage }" end="${endPage-1 }" step="1" >
+                        	<a href="../recipe/recipe.do?page=${i }">${i }</a>
+                      	</c:forEach>
+                      	<c:if test="${endPage<totalpage }">
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    	</c:if>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/jquery.slicknav.js"></script>
+    <script src="../js/mixitup.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
