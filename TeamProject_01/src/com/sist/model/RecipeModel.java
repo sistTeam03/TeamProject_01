@@ -12,9 +12,31 @@ import com.sist.vo.*;
 public class RecipeModel {
 	@RequestMapping("recipe/recipe.do")  
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
-	{
-		request.setAttribute("msg", "레시피");
+	{	
+		
+		String page=request.getParameter("page");
+		if(page==null) {
+			page="1";
+		}
+		int curpage=Integer.parseInt(page);
+		ListDAO dao=ListDAO.newInstance();
+		int totalpage=dao.listTotalPage();
+		int block=10;
+		int startPage=(curpage-1/block)*block+1;
+		int endPage=(curpage-1/block*block)+block;
+		if(endPage>totalpage) {
+			endPage=totalpage;
+		}
+		
+		List<ListVO> list=dao.listAllData(curpage);
+		
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../recipe/recipe.jsp");
 		return "../main/main.jsp";
 	}
+	
 }
