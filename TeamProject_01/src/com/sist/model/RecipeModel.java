@@ -19,15 +19,16 @@ public class RecipeModel {
 			page="1";
 		}
 		int curpage=Integer.parseInt(page);
+		
 		ListDAO dao=ListDAO.newInstance();
 		int totalpage=dao.listTotalPage();
 		int block=10;
-		int startPage=(curpage-1/block*block)+1;
-		int endPage=(curpage-1/block*block)+block;
+		int startPage=((curpage-1)/block*block)+1;
+		int endPage=((curpage-1)/block*block)+block;
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
-		
+		System.out.println(startPage);
 		List<ListVO> list=dao.listAllData(curpage);
 		
 		request.setAttribute("curpage", curpage);

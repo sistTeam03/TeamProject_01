@@ -173,13 +173,13 @@
                     </div>
                     <div class="product__pagination">
                     	<c:if test="${startPage>1 }">
-                       <a href="#"><i class="fa fa-long-arrow-left"></i></a>
+                       <a href="../recipe/recipe.do?page=${startPage-10}"><i class="fa fa-long-arrow-left"></i></a>
                         </c:if>
-                        <c:forEach var="i" begin="${startPage }" end="${endPage-1 }" step="1" >
+                        <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
                         	<a href="../recipe/recipe.do?page=${i }">${i }</a>
                       	</c:forEach>
                       	<c:if test="${endPage<totalpage }">
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <a href="../recipe/recipe.do?page=${endPage+10}"><i class="fa fa-long-arrow-right"></i></a>
                     	</c:if>
                     </div>
                 </div>
