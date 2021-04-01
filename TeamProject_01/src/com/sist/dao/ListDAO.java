@@ -110,7 +110,9 @@ public class ListDAO {
 		int total=0;
 		try {
 			getConnection();
+
 			String sql="SELECT CEIL(COUNT(*)/20.0) FROm list_data_v5";
+
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
