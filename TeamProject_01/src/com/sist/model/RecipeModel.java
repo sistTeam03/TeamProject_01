@@ -14,7 +14,6 @@ public class RecipeModel {
 	@RequestMapping("recipe/recipe.do")  
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{	
-		
 		String page=request.getParameter("page");
 		if(page==null) {
 			page="1";
@@ -53,7 +52,7 @@ public class RecipeModel {
 	}
 	
 	//상세
-	@RequestMapping("recipe/recipe_detail.do")
+	@RequestMapping("recipe/recipe_detail.do") 
 	public String recipe_detail(HttpServletRequest request, HttpServletResponse response)
 	{
 		String no=request.getParameter("no");
