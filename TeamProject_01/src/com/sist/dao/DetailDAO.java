@@ -80,4 +80,27 @@ public class DetailDAO {
 		}
 		return vo;
 	}
+	//쿠키 데이터 전송
+	public DetailVO detailCookie(int no) {
+		DetailVO vo=new DetailVO();
+		try {
+			getConnection();
+			String sql="SELECT no,poster,title "
+					+ "FROM detail_data_v2 "
+					+ "WHere no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setPoster(rs.getString(2));
+			vo.setTitle(rs.getString(3));
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
+	}
 }

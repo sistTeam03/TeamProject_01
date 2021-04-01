@@ -21,6 +21,7 @@ public class RecipeModel {
 		int curpage=Integer.parseInt(page);
 		
 		ListDAO dao=ListDAO.newInstance();
+		DetailDAO dDao=DetailDAO.newInstance();
 		int totalpage=dao.listTotalPage();
 		int block=10;
 		int startPage=((curpage-1)/block*block)+1;
@@ -28,9 +29,22 @@ public class RecipeModel {
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
-		System.out.println(startPage);
-		List<ListVO> list=dao.listAllData(curpage);
 		
+		List<ListVO> list=dao.listAllData(curpage);
+		List<DetailVO> cList=new ArrayList<DetailVO>();//쿠키담을 그릇
+		Cookie[] cookies=request.getCookies();
+		if(cookies!=null) {
+			for(int i=cookies.length-1; i>=0;i--) {
+				if(cookies[i].getName().startsWith("m")) {
+					cookies[i].setPath("/");
+					String no=cookies[i].getValue();
+					DetailVO vo=dDao.detailCookie(Integer.parseInt(no));
+					cList.add(vo);
+				}
+			}
+		}
+	
+		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);
