@@ -22,7 +22,7 @@ public class RecipeModel {
 		ListDAO dao=ListDAO.newInstance();
 		int totalpage=dao.listTotalPage();
 		int block=10;
-		int startPage=(curpage-1/block)*block+1;
+		int startPage=(curpage-1/block*block)+1;
 		int endPage=(curpage-1/block*block)+block;
 		if(endPage>totalpage) {
 			endPage=totalpage;
