@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,4 +40,27 @@ public class RecipeModel {
 		return "../main/main.jsp";
 	}
 	
+	//쿠키
+	@RequestMapping("recipe/detail_before.do")
+	public String detail_before(HttpServletRequest request, HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		  Cookie cookie=new Cookie("m"+no, no);
+		  cookie.setMaxAge(60*60);
+		  cookie.setPath("/");
+		  response.addCookie(cookie);
+		  return "redirect:../recipe/recipe_detail.do?no="+no;
+	}
+	
+	//상세
+	@RequestMapping("recipe/recipe_detail.do")
+	public String recipe_detail(HttpServletRequest request, HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		  DetailDAO dao=DetailDAO.newInstance();
+		  DetailVO vo=dao.detailData(Integer.parseInt(no));
+		  request.setAttribute("vo", vo);
+		  request.setAttribute("main_jsp", "../recipe/recipe_detail.jsp");
+		  return "../main/main.jsp";
+	}
 }
