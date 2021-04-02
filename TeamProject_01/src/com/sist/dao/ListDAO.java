@@ -39,6 +39,7 @@ public class ListDAO {
 		
 		return dao;
 	}
+	//메인페이지 리스트
 	public List<ListVO> recipeListData()
 	{
 		List<ListVO> list = new ArrayList<ListVO>();

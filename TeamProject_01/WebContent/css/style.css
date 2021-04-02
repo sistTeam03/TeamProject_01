@@ -1535,7 +1535,7 @@ ol {
 }
 
 .product__item__pic {
-	height: 270px;
+	height: 200px;
 	position: relative;
 	overflow: hidden;
 }
@@ -1627,7 +1627,7 @@ ol {
 .product__pagination a,
 .blog__pagination a {
 	display: inline-block;
-	width: 30px;
+	width: 45px;
 	height: 30px;
 	border: 1px solid #b2b2b2;
 	font-size: 14px;
@@ -2279,10 +2279,11 @@ ol {
 
 .blog__item__pic img {
 	min-width: 100%;
+	height: 210px;
 }
 
 .blog__item__text {
-	padding-top: 25px;
+	padding-top: 10px;
 }
 
 .blog__item__text ul {

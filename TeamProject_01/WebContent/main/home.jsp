@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,28 +107,29 @@
                 </div> 
             </div>
             <div class="row">
+             
             <c:forEach var="vo" items="${list }" begin="0" end="8">
+                
                 <div class="col-lg-3 col-md-3 col-sm-5">
                     <div class="blog__item">
                         <div class="blog__item__pic">
                             <img src="${vo.poster }" alt="">
                         </div>
                         <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> 5 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">${vo.title }</a></h5>
-                           
+                        <c:if test="${fn:length(vo.title)<30 }">  
+                            <h5><a href="#">${vo.title }</a></h5>      
+                        </c:if>
+                        <c:if test="${fn:length(vo.title)>=30 }">  
+                            <h5><a href="#">${fn:substring(vo.title,0,25) }...</a></h5>      
+                        </c:if>
                         </div>
                     </div>
                 </div>
              </c:forEach>   
-                
+               
                     </div>
                 </div>
-            </div>
-        </div>
+        
     </section>
    
 
