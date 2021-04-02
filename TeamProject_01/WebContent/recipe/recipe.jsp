@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="../recipe/detail_before.do?no=${lvo.no }">${lvo.title }</a></h6>
-                                    <h5>$30.00</h5>
+                                    
                                 </div>
                             </div>
                         </div>
