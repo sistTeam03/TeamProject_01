@@ -66,13 +66,37 @@ public class RecipeModel {
 		  return "redirect:../recipe/recipe_detail.do?no="+no;
 	}
 	
-	//상세
+	//상세- 0402 수정
 	@RequestMapping("recipe/recipe_detail.do")
 	public String recipe_detail(HttpServletRequest request, HttpServletResponse response)
 	{
 		String no=request.getParameter("no");
 		  DetailDAO dao=DetailDAO.newInstance();
 		  DetailVO vo=dao.detailData(Integer.parseInt(no));
+		  String[] poslist=vo.getContent_poster().split(",");
+		 String[] conlist=vo.getContent().split("\\[]");
+		  
+		  StringTokenizer st=new StringTokenizer(vo.getIngre()," ");
+		  ArrayList<String> ingre_list_token=new ArrayList<String>();
+		  while(st.hasMoreTokens()) {
+			  String tmp=st.nextToken();
+			  if(tmp.endsWith("개")||tmp.endsWith("T")||tmp.endsWith("푼")||tmp.endsWith("알")||tmp.endsWith("히")
+					  ||tmp.endsWith("송")||tmp.endsWith("술")||tmp.endsWith("g")||tmp.endsWith("간")||tmp.endsWith("컵")
+					  ||tmp.endsWith(")")||tmp.endsWith("줌")||tmp.endsWith("쪽")||tmp.startsWith("[0-9]")
+					  ||tmp.endsWith("대")||tmp.endsWith("t")||tmp.endsWith("s")||tmp.endsWith("단")||tmp.endsWith("락")
+					  ||tmp.endsWith("컵")||tmp.endsWith("줄")||tmp.endsWith("G")||tmp.endsWith("조금")||tmp.endsWith("약간")
+					  ||tmp.endsWith("뿌리")||tmp.endsWith("마리")||tmp.endsWith("거"))
+			  {
+				  ingre_list_token.set(ingre_list_token.size()-1, ingre_list_token.get(ingre_list_token.size()-1)+" "+tmp);
+				  continue;
+			  }
+			  ingre_list_token.add(tmp);
+		  }
+		  
+		  request.setAttribute("length", conlist.length);
+		 request.setAttribute("poslist", poslist);
+		  request.setAttribute("conlist", conlist);
+		  request.setAttribute("inglist", ingre_list_token);
 		  request.setAttribute("vo", vo);
 		  request.setAttribute("main_jsp", "../recipe/recipe_detail.jsp");
 		  return "../main/main.jsp";
