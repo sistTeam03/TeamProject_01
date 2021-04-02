@@ -45,7 +45,23 @@
     	color:black;
     }
     </style>
- 
+ <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+ <script type="text/javascript">
+ let i=0;
+ $(function(){
+ 	$('#login').click(function(){
+ 		if(i==0){
+ 			$('#login_input').show();
+ 			i=1;
+ 		}
+ 		else{
+ 			$('#login_input').hide();
+ 			
+ 			i=0;
+ 		}
+ 	});
+ });
+ </script>
 </head>
 
 <body>
@@ -135,7 +151,7 @@
                 	 <div class="header__cart">
                         <ul>
                         	<li>
-                            	<a href="../member/login.do" class=loginco id="login"><i class="fa fa-user"></i> Login</a>
+                            	<span class=loginco id="login" style="cursor: pointer;"><i class="fa fa-user"></i> Login</span>
                             	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
                            </li>
                         </ul>
