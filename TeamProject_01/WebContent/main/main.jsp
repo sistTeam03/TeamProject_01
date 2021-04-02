@@ -65,6 +65,7 @@
             
             <div class="header__top__right__auth">
                 <a href="#"><i class="fa fa-user"></i> Login</a>
+               
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -134,7 +135,8 @@
                 	 <div class="header__cart">
                         <ul>
                         	<li>
-                            	<a href="#" class=loginco><i class="fa fa-user"></i> Login</a>
+                            	<a href="#" class=loginco id="login"><i class="fa fa-user"></i> Login</a>
+                            	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
                            </li>
                         </ul>
                     </div>

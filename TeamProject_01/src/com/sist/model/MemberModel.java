@@ -12,7 +12,7 @@ public class MemberModel {
 	public String signPage(HttpServletRequest request,HttpServletResponse response) {
 		
 		
-		request.setAttribute("main_jsp", "../member/주소명");
+		request.setAttribute("main_jsp", "../member/join.jsp");
 		return "../main/main.jsp";
 	}
 	@RequestMapping("member/주소.do")//회원 중복체크
