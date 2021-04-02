@@ -42,4 +42,11 @@ public class ChefsModel {
 		request.setAttribute("main_jsp","../main/chef.jsp");
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("recipe/chefs_recipe.do")
+	public String chefsRecipe(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		return "../main/chef.jsp";
+	}
 }

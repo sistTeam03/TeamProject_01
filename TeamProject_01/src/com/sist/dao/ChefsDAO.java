@@ -35,7 +35,7 @@ public class ChefsDAO {
 			dao=new ChefsDAO();
 		return dao;
 	}
-	
+	// chefs 목록
 	public List<ChefsVO> chefsListData(int page){
 		List<ChefsVO> list=new ArrayList<ChefsVO>();
 		try {
@@ -103,6 +103,50 @@ public class ChefsDAO {
 			disConnection();
 		}
 		return count;
+	}
+	// 쉐프의 레시피
+	public List<DetailVO> chefsRecipeData(String type)
+	{
+		List<DetailVO> list=new ArrayList<DetailVO>();
+		/*  chefs
+		 * 	private int id, ranking;
+			private String chef_name, chef_img, cooking_count, cooking_clip, hit, follower;
+		 */ 
+		/*	detail_data_v2
+		 * 	private int no, hit2;
+			private String title, poster, chef, chef_poster, info, info1, info2, info3, ingre,
+			content_poster, liked, regdate, chef_msg, content;
+		 */
+		try
+		{
+			getConnection();
+			String sql="SELECT title,poster,chef,info "
+					+ "FROM detail_data_v2 INNER JOIN chefs "
+					+ "ON detail_data_v2.chef=chefs.chef_name";
+			ps=conn.prepareStatement(sql);
+			/*
+			 * if("chef_msg"==null) type=" ";
+			 */
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				DetailVO vo=new DetailVO();
+				vo.setTitle(rs.getString(1));
+				vo.setPoster(rs.getString(2));
+				vo.setChef(rs.getString(3));
+				//vo.setChef_msg(rs.getString(4));
+				vo.setInfo(rs.getString(4));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return list;
 	}
 	
 }
