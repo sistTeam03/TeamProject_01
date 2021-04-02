@@ -68,7 +68,7 @@
                                 <div class="share">
                                     <!-- 재료 출력 부분 -->
                                     <c:forEach var="i" items="${ inglist}">
-                                    	<span>${i }</span>,&nbsp;
+                                    	<span>${i }</span>,&nbsp; 
                                     </c:forEach>
                                 </div>
                             </li>

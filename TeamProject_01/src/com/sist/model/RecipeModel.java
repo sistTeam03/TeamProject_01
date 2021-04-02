@@ -11,7 +11,7 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 @Controller
 public class RecipeModel {
-	@RequestMapping("recipe/recipe.do")  
+	@RequestMapping("recipe/recipe.do")   
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{	
 		String page=request.getParameter("page");

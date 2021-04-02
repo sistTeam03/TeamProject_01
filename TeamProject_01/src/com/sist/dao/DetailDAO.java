@@ -84,7 +84,7 @@ public class DetailDAO {
 		
 		
 	//쿠키 데이터 전송
-	public DetailVO detailCookie(int no) {
+	public DetailVO detailCookie(int no) { 
 		DetailVO vo=new DetailVO();
 		try {
 			getConnection();
