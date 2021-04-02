@@ -45,7 +45,7 @@
     	color:black;
     }
     </style>
-    
+ 
 </head>
 
 <body>
@@ -135,7 +135,7 @@
                 	 <div class="header__cart">
                         <ul>
                         	<li>
-                            	<a href="#" class=loginco id="login"><i class="fa fa-user"></i> Login</a>
+                            	<a href="../member/login.do" class=loginco id="login"><i class="fa fa-user"></i> Login</a>
                             	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
                            </li>
                         </ul>

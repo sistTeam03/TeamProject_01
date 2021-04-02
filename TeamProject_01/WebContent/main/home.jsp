@@ -12,7 +12,7 @@
 	   <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-lg-3">
                     <!--
                     <div class="hero__categories">
@@ -37,7 +37,8 @@
                 </div>
                 <div class="col-lg-12">
                    
-                    <div class="hero__item set-bg" data-setbg="../img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="../img/hero/banner.jpg" >
+                    	
                         <div class="hero__text">
                           <!--  <span>FRUIT FRESH</span>-->
                             <h2>냉장고 재료<br />레시피추천</h2>
@@ -47,6 +48,16 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="login_input">
+	            <div style="position: relative;top: -27em;left: 12em;float: right;">
+	            <input type="text" size=20>
+	            </div>
+	            <div style="position: relative;top: -24em;left: 22.6em;float: right;">
+	            <input type="text" size=20>
+	            </div>
+            </div>
+            
         </div>
     </section>
     <!-- Hero Section End -->
