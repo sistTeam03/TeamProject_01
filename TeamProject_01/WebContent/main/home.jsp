@@ -7,12 +7,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#login_input{
+	display: none;
+}
+#login_div{
+	display: table;
+	 
+	width:10px;
+	height:10px;
+	position: relative;
+	top: -34em;
+	left: -5.5em;
+	float: right;
+	
+}
+#login_div input{
+	font-size: 12pt;
+	 height: 23px;
+	border: 0.5px solid #7fad39;
+	border-radius: 15px;
+	line-height: 23px;		
+}
+#login_div #login_go{
+		width: 40px;
+		height: 27px;
+		color: #ffffff;
+		border-radius: 35px;
+		background-color:#7fad39;
+		text-align: center;
+		position: relative;
+		right: -4.3em;
+		top: -3.2em;
+		opacity:0.9;
+} 
+</style>
 </head>
 <body>
 	   <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-lg-3">
                     <!--
                     <div class="hero__categories">
@@ -37,7 +72,8 @@
                 </div>
                 <div class="col-lg-12">
                    
-                    <div class="hero__item set-bg" data-setbg="../img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="../img/hero/banner.jpg" >
+                    	
                         <div class="hero__text">
                           <!--  <span>FRUIT FRESH</span>-->
                             <h2>냉장고 재료<br />레시피추천</h2>
@@ -47,6 +83,15 @@
                     </div>
                 </div>
             </div>
+            <div id="login_input">
+	            <div id="login_div">
+	            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
+	            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+	           	<button id="login_go">go</button>
+	           </div>
+	           
+            </div>
+            
         </div>
     </section>
     <!-- Hero Section End -->

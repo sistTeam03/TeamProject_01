@@ -22,7 +22,13 @@
        
     </section>
     <!-- Breadcrumb Section End -->
-
+	<!-- 
+		/*
+		 * private int no, hit2;
+			private String title, poster, chef, chef_poster, info, info1, info2, info3, ingre,
+			content_poster, liked, regdate, chef_msg, content;
+		 */
+	 -->
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
@@ -31,7 +37,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="../img/product/details/product-details-1.jpg" alt="">
+                                src="${vo.poster }" alt="">
                         </div>
                         
                         <a href="#" class="primary-btn" style="background-color: lightred;margin:0px auto;">찜하기 28</a>&nbsp;&nbsp;
@@ -40,29 +46,30 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>레시피 이름</h3>
+                        <h3>${vo.title }</h3>
                         <div class="product__details__rating" style="color:gray">
-                            <span style="color:gray">등록 날짜</span>
-                            <span style="color:gray">조회수</span>
+                            <span style="color:gray">${vo.regdate }</span>
+                            <span style="color:gray">조회수&nbsp;${vo.hit2 }</span>
                         </div>
                         <div class="product__details__price" style="color: green">
                         	<div>
-                        	<img src="../img/product/details/thumb-1.jpg" width=50px height=50px>&nbsp;
-                        	<span style="font-size: 13pt">셰프 이름</span><br>
-                        	<span style="font-size:9pt">셰프 소개</span>
+                        	<img src="${vo.chef_poster }" width=50px height=50px>&nbsp;
+                        	<span style="font-size: 13pt">${vo.chef }</span><br>
+                        	<span style="font-size:9pt">${vo.chef_msg }</span>
                         	</div>
                         </div>
-                        <p>레시피 info(부제설명)</p>
+                        <p>${vo.info }</p>
 
                         <ul>
-                            <li><b>양</b> <span>info1(n인분)</span></li>
-                            <li><b>소요시간</b> <span>info2(n분이내)</span></li>
-                            <li><b>난이도</b> <span>info3</span></li>
+                            <li><b>양</b> <span>${vo.info1 }</span></li>
+                            <li><b>소요시간</b> <span>${vo.info2 }</span></li>
+                            <li><b>난이도</b> <span>${vo.info3 }</span></li>
                             <li valign="top"><b>재료</b>
                                 <div class="share">
                                     <!-- 재료 출력 부분 -->
-                                    재료 출력<br>
-                                    재료 출력<br>
+                                    <c:forEach var="i" items="${ inglist}">
+                                    	<span>${i }</span>,&nbsp; 
+                                    </c:forEach>
                                 </div>
                             </li>
                         </ul>
@@ -77,26 +84,27 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
-                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
-                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
-                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
-                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
-                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                <div class="product__details__tab__desc">  
+                                <c:forEach var="a" begin="0" end="${length }" >
+                                
+                                	<c:forEach var="i" varStatus="s" items="${ poslist}">
+                                		<c:if test="${s.index==a }">
+                                			<span><img src="${i }" style="margin:30px"></span><br>
+                                		</c:if>
+                                	</c:forEach>
+                                	
+                                	<c:forEach var="i" varStatus="s" items="${ conlist}">
+                                		<c:if test="${s.index==a }">
+                                			<span>${i }</span><br>
+                                		</c:if>
+                                	</c:forEach>
+                                	
+                                </c:forEach>
+                                
+                                <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                            </li>
+                        </ul>
                                 </div>
                             </div>
                         </div>

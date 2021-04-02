@@ -12,14 +12,14 @@ public class MemberModel {
 	public String signPage(HttpServletRequest request,HttpServletResponse response) {
 		
 		
-		request.setAttribute("main_jsp", "../member/주소명");
+		request.setAttribute("main_jsp", "../member/join.jsp");
 		return "../main/main.jsp";
 	}
-	@RequestMapping("member/주소.do")//회원 중복체크
+	@RequestMapping("member/idCheck_result.do")//회원 중복체크
 	public String idCheck(HttpServletRequest request,HttpServletResponse response) {
 		
 			
-		return "../member/주소";
+		return "../main/main.jsp";
 	}
 	@RequestMapping("member/주소.do") //회원가입 완료
 	public String Signup(HttpServletRequest request,HttpServletResponse response) {
@@ -33,5 +33,11 @@ public class MemberModel {
 		
 		return "redirect: ../main/main.do";
 	}
-	
+	@RequestMapping("member/login.do")//회원가입 페이지 전송
+	public String loginPage(HttpServletRequest request,HttpServletResponse response) {
+		
+		
+		request.setAttribute("login_num", 1);
+		return "../main/main.do";
+	}
 }

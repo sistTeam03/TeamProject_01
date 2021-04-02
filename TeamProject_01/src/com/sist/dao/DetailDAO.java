@@ -39,49 +39,52 @@ public class DetailDAO {
 		return dao;
 	}
 	
-	//목록 불러오기
-	public DetailVO detailData(int no) {
-		DetailVO vo=new DetailVO();
-		/*
-		 * private int no, hit2;
-			private String title, poster, chef, chef_poster, info, info1, info2, info3, ingre,
-			content_poster, liked, regdate, chef_msg, content;
-		 */
-		try {
-			getConnection();
-			String sql="SELECT no, title, poster, chef, chef_poster, info, info1, info2, info3, ingre, content_poster, liked, "
-					+ "regdate, chef_msg, content "
-					+ "FROM detail_data_v2 "
-					+ "WHERE no=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			vo.setNo(rs.getInt(1));
-			vo.setTitle(rs.getString(2));
-			vo.setPoster(rs.getString(3));
-			vo.setChef(rs.getString(4));
-			vo.setChef_poster(rs.getString(5));
-			vo.setInfo(rs.getString(6));
-			vo.setInfo1(rs.getString(7));
-			vo.setInfo2(rs.getString(8));
-			vo.setInfo3(rs.getString(9));
-			vo.setIngre(rs.getString(10));
-			vo.setContent_poster(rs.getString(11));
-			vo.setLiked(rs.getString(12));
-			vo.setRegdate(rs.getString(13));
-			vo.setChef_msg(rs.getString(14));
-			vo.setContent(rs.getString(15));
-			rs.close();
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}finally {
-			disConnection();
+	//목록 불러오기 - 0402 수정
+		public DetailVO detailData(int no) {
+			DetailVO vo=new DetailVO();
+			/*
+			 * private int no, hit2;
+				private String title, poster, chef, chef_poster, info, info1, info2, info3, ingre,
+				content_poster, liked, regdate, chef_msg, content;
+			 */
+			try {
+				getConnection();
+				String sql="SELECT detail_data_v2.no, detail_data_v2.title, detail_data_v2.poster, detail_data_v2.chef, detail_data_v2.chef_poster, detail_data_v2.info, detail_data_v2.info1, detail_data_v2.info2, detail_data_v2.info3, detail_data_v2.ingre, detail_data_v2.content_poster, detail_data_v2.liked, "
+						+ "detail_data_v2.regdate, detail_data_v2.chef_msg, detail_content_div.content "
+						+ "FROM detail_data_v2, detail_content_div "
+						+ "WHERE detail_data_v2.no=? AND detail_content_div.no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.setInt(2, no);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				vo.setChef(rs.getString(4));
+				vo.setChef_poster(rs.getString(5));
+				vo.setInfo(rs.getString(6));
+				vo.setInfo1(rs.getString(7));
+				vo.setInfo2(rs.getString(8));
+				vo.setInfo3(rs.getString(9));
+				vo.setIngre(rs.getString(10));
+				vo.setContent_poster(rs.getString(11));
+				vo.setLiked(rs.getString(12));
+				vo.setRegdate(rs.getString(13));
+				vo.setChef_msg(rs.getString(14));
+				vo.setContent(rs.getString(15));
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection();
+			}
+			return vo;
 		}
-		return vo;
-	}
+		
+		
 	//쿠키 데이터 전송
-	public DetailVO detailCookie(int no) {
+	public DetailVO detailCookie(int no) { 
 		DetailVO vo=new DetailVO();
 		try {
 			getConnection();
