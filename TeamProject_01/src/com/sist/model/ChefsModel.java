@@ -46,7 +46,11 @@ public class ChefsModel {
 	@RequestMapping("recipe/chefs_recipe.do")
 	public String chefsRecipe(HttpServletRequest request,HttpServletResponse response)
 	{
-		
+		String no=request.getParameter("no");
+		DetailDAO dao=DetailDAO.newInstance();
+		List<DetailVO> dList=dao.chefsRecipeData(Integer.parseInt(no));
+		request.setAttribute("dList", dList);
+		request.setAttribute("main_jsp", "../recipe/chefs_recipe.jsp"); 
 		return "../main/chef.jsp";
 	}
 }
