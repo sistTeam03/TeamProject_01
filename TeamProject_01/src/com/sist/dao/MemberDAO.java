@@ -3,12 +3,15 @@ package com.sist.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.sist.vo.MemberVO;
+import com.sist.vo.ZipcodeVO;
 
 public class MemberDAO {
 	private Connection conn;
@@ -82,6 +85,33 @@ public class MemberDAO {
 		}finally {
 			disConnection();
 		}
+	}
+	//주소 불러오기
+	public List<ZipcodeVO> joinAddress(String dong){
+		List<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
+		try {
+			getConnection();
+			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
+					+ "FROM zipcode "
+					+ "WHERE dong like '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, dong);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ZipcodeVO vo=new ZipcodeVO();
+				vo.setZipcode(rs.getString(1));
+				vo.setSido(rs.getString(2));
+				vo.setGugun(rs.getString(3));
+				vo.setDong(rs.getString(4));
+				vo.setBunji(rs.getString(5));
+				list.add(vo);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
 	}
 	
 }

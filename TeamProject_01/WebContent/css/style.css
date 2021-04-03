@@ -80,7 +80,9 @@ p {
 	color: #6f6f6f;
 	font-weight: 400;
 	line-height: 26px;
-	margin: 0 0 15px 0;
+	margin: 0 0 15px 20em;
+	text-align: left;
+	position: relative;
 }
 
 img {
@@ -2108,12 +2110,12 @@ ol {
 }
 
 .checkout__input {
-	margin-bottom: 24px;
+	margin-bottom: 10px;
 }
 
 .checkout__input p {
 	color: #1c1c1c;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 .checkout__input p span {
@@ -2121,13 +2123,16 @@ ol {
 }
 
 .checkout__input input {
-	width: 100%;
+	width: 21%;
 	height: 46px;
 	border: 1px solid #ebebeb;
 	padding-left: 20px;
 	font-size: 16px;
 	color: #b2b2b2;
 	border-radius: 4px;
+    text-align: left;
+    display: block;
+   
 }
 
 .checkout__input input.checkout__input__add {
