@@ -52,7 +52,7 @@
 	 
 	width:10px;
 	height:10px;
-	position:fixed;
+	position:absolute;
 	top: 3em;
 	left: 64.5em;
 	float: right;

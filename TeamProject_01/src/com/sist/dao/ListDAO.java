@@ -50,7 +50,7 @@ public class ListDAO {
 					+ "FROM (SELECT no, title, poster from list_data_v5 "
 					+ "ORDER BY hit DESC) "
 					+ "WHERE rownum<=8";
-			System.out.println(conn);
+			
 			ps=conn.prepareStatement(sql);
 			
 			ResultSet rs = ps.executeQuery();

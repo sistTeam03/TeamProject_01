@@ -27,22 +27,18 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
+<div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="login_input">
+	            <div id="login_div">
+	            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
+	            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+	           	<button id="login_go">go</button>
+	           </div>
+	           
             </div>
-        </div>
-    </section>
-    
+            </div>
+</div>
     <!-- 나누기 -->
     
     <section class="product spad">
