@@ -8,39 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#login_input{
-	display: none;
-}
-#login_div{
-	display: table;
-	 
-	width:10px;
-	height:10px;
-	position: relative;
-	top: -34em;
-	left: -5.5em;
-	float: right;
-	
-}
-#login_div input{
-	font-size: 12pt;
-	 height: 23px;
-	border: 0.5px solid #7fad39;
-	border-radius: 15px;
-	line-height: 23px;		
-}
-#login_div #login_go{
-		width: 40px;
-		height: 27px;
-		color: #ffffff;
-		border-radius: 35px;
-		background-color:#7fad39;
-		text-align: center;
-		position: relative;
-		right: -4.3em;
-		top: -3.2em;
-		opacity:0.9;
-} 
+
 </style>
 </head>
 <body>

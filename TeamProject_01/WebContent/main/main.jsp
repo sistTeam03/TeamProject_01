@@ -44,6 +44,39 @@
      a.loginco-hover{
     	color:black;
     }
+    #login_input{
+	display: none;
+}
+#login_div{
+	display: table;
+	 
+	width:10px;
+	height:10px;
+	position:fixed;
+	top: 3em;
+	left: 64.5em;
+	float: right;
+	
+}
+#login_div input{
+	font-size: 12pt;
+	 height: 23px;
+	border: 0.5px solid #7fad39;
+	border-radius: 15px;
+	line-height: 23px;		
+}
+#login_div #login_go{
+		width: 37px;
+		height: 34px;
+		color: #ffffff;
+		border-radius: 35px;
+		background-color:#7fad39;
+		text-align: center;
+		position: relative;
+		right: -4.3em;
+		top: -2.7em;
+		opacity:0.9;
+} 
     </style>
  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
  <script type="text/javascript">
