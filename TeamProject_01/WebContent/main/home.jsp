@@ -125,14 +125,14 @@
                 <div class="col-lg-3 col-md-3 col-sm-5">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="${vo.poster }" alt="">
+                            <a href="../recipe/detail_before.do?no=${vo.no }"><img src="${vo.poster }" alt=""></a>
                         </div>
                         <div class="blog__item__text">
                         <c:if test="${fn:length(vo.title)<30 }">  
-                            <h5><a href="#">${vo.title }</a></h5>      
+                            <h5><a href="../recipe/detail_before.do?no=${vo.no }">${vo.title }</a></h5>      
                         </c:if>
                         <c:if test="${fn:length(vo.title)>=30 }">  
-                            <h5><a href="#">${fn:substring(vo.title,0,25) }...</a></h5>      
+                            <h5><a href="../recipe/detail_before.do?no=${vo.no }">${fn:substring(vo.title,0,25) }...</a></h5>      
                         </c:if>
                         </div>
                     </div>
