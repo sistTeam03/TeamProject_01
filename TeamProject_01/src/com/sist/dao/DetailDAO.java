@@ -85,28 +85,39 @@ public class DetailDAO {
 		}
 		
 		
-	//쿠키 데이터 전송
-	public DetailVO detailCookie(int no) { 
-		DetailVO vo=new DetailVO();
+	//쿠키 데이터 전송 -레시피속도 개선시도(04/04)
+	public List<DetailVO> detailCookie(List<Integer> list) { 
+		 List<DetailVO> cList=new ArrayList<DetailVO>();
 		try {
 			getConnection();
+			String str="";
+			System.out.println(list.size());
+			for(int i=0;i<list.size()-1;i++) {
+				 str+=" or no=?";
+			}
 			String sql="SELECT no,poster,title "
 					+ "FROM detail_data_v2 "
-					+ "WHere no=?";
+					+ "WHere no=?"+str;
+					
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
+			for(int i=1;i<list.size()+1;i++) {
+			ps.setInt(i, list.get(i-1));
+			}
 			ResultSet rs=ps.executeQuery();
-			rs.next();
-			vo.setNo(rs.getInt(1));
-			vo.setPoster(rs.getString(2));
-			vo.setTitle(rs.getString(3));
-			rs.close();
+			while(rs.next()) {
+				DetailVO vo=new DetailVO();
+				vo.setNo(rs.getInt(1));
+				vo.setPoster(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				cList.add(vo);
+			}
+			rs.close();		
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
 			disConnection();
 		}
-		return vo;
+		return cList;
 	}
 	
 	// 쉐프의 레시피

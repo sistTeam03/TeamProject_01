@@ -32,18 +32,20 @@ public class RecipeModel {
 		
 		List<ListVO> list=dao.listAllData(curpage);
 		List<DetailVO> cList=new ArrayList<DetailVO>();//쿠키담을 그릇
+		List<Integer> cList2=new ArrayList<Integer>(); //no 저장
 		Cookie[] cookies=request.getCookies();
 		if(cookies!=null) {
+			System.out.println(cookies.length);
 			for(int i=cookies.length-1; i>=0;i--) {
 				if(cookies[i].getName().startsWith("m")) {
 					cookies[i].setPath("/");
-					String no=cookies[i].getValue();
-					DetailVO vo=dDao.detailCookie(Integer.parseInt(no));
-					cList.add(vo);
-				}
+					int no=Integer.parseInt(cookies[i].getValue());
+					cList2.add(no);
+				}	
 			}
 		}
-	
+		System.out.println(cList2.size());
+		cList=dDao.detailCookie(cList2);
 		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);

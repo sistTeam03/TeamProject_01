@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.owl-carousel .owl-item img {
+    display: block;
+    width: 140px;
+    padding-top: 10px;
+}
+</style>
 </head>
 <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -14,18 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | Template</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+   
 <body>
 <div class="container">
             <div class="row">
@@ -45,8 +41,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        
+                    <div class="sidebar">             
                         <div class="sidebar__item">
                         <h4>최근 방문한 레시피</h4>
                             <div class="latest-product__text">
@@ -54,53 +49,28 @@
                                 <div class="latest-product__slider owl-carousel">
                                     <div class="latest-prdouct__slider__item">
                                         <c:forEach var="cvo" items="${cList }" varStatus="c">
+                                       
                                        <c:if test="${c.index<6 }">
                                         <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
+                                           <div class="latest-product__item__pic">
                                                 <img src="${cvo.poster }" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
+                                                <h6>${cvo.title }</h6>
+                                             
                                             </div>
                                         </a>
                                        </c:if>
                                         </c:forEach>
-                                    </div>
-                                    <div class="latest-prdouct__slider__item">
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                      </div>
+                                  
+                                 </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+               
+                
                 <div class="col-lg-9 col-md-7">
                     
                     <div class="filter__item">
@@ -126,8 +96,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                    
+        			 <div class="row">
                        <c:forEach var="lvo" items="${list }">
                         <div class="col-lg-3 col-md-5 col-sm-5">
                             <div class="product__item">             
@@ -145,7 +115,7 @@
                             </div>
                         </div>
                        </c:forEach>
-                       
+                       </div>
                     </div>
                     <div class="product__pagination">
                     	<c:if test="${startPage>1 }">
@@ -160,15 +130,16 @@
                     </div>
                 </div>
             </div>
+       
         </div>
     </section>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script> 
+  	 <script src="../js/jquery-3.3.1.min.js"></script>
+
     <script src="../js/jquery.nice-select.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
+   <!--  <script src="../js/owl.carousel.min.js"></script> -->
     <script src="../js/main.js"></script>
 </body>
 </html>
