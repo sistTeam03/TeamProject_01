@@ -107,9 +107,9 @@ margin-left: 2em;
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
-
+var index=1;
 $(function(){
-
+	
 	$('.post').hide();
 	$('#checkBtn').click(function(){
  		
@@ -134,6 +134,7 @@ $(function(){
 					$('#id').css("border", "3px solid #7fad39");
 					$('#checkSpan').css("color","#7fad39")
 					$('#checkSpan').text("사용가능한 ID입니다.");
+					index=0;
 				}
 				else
 				{	
@@ -141,6 +142,7 @@ $(function(){
 					$('#checkSpan').text("중복된 ID가 존재합니다.");
 					$('#checkSpan').css("color","red")
 					$('#id').css("border","3px solid #9b344ae3");
+					index=1;
 				}	
 			}
 			
@@ -191,7 +193,14 @@ $(function(){
 	});//주소가져오기
 	$('#okBtn').click(function(){
 		$('.post').hide();
-	}); 
+	});
+	$('#btn1').click(function(){
+ 		if(index==1){//아이디 중복인데 회원가입 버튼누름
+ 			$('#id').focus();
+ 		}else{
+ 			$('#join_form').submit();
+ 		}
+ 	});//중복이 안되어야 가입가능
 });
 
 </script>
@@ -319,7 +328,7 @@ $(function(){
                             <!-- 버튼####################################### -->
                             <div class="row">
 	                           <div class="checkout__input ">
-	                            	<input type="submit" value="회원가입" class="btn btn-sm" id="btn1">
+	                            	<input type="button" value="회원가입" class="btn btn-sm" id="btn1">
 	  								<input type="button" value="취소"class="btn btn-sm" onclick="javascript:history.back()" id="btn2">
 	                           </div>
                       		</div>
