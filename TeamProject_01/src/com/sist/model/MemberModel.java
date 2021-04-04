@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -68,7 +69,7 @@ public class MemberModel {
 		return "redirect: ../main/main.do";
 	}
 	@RequestMapping("member/post_result.do")//주소 출력
-	public String loginPage(HttpServletRequest request,HttpServletResponse response) {
+	public String zipcodePrint(HttpServletRequest request,HttpServletResponse response) {
 		String dong=request.getParameter("dong");
 		MemberDAO dao=MemberDAO.newInstance();
 		List<ZipcodeVO> list=dao.joinAddress(dong);
@@ -76,4 +77,33 @@ public class MemberModel {
 		request.setAttribute("list", list);
 		return "../member/fost_find.jsp";
 	}
+	@RequestMapping("member/login.do")//로그인
+	public String loginOk(HttpServletRequest request,HttpServletResponse response) {
+		
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		MemberDAO dao=MemberDAO.newInstance();
+		String result=dao.loginCheck(id, pwd);
+		if(result.equals("NOID")) {
+			request.setAttribute("msg", result);
+		}else if(result.equals("NOPWD")){
+			request.setAttribute("msg", result);
+		}else{
+			HttpSession session=request.getSession();
+			session.setAttribute("name", result);
+			session.setAttribute("sesson_id", id);
+			request.setAttribute("msg", result); //이름,닉네임
+		}
+		
+		return "../member/login_ok.jsp";
+	}
+	@RequestMapping("member/logout.do")
+	public String logOutOk(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		session.invalidate();
+		
+		
+		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함
+	}
+	
 }

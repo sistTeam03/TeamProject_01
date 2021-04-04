@@ -113,5 +113,48 @@ public class MemberDAO {
 		}
 		return list;
 	}
-	
+	//로그인
+	public String loginCheck(String id,String pwd) {
+		String result="";
+		try {
+			getConnection();
+			String sql="SELECT COUNT(*) FROM member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			if(count==1) {
+				sql="SELECT pwd,name,NVL(nickname,'^') " //로그인후 가져올 정보
+						+"from member where id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, id);
+				rs=ps.executeQuery();
+				rs.next();
+				String db_pwd=rs.getString(1);
+				String name=rs.getString(2);
+				String nickname=rs.getString(3);
+				rs.close();
+				if(db_pwd.equals(pwd)) {//로그인성공
+					if(nickname.equals("^")) {//닉네임이 없으면 이름으로 출력
+						result=name;
+					}else {
+						result=nickname;
+					}
+				}else {
+					result="NOPWD";
+				}
+				
+			}else{//아이디 없음
+				result="NOID";
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return result;
+	}
 }

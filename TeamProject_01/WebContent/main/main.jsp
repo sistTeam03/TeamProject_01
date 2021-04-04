@@ -83,7 +83,10 @@
  <script type="text/javascript">
  let i=0;
  $(function(){
- 	$('#login').click(function(){
+	 $('#logout_logo').click(function(){//로그아웃
+		 location.href="../member/logout.do";
+	 });
+ 	$('#login_logo').click(function(){
  		if(i==0){
  			$('#login_input').show();
  			i=1;
@@ -94,7 +97,36 @@
  			i=0;
  		}
  	});
- 
+ 	$('#login_go').click(function(){
+ 		let id=$('#login_id').val();
+ 		let pwd=$('#login_pwd').val();
+ 		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(result)
+			{
+				let msg=result.trim();
+				if(msg=="NOID")
+				{		
+					$('#login_id').val("");
+					$('#login_pwd').val("")
+					$('#login_id').attr("placeholder","ID가 존재하지 않습니다.");
+				}
+				else if(msg=="NOPWD")
+				{	
+					$('#login_pwd').val("");
+					$('#login_pwd').attr("placeholder","패스워드가 다릅니다.");
+				}else{
+					
+					location.href="../main/main.do";
+					
+				}
+			}
+			
+		});
+ 		
+ 	});
  });
  </script>
 </head>
@@ -186,7 +218,12 @@
                 	 <div class="header__cart">
                         <ul>
                         	<li>
-                            	<span class=loginco id="login" style="cursor: pointer;"><i class="fa fa-user"></i> Login</span>
+                        	<c:if test="${empty sesson_id}">
+                            	<span class=loginco id="login_logo" style="cursor: pointer;"><i class="fa fa-user"></i>Login</span>
+                            </c:if>
+                            <c:if test="${not empty sesson_id}">
+                            	<span class=loginco id="logout_logo" style="cursor: pointer;"><i class="fa fa-user"></i>Logout</span>
+                             </c:if>	
                             	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
                            </li>
                         </ul>

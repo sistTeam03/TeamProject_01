@@ -51,8 +51,8 @@
             <div class="row">
             <div id="login_input">
 	            <div id="login_div">
-	            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
-	            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+	            <input type="text" size=15 id="login_id" placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
+	            <input type="password" size=15 id="login_pwd" placeholder="비밀번호" style="padding-left: 10px;">
 	           	<button id="login_go">go</button>
 	           </div>
 	        </div>
