@@ -7,12 +7,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.owl-carousel .owl-item img {
-    display: block;
-    width: 140px;
-    padding-top: 10px;
+#card_img{
+	width: 110px;
+	height: 110px;
+	
+}
+.sidebar__item{
+	position: relative;
+	width: 17em;
+}
+#card_img,#card_title{
+
+	position: relative;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let poster=${cvo.poster }
+$(function(){
+	$('#card_full div').hover(function(){
+		$(this).children("#card_title").hide();
+		$(this).children("#card_title").css("width","0px");
+		$(this).children("#card_img_div").css("width","260px");
+		$(this).children("#card_img").css("width","260px");
+	},function(){
+		$(this).children("#card_title").show();
+		$(this).children("#card_title").css("width","150px");
+		$(this).children("#card_img_div").css("width","110px");
+		$(this).children("#card_img").css("width","110px");
+	});
+	
+/* 	$('#card_img_div img').click(function(){
+		let link=$('#detail_link a').attr("href")
+		console.log(link);
+		 location.href=link;
+	}); */
+});
+</script>
 </head>
 <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -45,26 +76,26 @@
                         <div class="sidebar__item">
                         <h4>최근 방문한 레시피</h4>
                             <div class="latest-product__text">
-                                
-                                <div class="latest-product__slider owl-carousel">
-                                    <div class="latest-prdouct__slider__item">
+                            
+                                    <div class="latest-prdouct__slider__item" id="card_full">
                                         <c:forEach var="cvo" items="${cList }" varStatus="c">
                                        
                                        <c:if test="${c.index<6 }">
-                                        <a href="#" class="latest-product__item">
-                                           <div class="latest-product__item__pic">
-                                                <img src="${cvo.poster }" alt="">
+                                       		 <a href="../recipe/recipe_detail.do?no=${cvo.no }" style="width: 260px;">
+                                       <div id="card_tr" style="width: 260px;height: 110px;margin-top: 15px;">    
+                                           <div id="card_img_div" style="width: 110px;height: 110px;float: left;">
+                                            <img src="${cvo.poster }" alt="" id="card_img" style="border-radius: 10px;">
                                             </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>${cvo.title }</h6>
-                                             
+                                            <div class="card_title_title" id="card_title"style="height: 110px;width: 150px;float: left;">
+                                                <h6 style="padding-top: 15px;" >${cvo.title }</h6>
                                             </div>
-                                        </a>
+                                       	</div>
+                                       	   </a>
                                        </c:if>
                                         </c:forEach>
                                       </div>
                                   
-                                 </div>
+                                
                                 </div>
                             </div>
                         </div>
@@ -133,13 +164,6 @@
        
         </div>
     </section>
-  	 <script src="../js/jquery-3.3.1.min.js"></script>
-
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-   <!--  <script src="../js/owl.carousel.min.js"></script> -->
-    <script src="../js/main.js"></script>
+  
 </body>
 </html>

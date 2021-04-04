@@ -83,6 +83,7 @@
  <script type="text/javascript">
  let i=0;
  $(function(){
+	 
 	 $('#logout_logo').click(function(){//로그아웃
 		 location.href="../member/logout.do";
 	 });
