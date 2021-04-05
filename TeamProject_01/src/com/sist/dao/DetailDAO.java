@@ -94,7 +94,7 @@ public class DetailDAO {
 			if(k<=6){
 			for(int i=0; i<list.size();i++) {
 			String sql="SELECT no,poster,title "
-					+ "FROM detail_data_v2 "
+					+ "FROM list_data_v5 "
 					+ "WHere no=?";
 					
 			ps=conn.prepareStatement(sql);
