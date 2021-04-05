@@ -51,10 +51,10 @@ public class DetailDAO {
 			 */
 			try {
 				getConnection();
-				String sql="SELECT detail_data_v2.no, detail_data_v2.title, detail_data_v2.poster, detail_data_v2.chef, detail_data_v2.chef_poster, detail_data_v2.info, detail_data_v2.info1, detail_data_v2.info2, detail_data_v2.info3, detail_data_v2.ingre, detail_data_v2.content_poster, detail_data_v2.liked, "
-						+ "detail_data_v2.regdate, detail_data_v2.chef_msg, detail_content_div.content "
-						+ "FROM detail_data_v2, detail_content_div "
-						+ "WHERE detail_data_v2.no=? AND detail_content_div.no=?";
+				String sql="SELECT no,title,poster,chef,chef_poster,info,info1,info2,info3,ingre,content_poster,liked, "
+						+ "regdate,chef_msg,content "
+						+ "FROM detail_data_v3 "
+						+ "WHERE no=?";
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, no);
 				ps.setInt(2, no);
