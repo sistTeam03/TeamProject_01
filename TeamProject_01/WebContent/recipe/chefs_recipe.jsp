@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -42,80 +42,64 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-<!--     Blog Section Begin
+<!-- Blog Section Begin  -->
     <section class="blog spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
-                            <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">             
+                        <div class="sidebar__item">
+                        <h4 style="margin-top: 4em;">최근 방문한 쉐프</h4>
+                          <div class="latest-product__text">
+                            <div class="latest-prdouct__slider__item" id="card_full">
+                              <c:forEach var="cvo" items="${dList }" varStatus="c">       
+                                <a href="../recipe/recipe_detail.do?no=${cvo.no }" style="width: 260px;">
+                                  <div id="card_tr" style="width: 260px;height: 110px;margin-top: 15px;">    
+                                    <div id="card_img_div" style="width: 110px;height: 110px;float: left;">
+                                       <img src="${dvo.poster }" alt="" id="card_img" style="border-radius: 10px; ">
+                                         </div>
+                                       <div class="card_title_title" id="card_title"style="height: 110px;width: 150px;float: left;">
+                                         <h6 style="padding-top: 15px;" >${dvo.title }</h6>
+                                       </div>
                                     </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
+                                  </a>
+                               </c:forEach>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="filter__sort">
+                                    <span>Sort By</span>
+                                    <select>
+                                        <option value="0">Default</option>
+                                        <option value="0">Default</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span>16</span> Products found</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__option">
+                                    <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-lg-12 text-left">
-                    <div class="row">
-                      <c:forEach var="vo" items="dList">
-                        <div class="col-6">
-                            <div class="chef_recipes">
-                                <div class="chef_recipes__pic">
-                                    <img src="${dList.poster }" alt="">
+                     </div>
+        			 <div class="row">
+                       <c:forEach var="lvo" items="${list }">
+                        <div class="col-lg-3 col-md-5 col-sm-5">
+                            <div class="product__item">             
+                                <div class="product__item__pic set-bg list_img" data-setbg="${lvo.poster }" style="border-radius: 10px;" list_link="../recipe/detail_before.do?no=${lvo.no }">
                                 </div>
                                 <div class="chef_recipes_text">
                                     <!-- <ul>
@@ -127,17 +111,23 @@
                                     <a href="#" class="chef_recipe_detail">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>
-                        </div>                   
+                          </div>
+                        </c:forEach>
+                      </div>
+                </div>
+                
+                    <div class="product__pagination">
+                      <c:if test="${startPage>1 }">
+                        <a href="../recipe/recipe.do?page=${startPage-10}"><i class="fa fa-long-arrow-left"></i></a>
+                      </c:if>
+                      <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
+                        <a href="../recipe/recipe.do?page=${i }">${i }</a>
                       </c:forEach>
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
+                      <c:if test="${endPage<totalpage }">
+                        <a href="../recipe/recipe.do?page=${endPage+10}"><i class="fa fa-long-arrow-right"></i></a>
+                      </c:if>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>
