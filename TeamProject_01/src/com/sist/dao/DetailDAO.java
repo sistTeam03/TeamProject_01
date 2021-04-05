@@ -90,10 +90,9 @@ public class DetailDAO {
 		 List<DetailVO> cList=new ArrayList<DetailVO>();
 		try {
 			getConnection();
-			String str="";
 			int k=1;
 			if(k<=6){
-			for(int i=0; i<list.size()+1;i++) {
+			for(int i=0; i<list.size();i++) {
 			String sql="SELECT no,poster,title "
 					+ "FROM detail_data_v2 "
 					+ "WHere no=?";
@@ -110,8 +109,10 @@ public class DetailDAO {
 				cList.add(vo);
 			}
 			rs.close();
+			System.out.println("오라클쿠키"+k+"번째");
 			k++;
 			}//for
+			
 		}//if
 		} catch (Exception ex) {
 			ex.printStackTrace();
