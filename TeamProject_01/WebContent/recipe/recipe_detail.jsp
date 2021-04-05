@@ -43,6 +43,43 @@ text-align: right;
     left: 9em;
  }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0;
+$(function(){
+	$(document).on('click','.delBtn',function(){
+		let no=$(this).attr("data-no");//data-no 값 속성 추가
+		let recipeno=$(this).attr("recipe-no");
+		location.href="../recipe/recipe_reply_delete.do?no="+no+"&recipeno="+recipeno;
+	});
+	$('.delBtn').click(function(){
+		//Dummy
+	});
+	
+	$(document).on('click','.updateBtn',function(){
+		$('.updateli').hide();//updateli 수정칸 추가
+		$('.updateBtn').text("수정");
+		let no=$(this).attr("data-no");
+		if(i==0)
+		{
+			$(this).text("취소");
+			$('#m'+no).show("slow");
+			i=1;
+		}
+		else
+		{
+			$(this).text("수정");
+			$('#m'+no).hide("slow");
+			i=0;
+		}
+		
+	});
+	
+	$('.updateBtn').click(function(){
+		//Dummy
+	});
+});
+</script>
 </head>
 <body>
 
@@ -83,8 +120,16 @@ text-align: right;
                                 src="${vo.poster }" alt="">
                         </div>
                         
-                        <a href="#" class="primary-btn" style="background-color: lightred;margin:0px auto;">찜하기 28</a>&nbsp;&nbsp;
-    
+                       <c:if test="${sessionScope.sesson_id!=null }">
+	                        <c:if test="${count==0 }">
+	                        	<a href="../recipe/bookmark.do?no=${vo.no }" class="primary-btn" style="background-color: lightred;margin:0px auto;">찜하기</a>&nbsp;&nbsp;
+	    					</c:if>
+	    					
+	    					<c:if test="${count!=0 }">
+	    						<span class="primary-btn" style="background-color: lightred;margin:0px auto;">찜 완료</span>&nbsp;&nbsp;
+	    					</c:if>
+    					</c:if>
+    					
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -110,8 +155,8 @@ text-align: right;
                             <li valign="top"><b>재료</b>
                                 <div class="share">
                                     <!-- 재료 출력 부분 -->
-                                    <c:forEach var="i" items="${ inglist}" varStatus="s">
-                                    	<span>${i }</span>,&nbsp;
+                                    <c:forEach var="i" items="${ inglist}">
+                                    	<span>${i }</span>,&nbsp; 
                                     </c:forEach>
                                 </div>
                             </li>
@@ -128,21 +173,6 @@ text-align: right;
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">  
-                               <%--  <c:forEach var="a" begin="0" end="${length }" >
-                                
-                                	<c:forEach var="i" varStatus="s" items="${ poslist}">
-                                		<c:if test="${s.index==a }">
-                                			<span><img src="${i }" style="margin:30px"></span><br>
-                                		</c:if>
-                                	</c:forEach>
-                                	
-                                	<c:forEach var="i" varStatus="s" items="${ conlist}">
-                                		<c:if test="${s.index==a }">
-                                			<span>${i }</span><br>
-                                		</c:if>
-                                	</c:forEach>
-                                	
-                                </c:forEach> --%>
                                 <c:forEach var="i" items="${poslist }" varStatus="s">
                                 	<c:if test="${s.index%2==1 }">
                                 	<div class="content1">
@@ -156,12 +186,6 @@ text-align: right;
                                 	<p class="content_p2">${conlist[s.index] }</p></div>
                                 	</c:if>
                                 </c:forEach>
-                                
-                                
-                                <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                            </li>
-                        </ul>
                                 </div>
                             </div>
                         </div>
@@ -169,6 +193,66 @@ text-align: right;
                 </div>
             </div>
         </div>
+
+        <div style="height:50px"></div>
+        
+         <ul class="nav nav-tabs" role="tablist">
+         <li class="nav-item"></li>
+       </ul>
+        
+        <!-- 댓글 목록 출력 -->
+        <table style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;"class=table-condensed>
+        <c:forEach var="rvo" items="${rList }">
+	        	<tr  style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;">
+	        		<td width=20% style="text-align: left">${rvo.nickname }</td>
+	        		<td rowspan=2 width=80%><pre>${rvo.msg }</pre></td>
+	        	</tr>
+	        	<tr  style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;">
+	        		<td width=20% style="text-align: left;font-size: 10pt">${rvo.regdate }</td>
+	        		<c:if test="${sessionScope.sesson_id==rvo.id }">
+		        		<td>
+		        			<input type=button class="updateBtn btn-info" value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }">
+		        			<input type=button class="delBtn btn-danger" value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " recipe-no="${vo.no }">
+		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
+		        		</td>
+		        	</c:if>
+	        	</tr>
+	        	<form action="../recipe/recipe_reply_update.do" method="post" >
+			        	<table style="margin:0px auto;display:none" id="m${rvo.no }" class=updateli>
+			        		<tr>
+				                <td><textarea cols=100 rows=3></textarea>
+				                	<input type="hidden" name=recipeno value="${vo.no }">
+		             				<input type="hidden" name=no value="${rvo.no }">
+				                 </td>
+				                <td><input type=submit value=댓글수정 class="btn btn-md btn-success" style="height:80px"></td>
+			                </tr>
+			            </table>
+			   </form>
+        	</c:forEach>
+        </table>
+        
+      <ul class="nav nav-tabs" role="tablist">
+         <li class="nav-item"></li>
+       </ul>
+      
+      	
+	        <div style="height:50px"></div>
+	        
+	         <c:if test="${sessionScope.sesson_id!=null }"> 
+			        <div class=reply>
+			        <form action="../recipe/recipe_reply_insert.do" method="post" >
+			        	<table style="margin:0px auto;">
+			        		<tr>
+				                <td><textarea cols=100 rows=3 name=msg></textarea> 
+				                	<input type=hidden name=no value="${vo.no }">
+				                </td>
+				                <td><input type=submit value=댓글작성 class="btn btn-md btn-success" style="height:80px"></td>
+			                </tr>
+			            </table>
+			            </form>
+			      </div>
+		       </c:if> 
+
     </section>
     <!-- Product Details Section End -->
 
