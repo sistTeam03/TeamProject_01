@@ -18,7 +18,7 @@
     height: 10px;
     position: absolute;
     top: 3em;
-    left: 74.2em;
+    left: 90.2em;
     float: right;
 }
 #login_div input {

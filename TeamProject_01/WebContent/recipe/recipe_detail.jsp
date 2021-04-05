@@ -7,6 +7,41 @@
 	margin:0px auto;
 	padding: 0px 35px;
 }
+.content1, .content2{
+width:1140px;
+height: 20em;
+display: block;
+
+}
+.content_img2{
+	border-radius:32px;
+    position: relative;
+    width: 26em;
+}
+.content_img1{
+ position: relative;
+ width: 26em;
+ border-radius:32px;
+}
+.content2{
+	text-align: left;
+}
+.content1{
+text-align: right;
+}
+.content_p1,.content_p2{
+	width:20em;
+	    font-size: 20pt;
+	    line-height: 34px;
+}
+.content_p1{
+	top: -7em;
+    left: -18em;
+}
+.content_p2{
+	 top: -8em;
+    left: 9em;
+ }
 </style>
 </head>
 <body>
@@ -75,8 +110,8 @@
                             <li valign="top"><b>재료</b>
                                 <div class="share">
                                     <!-- 재료 출력 부분 -->
-                                    <c:forEach var="i" items="${ inglist}">
-                                    	<span>${i }</span>,&nbsp; 
+                                    <c:forEach var="i" items="${ inglist}" varStatus="s">
+                                    	<span>${i }</span>,&nbsp;
                                     </c:forEach>
                                 </div>
                             </li>
@@ -93,7 +128,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">  
-                                <c:forEach var="a" begin="0" end="${length }" >
+                               <%--  <c:forEach var="a" begin="0" end="${length }" >
                                 
                                 	<c:forEach var="i" varStatus="s" items="${ poslist}">
                                 		<c:if test="${s.index==a }">
@@ -107,7 +142,21 @@
                                 		</c:if>
                                 	</c:forEach>
                                 	
+                                </c:forEach> --%>
+                                <c:forEach var="i" items="${poslist }" varStatus="s">
+                                	<c:if test="${s.index%2==1 }">
+                                	<div class="content1">
+                                	<img  src="${i}" class="content_img1">
+                                	<p class="content_p1">${conlist[s.index] }</p></div>
+                                	</c:if>
+                                	
+                                	<c:if test="${s.index%2==0 }">
+                                	<div class="content2">
+                                	<img  src="${i}" class="content_img2">
+                                	<p class="content_p2">${conlist[s.index] }</p></div>
+                                	</c:if>
                                 </c:forEach>
+                                
                                 
                                 <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">

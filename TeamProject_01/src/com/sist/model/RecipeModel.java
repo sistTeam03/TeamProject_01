@@ -14,6 +14,11 @@ public class RecipeModel {
 	@RequestMapping("recipe/recipe.do")   
 	public String main_home(HttpServletRequest request,HttpServletResponse response)
 	{	
+		
+		String sort=request.getParameter("sort");
+		if(sort==null) {
+			sort="0";
+		}
 		String page=request.getParameter("page");
 		if(page==null) {
 			page="1";
@@ -30,7 +35,8 @@ public class RecipeModel {
 			endPage=totalpage;
 		}
 		
-		List<ListVO> list=dao.listAllData(curpage);
+		List<ListVO> list=dao.listAllData(curpage,Integer.parseInt(sort));
+		System.out.println(list.size());
 		List<DetailVO> cList=new ArrayList<DetailVO>();//쿠키담을 그릇
 		List<Integer> cList2=new ArrayList<Integer>(); //no 저장
 		Cookie[] cookies=request.getCookies();

@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+.list_img{
+	cursor: pointer;
+}
 #card_img{
 	width: 110px;
 	height: 110px;
@@ -45,6 +47,17 @@ $(function(){
 		console.log(link);
 		 location.href=link;
 	}); 
+ 	//$("#id").val("1").prop("selected", true);
+
+ 	$('.sort').click(function(){
+ 		let sort=$(this).attr('data');
+ 		if(sort==0){
+ 		location.href="../recipe/recipe.do?sort="+sort;
+ 		}else{
+ 		location.href="../recipe/recipe.do?sort="+sort;
+ 		}
+ 	});
+ 	
 });
 </script>
 </head>
@@ -109,10 +122,11 @@ $(function(){
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
                                     <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
+                              
+                                    	
+                                        <div data="0" class="sort">인기순</div>
+                                        <div data="1" class="sort">최신순</div>
+                                  
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
@@ -133,11 +147,7 @@ $(function(){
                         <div class="col-lg-3 col-md-5 col-sm-5">
                             <div class="product__item">             
                                 <div class="product__item__pic set-bg list_img" data-setbg="${lvo.poster }" style="border-radius: 10px;" list_link="../recipe/detail_before.do?no=${lvo.no }">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#" class="pop"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#" class="pop"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#" class="pop"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
+                                    
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="../recipe/detail_before.do?no=${lvo.no }">${lvo.title }</a></h6>

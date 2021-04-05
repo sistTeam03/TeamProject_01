@@ -54,7 +54,7 @@
 	height:10px;
 	position:absolute;
 	top: 3em;
-	left: 64.5em;
+	left: 81.5em;
 	float: right;
 	
 }
