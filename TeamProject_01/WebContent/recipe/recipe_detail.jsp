@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+<style type="text/css">
+#info{
+	margin:0px auto;
+	padding: 0px 35px;
+}
+</style>
+</head>
 <body>
 
     <!-- Breadcrumb Section Begin -->
@@ -58,7 +66,7 @@
                         	<span style="font-size:9pt">${vo.chef_msg }</span>
                         	</div>
                         </div>
-                        <p>${vo.info }</p>
+                        <p id="info">${vo.info }</p>
 
                         <ul>
                             <li><b>양</b> <span>${vo.info1 }</span></li>
