@@ -57,7 +57,6 @@ public class DetailDAO {
 						+ "WHERE no=?";
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, no);
-				ps.setInt(2, no);
 				ResultSet rs=ps.executeQuery();
 				rs.next();
 				vo.setNo(rs.getInt(1));
