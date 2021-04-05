@@ -7,6 +7,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.sort{
+
+ cursor: pointer;
+width: 4em;
+float: left;
+
+background-color: #ddf2bc;
+border-bottom-left-radius: 16px;
+margin-left: 6px;
+position: relative;
+right: -8em;
+top: -2.8em;
+border-bottom-right-radius: 16px;
+}
+.sort:hover{
+	color: #fff;
+    background-color: #7fad39;
+    border-color: #7fad39;
+}
+.sort:focus{
+	box-shadow: 0 0 0 .2rem #ddf2bc;
+}
+#sort_new{
+margin-left: 0.5px;
+}
 .list_img{
 	cursor: pointer;
 }
@@ -118,26 +143,12 @@ $(function(){
                 <div class="col-lg-9 col-md-7">
                     
                     <div class="filter__item">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5">
+                        <div class="row" >
+                        <div class="col-lg-8 col-md-7"></div>
+                            <div class="col-lg-4 col-md-5" id="sort_tab">
                                 <div class="filter__sort">
-                                    <span>Sort By</span>
-                              
-                                    	
-                                        <div data="0" class="sort">인기순</div>
-                                        <div data="1" class="sort">최신순</div>
-                                  
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
+                                        <div data="0" class="sort" id="sort_top">인기순</div>
+                                        <div data="1" class="sort" id="sort_new" >최신순</div>               
                                 </div>
                             </div>
                         </div>

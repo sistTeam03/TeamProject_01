@@ -28,20 +28,21 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     
-    <style type="text/css">
-    .fa{
+<style type="text/css">
+ 
+.fa{
     	color:black;
     }
     
-    .fa-hover{
+.fa-hover{
     	color:black;
     }
     
-    a.loginco{
+a.loginco{
     	color:black;
     }
     
-     a.loginco-hover{
+ a.loginco-hover{
     	color:black;
     }
     #login_input{
