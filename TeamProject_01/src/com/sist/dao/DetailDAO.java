@@ -91,18 +91,16 @@ public class DetailDAO {
 		try {
 			getConnection();
 			String str="";
-			System.out.println(list.size());
-			for(int i=0;i<list.size()-1;i++) {
-				 str+=" or no=?";
-			}
+			int k=1;
+			if(k<=6){
+			for(int i=0; i<list.size()+1;i++) {
 			String sql="SELECT no,poster,title "
 					+ "FROM detail_data_v2 "
-					+ "WHere no=?"+str;
+					+ "WHere no=?";
 					
 			ps=conn.prepareStatement(sql);
-			for(int i=1;i<list.size()+1;i++) {
-			ps.setInt(i, list.get(i-1));
-			}
+			ps.setInt(1, list.get(i));
+			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				DetailVO vo=new DetailVO();
@@ -111,7 +109,10 @@ public class DetailDAO {
 				vo.setTitle(rs.getString(3));
 				cList.add(vo);
 			}
-			rs.close();		
+			rs.close();
+			k++;
+			}//for
+		}//if
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {

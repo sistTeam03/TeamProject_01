@@ -78,21 +78,18 @@ $(function(){
                             <div class="latest-product__text">
                             
                                     <div class="latest-prdouct__slider__item" id="card_full">
-                                        <c:forEach var="cvo" items="${cList }" varStatus="c">
-                                       
-                                       <c:if test="${c.index<6 }">
-                                       		 <a href="../recipe/recipe_detail.do?no=${cvo.no }" style="width: 260px;">
-                                       <div id="card_tr" style="width: 260px;height: 110px;margin-top: 15px;">    
-                                           <div id="card_img_div" style="width: 110px;height: 110px;float: left;">
-                                            <img src="${cvo.poster }" alt="" id="card_img" style="border-radius: 10px;">
-                                            </div>
-                                            <div class="card_title_title" id="card_title"style="height: 110px;width: 150px;float: left;">
-                                                <h6 style="padding-top: 15px;" >${cvo.title }</h6>
-                                            </div>
-                                       	</div>
+                                        <c:forEach var="cvo" items="${cList }" varStatus="c">       
+                                       	<a href="../recipe/recipe_detail.do?no=${cvo.no }" style="width: 260px;">
+                                      		 <div id="card_tr" style="width: 260px;height: 110px;margin-top: 15px;">    
+                                          	   <div id="card_img_div" style="width: 110px;height: 110px;float: left;">
+                                          	      <img src="${cvo.poster }" alt="" id="card_img" style="border-radius: 10px;">
+                                           	   </div>
+                                               <div class="card_title_title" id="card_title"style="height: 110px;width: 150px;float: left;">
+                                                  <h6 style="padding-top: 15px;" >${cvo.title }</h6>
+                                               </div>
+                                         	</div>
                                        	   </a>
-                                       </c:if>
-                                        </c:forEach>
+                                  </c:forEach>
                                       </div>
                                   
                                 

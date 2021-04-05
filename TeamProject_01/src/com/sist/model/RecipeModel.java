@@ -46,6 +46,7 @@ public class RecipeModel {
 		}
 		System.out.println(cList2.size());
 		cList=dDao.detailCookie(cList2);
+		System.out.println(cList.size());
 		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
