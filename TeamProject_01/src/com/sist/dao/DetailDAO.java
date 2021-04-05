@@ -90,7 +90,7 @@ public class DetailDAO {
 		try {
 			getConnection();
 			int k=1;
-			if(k<=6){
+			
 			for(int i=0; i<list.size();i++) {
 			String sql="SELECT no,poster,title "
 					+ "FROM list_data_v5 "
@@ -108,11 +108,12 @@ public class DetailDAO {
 				cList.add(vo);
 			}
 			rs.close();
-			System.out.println("오라클쿠키"+k+"번째");
 			k++;
+			if(k==7)	//쿠키 가져올 개수+1 
+				return cList;
 			}//for
 			
-		}//if
+		
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {

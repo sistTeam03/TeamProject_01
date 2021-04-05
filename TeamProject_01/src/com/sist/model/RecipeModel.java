@@ -35,7 +35,6 @@ public class RecipeModel {
 		List<Integer> cList2=new ArrayList<Integer>(); //no 저장
 		Cookie[] cookies=request.getCookies();
 		if(cookies!=null) {
-			System.out.println(cookies.length);
 			for(int i=cookies.length-1; i>=0;i--) {
 				if(cookies[i].getName().startsWith("m")) {
 					cookies[i].setPath("/");
@@ -44,9 +43,7 @@ public class RecipeModel {
 				}	
 			}
 		}
-		System.out.println(cList2.size());
 		cList=dDao.detailCookie(cList2);
-		System.out.println(cList.size());
 		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
