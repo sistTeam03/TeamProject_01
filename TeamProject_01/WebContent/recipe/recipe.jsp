@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 #card_img{
 	width: 110px;
 	height: 110px;
@@ -29,12 +30,14 @@ $(function(){
 		$(this).children("#card_title").hide();
 		$(this).children("#card_title").css("width","0px");
 		$(this).children("#card_img_div").css("width","260px");
-		$(this).children("#card_img").css("width","260px");
+		$(this).children("#card_img").css("width","110px");
+		$(this).children("#card_img").css("border-radius","100px");
 	},function(){
 		$(this).children("#card_title").show();
 		$(this).children("#card_title").css("width","150px");
 		$(this).children("#card_img_div").css("width","110px");
 		$(this).children("#card_img").css("width","110px");
+		$(this).children("#card_img").css("border-radius","10px");
 	});
 	
 /* 	$('#card_img_div img').click(function(){
@@ -74,7 +77,7 @@ $(function(){
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">             
                         <div class="sidebar__item">
-                        <h4>최근 방문한 레시피</h4>
+                        <h4 style="margin-top: 4em;">최근 방문한 레시피</h4>
                             <div class="latest-product__text">
                             
                                     <div class="latest-prdouct__slider__item" id="card_full">
@@ -129,7 +132,7 @@ $(function(){
                        <c:forEach var="lvo" items="${list }">
                         <div class="col-lg-3 col-md-5 col-sm-5">
                             <div class="product__item">             
-                                <div class="product__item__pic set-bg" data-setbg="${lvo.poster }">
+                                <div class="product__item__pic set-bg" data-setbg="${lvo.poster }" style="border-radius: 10px;">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#" class="pop"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#" class="pop"><i class="fa fa-retweet"></i></a></li>
