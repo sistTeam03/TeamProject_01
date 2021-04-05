@@ -40,11 +40,11 @@ $(function(){
 		$(this).children("#card_img").css("border-radius","10px");
 	});
 	
-/* 	$('#card_img_div img').click(function(){
-		let link=$('#detail_link a').attr("href")
+ 	$('.list_img').click(function(){
+		let link=$(this).attr("list_link");
 		console.log(link);
 		 location.href=link;
-	}); */
+	}); 
 });
 </script>
 </head>
@@ -85,7 +85,7 @@ $(function(){
                                        	<a href="../recipe/recipe_detail.do?no=${cvo.no }" style="width: 260px;">
                                       		 <div id="card_tr" style="width: 260px;height: 110px;margin-top: 15px;">    
                                           	   <div id="card_img_div" style="width: 110px;height: 110px;float: left;">
-                                          	      <img src="${cvo.poster }" alt="" id="card_img" style="border-radius: 10px;">
+                                          	      <img src="${cvo.poster }" alt="" id="card_img" style="border-radius: 10px; ">
                                            	   </div>
                                                <div class="card_title_title" id="card_title"style="height: 110px;width: 150px;float: left;">
                                                   <h6 style="padding-top: 15px;" >${cvo.title }</h6>
@@ -132,7 +132,7 @@ $(function(){
                        <c:forEach var="lvo" items="${list }">
                         <div class="col-lg-3 col-md-5 col-sm-5">
                             <div class="product__item">             
-                                <div class="product__item__pic set-bg" data-setbg="${lvo.poster }" style="border-radius: 10px;">
+                                <div class="product__item__pic set-bg list_img" data-setbg="${lvo.poster }" style="border-radius: 10px;" list_link="../recipe/detail_before.do?no=${lvo.no }">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#" class="pop"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#" class="pop"><i class="fa fa-retweet"></i></a></li>
