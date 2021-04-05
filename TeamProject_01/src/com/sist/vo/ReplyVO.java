@@ -1,5 +1,5 @@
 package com.sist.vo;
-
+ 
 import java.util.Date;
 
 import lombok.Getter;

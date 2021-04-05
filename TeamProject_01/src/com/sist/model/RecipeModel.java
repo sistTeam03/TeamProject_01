@@ -82,7 +82,7 @@ public class RecipeModel {
 			  DetailDAO dao=DetailDAO.newInstance();
 			  System.out.println(2);
 			  DetailVO vo=dao.detailData(Integer.parseInt(no));
-			  System.out.println(3);
+			  System.out.println(3); 
 			  String[] poslist=vo.getContent_poster().split(",");
 			  System.out.println(4);
 			 String[] conlist=vo.getContent().split("\\[]");

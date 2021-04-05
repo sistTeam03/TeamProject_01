@@ -9,7 +9,7 @@
 }
 .content1, .content2{
 width:1140px;
-height: 20em;
+height: 20em; 
 display: block;
 
 }
