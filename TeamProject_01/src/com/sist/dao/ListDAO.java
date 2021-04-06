@@ -154,5 +154,23 @@ public class ListDAO {
 		return total;
 	}
 	
-	
+	//0406추가
+		//레시피 갯수 
+		public int listCount() {
+			int count=0;
+			try {
+				getConnection();
+				String sql="SELECT COUNT(*) FROM list_data_v5";
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				count=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection();
+			}
+			return count;
+		}
 }

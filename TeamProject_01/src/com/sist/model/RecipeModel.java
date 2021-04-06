@@ -28,6 +28,7 @@ public class RecipeModel {
 		
 		ListDAO dao=ListDAO.newInstance();
 		DetailDAO dDao=DetailDAO.newInstance();
+		int count=dao.listCount();//0406추가
 		int totalpage=dao.listTotalPage();
 		int block=10;
 		int startPage=((curpage-1)/block*block)+1;
@@ -52,7 +53,7 @@ public class RecipeModel {
 		}
 		
 		cList=dDao.detailCookie(cList2);
-		
+		request.setAttribute("count", count);//0406추가
 		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
