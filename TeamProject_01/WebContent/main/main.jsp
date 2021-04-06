@@ -152,7 +152,7 @@ a.loginco{
                 <a href="#"><i class="fa fa-user"></i> Login</a>
                
             </div>
-        </div>`
+        </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="../main/main.do">홈</a></li>
@@ -166,7 +166,7 @@ a.loginco{
                         <li><a href="../admin/qna_board.jsp">질답 게시판</a></li>
                     </ul>
                     </li>
-                <li><a href="../mypage/mypage.do">마이페이지</a></li>
+                <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
