@@ -60,7 +60,7 @@
                 
                  <div class="row">
 	                 <div class="section-title product__discount__title">
-	                           <h2>내정보</h2>
+	                           <h2>내 정보</h2>
 	                 </div>
 	                 <table class="table">
 	                 	<tr>
