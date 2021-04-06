@@ -152,7 +152,7 @@ a.loginco{
                 <a href="#"><i class="fa fa-user"></i> Login</a>
                
             </div>
-        </div>
+        </div>`
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="../main/main.do">홈</a></li>
