@@ -119,7 +119,7 @@
 					              </c:if>
 					              <li ${type }><a href="board.do?page=${i }">${i }</a></li>
 					            </c:forEach>
-					          <c:if test="${endPage<totalpage }">   <!-- 다음을 눌렀을 때의 첫번째 번호 -->
+					          <c:if test="${endPage<totalpage }">   
 					            <li><a href="board.do?page=${endPage+1 }">다음 &raquo;</a></li>
 					          </c:if>
 					        </ul>
