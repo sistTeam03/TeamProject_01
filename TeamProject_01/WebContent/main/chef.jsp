@@ -91,9 +91,16 @@
 								    <tr height=100px>
 								    <%-- private int id, ranking;
 									     private String chef_name, chef_img, cooking_count, cooking_clip, hit, follower; --%>
-										<td width=10% class=rank style="text-align:center;vertical-align: middle;font-weight:bold;font-size:18px;color:orange">${vo.ranking }</td>
-										<td width=20% style="text-align:center;vertical-align: middle;"><a href="../recipe/chefs_recipe.do"><img src="${vo.chef_img }" width=80px height=80px></a></td>
-										<td width=25% style="text-align: left;vertical-align: middle;font-size: 18px;font-weight:bold;" ><a href="../recipe/chefs_recipe.do">${vo.chef_name }</a></td>
+										<td width=10% class=rank 
+										 style="text-align:center;vertical-align: middle;font-weight:bold;font-size:18px;color:orange">${vo.ranking }</td>
+										<td width=20% style="text-align:center;vertical-align: middle;">
+										  <a href="../recipe/chefs_recipe.do?no=${vo.chef_name }">
+										    <img src="${vo.chef_img }" width=80px height=80px>
+										  </a>
+										</td>
+										<td width=25% style="text-align: left;vertical-align: middle;font-size: 18px;font-weight:bold;" >
+										  <a href="../recipe/chefs_recipe.do?no=${vo.chef_name }">${vo.chef_name }</a>
+										</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_count }개</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_clip }명</td>
 										<td width=15% style="text-align:center;vertical-align: middle;">${vo.hit }회</td>

@@ -58,16 +58,22 @@ public class ReplyDAO {
 	    */
 	   
 	 //댓글 읽기
-	   public List<ReplyVO> replyReadData(int recipeno)
+	   public List<ReplyVO> replyReadData(int recipeno,int page)
 	   {
 		   List<ReplyVO> list=new ArrayList<ReplyVO>();
 		   try {
 			   getConnection();
-			   String sql="SELECT no, recipeno, id, nickname, msg, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS') "
-			   		+ "FROM recipereply "
-			   		+ "WHERE recipeno=?";
+			   String sql="SELECT no, recipeno, id, nickname, msg, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS'),num "
+			   		+ "FROM (select no,recipeno,id,nickname,msg,regdate,rownum as num "
+			   		+ "FROm(select no,recipeno,id,nickname,msg,regdate FROM recipereply WHERE recipeno=? order by no DESC)) "
+			   		+ "WHERE num between ? and ?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, recipeno);
+			   int rowSize=4;
+			   int start=1+(page-1)*rowSize;
+			   int end=rowSize*page;
+			   ps.setInt(2, start);
+			   ps.setInt(3, end);
 			   ResultSet rs=ps.executeQuery();
 			   while(rs.next())
 			   {
@@ -88,7 +94,26 @@ public class ReplyDAO {
 		   }
 		   return list;
 	   }
-	   
+	   //댓글 총페이지-레시피 번호당
+	   public int replyTotalPage(int no) {
+		   int total=0;
+		   try {
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/4.0) FROm recipereply "
+					+ "where recipeno=? ";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		   return total;
+	   }
 	   //댓글 올리기
 	   public void replyInsert(ReplyVO vo,int recipeno)
 	   {
@@ -138,7 +163,7 @@ public class ReplyDAO {
 			  disConnection();
 		   }
 	   }
-	   
+	   //삭제
 	   public void replyDelete(int no)
 	   {
 		   try {
@@ -153,5 +178,26 @@ public class ReplyDAO {
 		   }finally {
 			   disConnection();
 		   }
+	   }
+	   //수정전 출력
+	   public String detailReplyShow(int no) {
+		   String msg="";
+		   try {
+			getConnection();
+			String sql="SELECT msg FROM recipereply "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			msg=rs.getString(1);
+			rs.close();
+					
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		   return msg;
 	   }
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,19 +96,30 @@ $(function(){
 
    
 <body>
-<div class="container">
-            <div class="row">
-            <div id="login_input">
-	            <div id="login_div">
-	            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
-	            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
-	           	<button id="login_go">go</button>
-	           </div>
-	           
-            </div>
-            </div>
-</div>
+<!-- 0406 사진 나오게 수정 -->
+<section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+	<div class="container">
+	            <div class="row">
+	            <div id="login_input">
+		            <div id="login_div">
+		            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
+		            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+		           	<button id="login_go">go</button>
+		           </div>
+	            </div>
+	             <div class="col-lg-12">
+                    <div class="blog__details__hero__text">
+                        <h2>레시피</h2> 
+                        <figure>
+				          <header class="heading" style="color:white">총 <span style="color:yellow;font-weight:bold;"><fmt:formatNumber value="${count }" pattern="0,000"/></span>개의 레시피</header>
+				        </figure>
+                    </div>
+                </div>
+	            </div>
+	</div>
+ </section>
     <!-- 나누기 -->
+
     
     <section class="product spad">
         <div class="container">
@@ -171,13 +183,13 @@ $(function(){
                     </div>
                     <div class="product__pagination">
                     	<c:if test="${startPage>1 }">
-                       <a href="../recipe/recipe.do?page=${startPage-10}"><i class="fa fa-long-arrow-left"></i></a>
+                       <a href="../recipe/recipe_reply_print.do?page=${startPage-10}"><i class="fa fa-long-arrow-left"></i></a>
                         </c:if>
                         <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
-                        	<a href="../recipe/recipe.do?page=${i }">${i }</a>
+                        	<a href="../recipe/recipe_reply_print.do?page=${i }">${i }</a>
                       	</c:forEach>
                       	<c:if test="${endPage<totalpage }">
-                        <a href="../recipe/recipe.do?page=${endPage+10}"><i class="fa fa-long-arrow-right"></i></a>
+                        <a href="../recipe/recipe_reply_print.do?page=${endPage+10}"><i class="fa fa-long-arrow-right"></i></a>
                     	</c:if>
                     </div>
                 </div>

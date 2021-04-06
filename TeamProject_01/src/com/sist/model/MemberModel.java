@@ -105,5 +105,12 @@ public class MemberModel {
 		
 		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함
 	}
+	@RequestMapping("mypage/mypage.do")//마이페이지
+	public String myPage(HttpServletRequest request,HttpServletResponse response) {
+		
+		
+		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+		return "../main/main.jsp";
+	}
 	
 }

@@ -3,7 +3,7 @@ import javax.naming.*;
 import java.sql.*;
 import javax.sql.*;
 
-import com.sist.vo.ListVO;
+import com.sist.vo.*;
 
 import java.util.*;
 public class ListDAO {
@@ -154,5 +154,61 @@ public class ListDAO {
 		return total;
 	}
 	
+	//0406추가
+		//레시피 갯수 
+		public int listCount() {
+			int count=0;
+			try {
+				getConnection();
+				String sql="SELECT COUNT(*) FROM list_data_v5";
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				count=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection();
+			}
+			return count;
+		}
 	
+	// 쉐프의 레시피
+	public List<ListVO> chefsRecipeList(String no)
+	{
+//		List<ChefsVO> clist=new ArrayList<ChefsVO>();
+		List<ListVO> list=new ArrayList<ListVO>();
+		try {
+			getConnection();
+//			String sql="SELECT no,d.poster,d.title,d.chef_poster,d.chef,c.chef_name,d.hit "
+//					+ "FROM list_data_v5 d INNER JOIN chefs c "
+//					+ "ON c.chef_name=d.chef "
+//					+ "ORDER BY d.hit;";
+			String sql="SELECT * FROM list_data_v5 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, no);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				ListVO vo=new ListVO();
+				//ChefsVO cvo=new ChefsVO();
+				vo.setNo(rs.getInt(1));
+				vo.setPoster(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setChef_poster(rs.getString(4));
+				vo.setChef(rs.getString(5));
+				//cvo.setChef_name(rs.getString(6));
+				vo.setHit(rs.getInt(6));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+	}
 }

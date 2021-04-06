@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <style type="text/css">
+.reply_print{
+    border: 1px solid black;
+    width: 73em;
+    height: 20em;
+    margin: 0px auto;
+}
 #info{
 	margin:0px auto;
 	padding: 0px 35px;
@@ -17,11 +23,13 @@ display: block;
 	border-radius:32px;
     position: relative;
     width: 26em;
+    height: 16em;
 }
 .content_img1{
  position: relative;
  width: 26em;
  border-radius:32px;
+height: 16em;
 }
 .content2{
 	text-align: left;
@@ -45,40 +53,114 @@ text-align: right;
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-let i=0;
+
 $(function(){
-	$(document).on('click','.delBtn',function(){
-		let no=$(this).attr("data-no");//data-no 값 속성 추가
-		let recipeno=$(this).attr("recipe-no");
-		location.href="../recipe/recipe_reply_delete.do?no="+no+"&recipeno="+recipeno;
-	});
-	$('.delBtn').click(function(){
-		//Dummy
-	});
+	let no=$('#detail_no').attr('data-no');//레시피 no
 	
-	$(document).on('click','.updateBtn',function(){
-		$('.updateli').hide();//updateli 수정칸 추가
-		$('.updateBtn').text("수정");
-		let no=$(this).attr("data-no");
-		if(i==0)
+	
+	
+	$.ajax({
+		type:'post',
+		url:'../recipe/recipe_reply_print.do',
+		data:{"no":no},
+		success:function(result)
 		{
-			$(this).text("취소");
-			$('#m'+no).show("slow");
-			i=1;
+			$('.reply_print').html(result);
+			//$('.post').css("overflow","auto");  replyPageBtn
+			  
+			 
 		}
-		else
-		{
-			$(this).text("수정");
-			$('#m'+no).hide("slow");
-			i=0;
-		}
+	});
+	$(document).on("click",".replyPageBtn",function(){
+		 $(this).css("background-color","#9b344ae3");
+			let page=$(this).text();
+			
+			 $.ajax({
+					type:'post',
+					url:'../recipe/recipe_reply_print.do',
+					data:{"page":page,"no":no},
+					success:function(result)
+					{
+						$('.reply_print').html(result);
+					}
+			 });
+		 });//페이징
+		 $(document).on("click",".delBtn",function(){
+			 let replyno=$(this).attr('data-no').trim();
+			 let page=$(this).attr('reply-page').trim();
+				 $.ajax({
+						type:'post',
+						url:'../recipe/recipe_reply_delete.do',
+						data:{"no":no,"page":page,"replyno":replyno},
+						success:function(result)
+						{
+							
+							$('.reply_print').html(result);
+						}
+				 });
+			 });//삭제
+		  $('#replyBtn').click(function(){
+			let msg=$('#msg').val().trim();
+			$('#msg').val("")
+			 $.ajax({
+					type:'post',
+					url:'../recipe/recipe_reply_insert.do',
+					data:{"no":no,"msg":msg},
+					success:function(result)
+					{
+						
+						$('.reply_print').html(result);
+					}
+			 });
+		}); //등록  
+		  $(document).on("click",".updateBtn",function(){
+			  		$(this).hide();
+			  		let replyno=$(this).attr('data-no');
+			  		console.log(no);
+			  		$('.updateBtnok').show();
+					console.log(replyno);
+			  		 $.ajax({
+							type:'post',
+							url:'../recipe/recipe_update_show.do',
+							data:{"replyno":replyno},
+							success:function(result)
+							{
+								$('#msg').text(result);
+							}
+					 });
+			  	 $('.updateBtnok').click(function(){
+			  				let msg=$('#msg').val();
+			  				let page=$('.delBtn').attr('reply-page');
+					  		$(this).hide();
+					  		$('#msg').text("");
+					  		$('.updateBtn').show();
+					  		$('.updateBtnok').hide();
+					  			
+							console.log(no);
+							console.log(page);
+							console.log(msg);
+							console.log(replyno);
+							 $.ajax({
+									type:'post',
+									url:'../recipe/recipe_reply_update.do',
+									data:{"page":page,"no":no,"msg":msg,"replyno":replyno},
+									success:function(result)
+									{
+										$('.reply_print').html(result);
+									}
+							 });
+			   		});
+				 });//수정
 		
-	});
-	
-	$('.updateBtn').click(function(){
-		//Dummy
-	});
+		
+		
+		
 });
+
+	 
+		
+		
+
 </script>
 </head>
 <body>
@@ -134,7 +216,7 @@ $(function(){
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>${vo.title }</h3>
+                        <h3 data-no=${vo.no } id="detail_no">${vo.title }</h3>
                         <div class="product__details__rating" style="color:gray">
                             <span style="color:gray">${vo.regdate }</span>
                             <span style="color:gray">조회수&nbsp;${vo.hit2 }</span>
@@ -170,7 +252,7 @@ $(function(){
                                 레시피 상세
                             </li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content" >
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">  
                                 <c:forEach var="i" items="${poslist }" varStatus="s">
@@ -196,41 +278,15 @@ $(function(){
 
         <div style="height:50px"></div>
         
-         <ul class="nav nav-tabs" role="tablist">
-         <li class="nav-item"></li>
-       </ul>
         
+
+        <div class="comment" style="border: 1px soild black;width:960;height: 300px;">
         <!-- 댓글 목록 출력 -->
-        <table style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;"class=table-condensed>
-        <c:forEach var="rvo" items="${rList }">
-	        	<tr  style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;">
-	        		<td width=20% style="text-align: left">${rvo.nickname }</td>
-	        		<td rowspan=2 width=80%><pre>${rvo.msg }</pre></td>
-	        	</tr>
-	        	<tr  style="margin:0px auto;width:1200px;text-align: middle;vertical-align: middle;background-color: #F3F6FA;">
-	        		<td width=20% style="text-align: left;font-size: 10pt">${rvo.regdate }</td>
-	        		<c:if test="${sessionScope.sesson_id==rvo.id }">
-		        		<td>
-		        			<input type=button class="updateBtn btn-info" value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }">
-		        			<input type=button class="delBtn btn-danger" value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " recipe-no="${vo.no }">
-		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
-		        		</td>
-		        	</c:if>
-	        	</tr>
-	        	<form action="../recipe/recipe_reply_update.do" method="post" >
-			        	<table style="margin:0px auto;display:none" id="m${rvo.no }" class=updateli>
-			        		<tr>
-				                <td><textarea cols=100 rows=3></textarea>
-				                	<input type="hidden" name=recipeno value="${vo.no }">
-		             				<input type="hidden" name=no value="${rvo.no }">
-				                 </td>
-				                <td><input type=submit value=댓글수정 class="btn btn-md btn-success" style="height:80px"></td>
-			                </tr>
-			            </table>
-			   </form>
-        	</c:forEach>
-        </table>
-        
+	        <div class="reply_print" >
+	       		
+	       				<!-- 출력공간 -->
+	        </div>
+        </div>
       <ul class="nav nav-tabs" role="tablist">
          <li class="nav-item"></li>
        </ul>
@@ -238,20 +294,19 @@ $(function(){
       	
 	        <div style="height:50px"></div>
 	        
-	         <c:if test="${sessionScope.sesson_id!=null }"> 
+	   <%--       <c:if test="${sessionScope.sesson_id!=null }">  --%>
 			        <div class=reply>
-			        <form action="../recipe/recipe_reply_insert.do" method="post" >
 			        	<table style="margin:0px auto;">
 			        		<tr>
-				                <td><textarea cols=100 rows=3 name=msg></textarea> 
-				                	<input type=hidden name=no value="${vo.no }">
+				                <td><textarea cols=100 rows=3 id="msg"></textarea> 
+				                	
 				                </td>
-				                <td><input type=submit value=댓글작성 class="btn btn-md btn-success" style="height:80px"></td>
+				                <td><input type=button value=댓글작성 class="btn btn-md btn-success" id="replyBtn" style="height:80px"></td>
+				                <td><input type=button value=댓글수정 class="btn btn-md btn-success updateBtnok" id="" style="height:80px;display: none;"></td>
 			                </tr>
 			            </table>
-			            </form>
 			      </div>
-		       </c:if> 
+		    <%--    </c:if> --%> 
 
     </section>
     <!-- Product Details Section End -->
