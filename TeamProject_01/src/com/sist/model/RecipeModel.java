@@ -50,11 +50,13 @@ public class RecipeModel {
 				}	
 			}
 		}
+		
 		cList=dDao.detailCookie(cList2);
+		
 		request.setAttribute("cList", cList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("startPage", startPage);
+		request.setAttribute("startPage", startPage); 
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../recipe/recipe.jsp");
@@ -78,20 +80,14 @@ public class RecipeModel {
 		public String recipe_detail(HttpServletRequest request, HttpServletResponse response)
 		{
 			String no=request.getParameter("no");
-			System.out.println(1);
 			  DetailDAO dao=DetailDAO.newInstance();
-			  System.out.println(2);
-			  DetailVO vo=dao.detailData(Integer.parseInt(no));
-			  System.out.println(3); 
+			  DetailVO vo=dao.detailData(Integer.parseInt(no)); 
 			  String[] poslist=vo.getContent_poster().split(",");
-			  System.out.println(4);
 			 String[] conlist=vo.getContent().split("\\[]");
-			 System.out.println(5);
-			  
 			  StringTokenizer st=new StringTokenizer(vo.getIngre()," ");
-			  System.out.println(6);
+			
 			  ArrayList<String> ingre_list_token=new ArrayList<String>();
-			  System.out.println(7);
+	
 			  while(st.hasMoreTokens()) {
 				  String tmp=st.nextToken();
 				  if(tmp.endsWith("개")||tmp.endsWith("T")||tmp.endsWith("푼")||tmp.endsWith("알")||tmp.endsWith("히")
@@ -106,26 +102,19 @@ public class RecipeModel {
 				  }
 				  ingre_list_token.add(tmp);
 			  }
-			  System.out.println(8);
-			  ReplyDAO rdao=ReplyDAO.newInstance();
-			  System.out.println(9);
-			  List<ReplyVO> rList=rdao.replyReadData(Integer.parseInt(no));
-			  System.out.println(10);
+			  
 			  BookmarkDAO bdao=BookmarkDAO.newInstance();
-			  System.out.println(11);
 			  HttpSession session=request.getSession();
-			  System.out.println(12);
 			  String id=(String)session.getAttribute("sesson_id");
-			  System.out.println(13);
 			  int count=bdao.bookmarkCheck(Integer.parseInt(no), id);
-			  System.out.println(14);
-			  request.setAttribute("rList", rList);
+			 
 			  request.setAttribute("count", count);
 			  request.setAttribute("length", conlist.length);
 			  request.setAttribute("poslist", poslist);
 			  request.setAttribute("conlist", conlist);
 			  request.setAttribute("inglist", ingre_list_token);
 			  request.setAttribute("vo", vo);
+			 
 			  request.setAttribute("main_jsp", "../recipe/recipe_detail.jsp");
 			  return "../main/main.jsp";
 		}
