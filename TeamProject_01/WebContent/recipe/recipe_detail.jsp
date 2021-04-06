@@ -4,9 +4,9 @@
 <head>
 <style type="text/css">
 .reply_print{
-    border: 1px solid black;
-    width: 73em;
-    height: 20em;
+   border: 1px solid black;
+    width: 61em;
+    height: 30em;
     margin: 0px auto;
 }
 #info{

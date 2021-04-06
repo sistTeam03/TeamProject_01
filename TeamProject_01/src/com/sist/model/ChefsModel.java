@@ -55,31 +55,23 @@ public class ChefsModel {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-//		Map<String,String> map=new HashMap<String,String>();
-		ListDAO dao=ListDAO.newInstance();
-//		
-//		ArrayList<String> list=new ArrayList<String>();
-//		// no,poster,title,chef,hit
-//		map.put("no","mapNo");
-//		map.put("poster","mapPoster");
-//		map.put("title","mapTitle");
-//		map.put("chef","mapChef");
-//		map.put("hit","mapHit");
-//		System.out.println(map);
-//		request.setAttribute("map",map);
-//		request.setAttribute("list",list);
+		String page=request.getParameter("page");
+		String name=request.getParameter("name");
+		if(page==null) {
+			page="1";
+		}
+		int curpage=Integer.parseInt(page);
+		name=name.trim();
 		
-//		ChefsDAO cdao=ChefsDAO.newInstance();
-		String no=request.getParameter("no");
-		System.out.println(no);
+		ChefsDAO dao=ChefsDAO.newInstance();
+		int totalpage=dao.chefListTotalPage(name);
+		List<ListVO> list=dao.shefListData(name, curpage);
+		// no,poster,title,chef,hit
 		
-		//ChefsDAO cdao=ChefsDAO.newInstance();
-//		String no=request.getParameter("no");
-//		System.out.println(no);
-	    List<ListVO> list=dao.chefsRecipeList(no);
-//	    request.setAttribute("no", no);
+	    request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
 	    request.setAttribute("list", list); 
 	    request.setAttribute("main_jsp","../recipe/chefs_recipe.jsp"); 
-	    return "forward:../recipe/recipe_detail.do";
+	    return "../main/main.jsp";
 	}
 }

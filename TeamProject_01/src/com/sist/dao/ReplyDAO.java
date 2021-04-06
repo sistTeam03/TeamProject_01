@@ -69,7 +69,7 @@ public class ReplyDAO {
 			   		+ "WHERE num between ? and ?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, recipeno);
-			   int rowSize=4;
+			   int rowSize=3;
 			   int start=1+(page-1)*rowSize;
 			   int end=rowSize*page;
 			   ps.setInt(2, start);
@@ -99,7 +99,7 @@ public class ReplyDAO {
 		   int total=0;
 		   try {
 			getConnection();
-			String sql="SELECT CEIL(COUNT(*)/4.0) FROm recipereply "
+			String sql="SELECT CEIL(COUNT(*)/3.0) FROm recipereply "
 					+ "where recipeno=? ";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, no);

@@ -104,5 +104,61 @@ public class ChefsDAO {
 		}
 		return count;
 	}
+	// 쉐프용 리스트
+	public List<ListVO> shefListData(String name,int page){
+		List<ListVO> list=new ArrayList<ListVO>();
+		try {
+			getConnection();
+			String sql="SELECT no,poster,title,chef_poster,chef,num "
+					+ "FROM(SELECT no,poster,title,chef_poster,chef,rownum as num "
+					+ "FROM(SELECT no,poster,title,chef_poster,chef FROM list_data_v5 WHERE chef=? ORDER BY no ASC))"
+					+ "WHERE num BETWEEN ? and ?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			int rowSize=9;
+			int start=1+(page-1)*rowSize;
+			int end=rowSize*page;
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ListVO vo=new ListVO();
+				vo.setNo(rs.getInt(1));
+				vo.setPoster(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setChef_poster(rs.getString(4));
+				vo.setChef(rs.getString(5));
+				list.add(vo);
+			}
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		
+		return list;
+	}
+	//쉐프용 리스트 토탈 페이지
+	public int chefListTotalPage(String name) {
+		int total=0;
+		try {
+			getConnection();
+			String sql="SELECT CEIL(COUNT(*)/9.0) FROM list_data_v5 "
+					+ "WHERE chef=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		
+		return total;
+	}
 	
 }
