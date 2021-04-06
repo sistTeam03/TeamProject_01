@@ -166,7 +166,7 @@ a.loginco{
                         <li><a href="../admin/qna_board.jsp">질답 게시판</a></li>
                     </ul>
                     </li>
-                <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
+                <li><a href="../mypage/mypage.do">마이페이지</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -212,7 +212,7 @@ a.loginco{
                                     <li><a href="../admin/qna_board.do">문의 게시판</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
+                            <li><a href="../mypage/mypage.do">마이페이지</a></li>
                         </ul>
                     </nav>
                 </div>
