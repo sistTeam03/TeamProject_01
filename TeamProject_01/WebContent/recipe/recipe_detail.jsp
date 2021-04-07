@@ -3,10 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <style type="text/css">
+#replyinsert{
+	height: 15em;
+	margin-left: 29em;
+}
+#msg{
+	width: 40em;
+	height: 7em;
+	border-radius: 13px;
+	padding-left: 20px;
+	padding-top: 20px;
+}
 .reply_print{
+
    border: 1px solid black;
     width: 61em;
-    height: 30em;
+    height: 19em;
     margin: 0px auto;
 }
 #info{
@@ -50,6 +62,14 @@ text-align: right;
 	 top: -8em;
     left: 9em;
  }
+ #replyBtn,#updateBtnok{
+ 	background-color: #ddf2bc
+ }
+  #replyBtn:hover,#updateBtnok:hover{
+  	  color: #fff;
+    background-color: #7fad39;
+    border-color: #7fad39;
+  }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -72,7 +92,7 @@ $(function(){
 		}
 	});
 	$(document).on("click",".replyPageBtn",function(){
-		 $(this).css("background-color","#9b344ae3");
+		
 			let page=$(this).text();
 			
 			 $.ajax({
@@ -154,10 +174,9 @@ $(function(){
 							 });
 			   		});
 				 });//수정
+				
 		
-		
-		
-		
+	
 });
 
 	 
@@ -286,26 +305,22 @@ $(function(){
         <div class="comment" style="border: 1px soild black;width:960;height: 300px;">
         <!-- 댓글 목록 출력 -->
 	        <div class="reply_print" >
-	       		
+	       	
 	       				<!-- 출력공간 -->
 	        </div>
         </div>
-      <ul class="nav nav-tabs" role="tablist">
-         <li class="nav-item"></li>
-       </ul>
-      
-      	
+	
 	        <div style="height:50px"></div>
 	        
 	   <%--       <c:if test="${sessionScope.sesson_id!=null }">  --%>
-			        <div class=reply>
-			        	<table style="margin:0px auto;">
+			        <div class=row id="replyinsert">
+			        	<table>
 			        		<tr>
-				                <td><textarea cols=100 rows=3 id="msg"></textarea> 
+				                <td><textarea id="msg"></textarea> 
 				                	
 				                </td>
-				                <td><input type=button value=댓글작성 class="btn btn-md btn-success" id="replyBtn" style="height:80px"></td>
-				                <td><input type=button value=댓글수정 class="btn btn-md btn-success updateBtnok" id="" style="height:80px;display: none;"></td>
+				                <td><input type=button value=댓글작성 class="btn btn-md " id="replyBtn" style="height:80px"></td>
+				                <td><input type=button value=댓글수정 class="btn btn-md  updateBtnok" id="" style="height:80px;display: none;"></td>
 			                </tr>
 			            </table>
 			      </div>

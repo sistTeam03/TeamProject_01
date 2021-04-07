@@ -49,6 +49,7 @@
 <script type="text/javascript">
 $(function(){
 	$('.chef_tr').click(function(){
+		$('.list_tr').hide();
 		$(this).next().show();
 		let name=$(this).attr('data-name');
 		console.log(name);
