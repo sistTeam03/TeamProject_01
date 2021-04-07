@@ -7,11 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Ogani | Template</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style type="text/css">
 
+<script type="text/javascript">
+				document.getElementById("page1").style.backgroundColor="#7fad39";
+				/* var button = document.getElementsByClassName("cheflistBtn");
+				function click(e){
+						 진행중 chef 메뉴색변경
+				} */ 
+</script>
+<style type="text/css">
+.cheflistBtn{
+	display: inline-block;
+	width: 45px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	transition: all, 0.3s;
+
+	border-radius: 6px;
+
+}
+.cheflistBtn:hover{
+	background-color: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
 </style>
 </head>
 <body>
@@ -59,13 +83,14 @@
                           </c:forEach>
                        	<div class="product__pagination" style="margin-left: 17em;">
                     	<c:if test="${startPage>1 }">
-                       <a href="../recipe/chefs_recipe.do?page=${startPage-10}&name=${name}"><i class="fa fa-long-arrow-left"></i></a>
+                       <button class="cheflist_beforeBtn" startpage="${startPage}" chefname="${name }"><i class="fa fa-long-arrow-left"></i></button>
                         </c:if>
                         <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
-                        	<a href="../recipe/chefs_recipe.do?page=${i }&name=${name}">${i }</a>
+                        	<button class="cheflistBtn" id="page${i }" style="background-color:#f8fdf7; ">${i }</button>
                       	</c:forEach>
+
                       	<c:if test="${endPage<totalpage }">
-                        <a href="../recipe/chefs_recipe.do?page=${endPage+10}&name=${name}"><i class="fa fa-long-arrow-right"></i></a>
+                        <button class="cheflist_nextBtn" endpage="${endPage}" chefname="${name }"><i class="fa fa-long-arrow-right"></i></button>
                     	</c:if>
                     </div>
                         

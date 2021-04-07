@@ -62,9 +62,11 @@ public class ChefsModel {
 		}
 		int curpage=Integer.parseInt(page);
 		name=name.trim();
-		
+		System.out.println(name);
 		ChefsDAO dao=ChefsDAO.newInstance();
 		int totalpage=dao.chefListTotalPage(name);
+		System.out.println(name);
+		System.out.println(curpage);
 		List<ListVO> list=dao.shefListData(name, curpage);
 		// no,poster,title,chef,hit
 		int block=10;
@@ -79,6 +81,7 @@ public class ChefsModel {
 	    request.setAttribute("totalpage", totalpage);
 	    request.setAttribute("list", list); 
 	    request.setAttribute("name", name);
+	   
 	    return "../recipe/chefs_recipe.jsp";
 	}
 }

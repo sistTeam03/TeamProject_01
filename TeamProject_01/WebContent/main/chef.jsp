@@ -49,10 +49,10 @@
 <script type="text/javascript">
 $(function(){
 	$('.chef_tr').click(function(){
-		$('.list_tr').hide();
 		$(this).next().show();
+		let no=$(this).attr('page');
+		$('.page1').css('background-color','#7fad39');
 		let name=$(this).attr('data-name');
-		console.log(name);
 		$.ajax({
 			type:'post',
 			url:'../recipe/chefs_recipe.do',
@@ -63,8 +63,54 @@ $(function(){
 			}
 			
 		})
-		
 	});
+	$(document).on("click",".cheflistBtn",function(){
+		let page=$(this).text();
+		let name=$('.chef_tr').attr('data-name');
+		$(this).css("background-color","#7fad39")
+		$.ajax({
+			type:'post',
+			url:'../recipe/chefs_recipe.do',
+			data:{'name':name,'page':page},
+			success:function(result){
+				$('.list_span').html(result);
+				return;
+			}	
+		});
+	});//페이지 이동
+		$(document).on("click",".cheflist_nextBtn",function(){
+		let endpage=$('.cheflist_nextBtn').attr('endpage');
+		let name=$(this).attr('chefname');
+		page=Number(endpage)+1;
+		
+		$.ajax({
+			type:'post',
+			url:'../recipe/chefs_recipe.do',
+			data:{'name':name,'page':page},
+			success:function(result){
+				$('.list_span').html(result);
+				return;
+			}	
+		});
+	});//페이지 증가
+		$(document).on("click",".cheflist_beforeBtn",function(){
+			let startpage=$('.cheflist_beforeBtn').attr('startpage');
+			let name=$(this).attr('chefname');
+			page=Number(startpage)-10;
+			$.ajax({
+				type:'post',
+				url:'../recipe/chefs_recipe.do',
+				data:{'name':name,'page':page},
+				success:function(result){
+					$('.list_span').html(result);
+					return;
+				}	
+			});
+		});//페이지 감소
+		 /* 현재 페이지 작업 */
+		 
+	
+	
 });
 </script>
 </head>
@@ -112,18 +158,17 @@ $(function(){
 								</thead>
 								<tbody>
 								  <c:forEach var="vo" items="${cList }">
-								    <tr height=100px class="chef_tr"  data-name="${vo.chef_name }">
+								    <tr height=100px class="chef_tr"  data-name="${vo.chef_name }" page="1">
 								    <%-- private int id, ranking;
 									     private String chef_name, chef_img, cooking_count, cooking_clip, hit, follower; --%>
 										<td width=10% class=rank 
 										 style="text-align:center;vertical-align: middle;font-weight:bold;font-size:18px;color:orange">${vo.ranking }</td>
 										<td width=20% style="text-align:center;vertical-align: middle;">
-										  <a href="../recipe/chefs_recipe.do?name=${vo.chef_name }">
 										    <img src="${vo.chef_img }" width=80px height=80px>
-										  </a>
+										 
 										</td>
 										<td width=25% style="text-align: left;vertical-align: middle;font-size: 18px;font-weight:bold;" >
-										  <a href="../recipe/chefs_recipe.do?name=${vo.chef_name }">${vo.chef_name }</a>
+										 ${vo.chef_name }
 										</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_count }개</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_clip }명</td>
