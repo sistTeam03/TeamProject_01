@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,20 +104,22 @@
                             </thead>
                             <tbody >
                             <!-- 데이터 for -->
+                            	<c:forEach var="vo" items="${dList }" varStatus="s">
                                 <tr>
                                     <td>
-                                        <img src="img/cart/cart-1.jpg" alt=""><!-- 요리 썸네일 이미지 -->
+                                        <img src="${vo.poster }" alt=""><!-- 요리 썸네일 이미지 -->
                                     </td>
                                     <td>
-                                      요리제목 데이터공간
+                                     ${vo.title }
                                     </td>
                                     <td>
-                                      쉐프명머시기
+                                     ${vo.chef }
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span><!-- 비고버튼 취소하기 기능 넣기 -->
                                     </td>
                                 </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

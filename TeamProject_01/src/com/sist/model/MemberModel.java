@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.BookmarkDAO;
+import com.sist.dao.DetailDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.vo.BookmarkVO;
+import com.sist.vo.DetailVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
 
@@ -105,9 +110,29 @@ public class MemberModel {
 		
 		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함
 	}
-	@RequestMapping("mypage/mypage.do")//마이페이지
+	//마이페이지 설정
+	@RequestMapping("mypage/mypage.do")
 	public String myPage(HttpServletRequest request,HttpServletResponse response) {
 		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("sesson_id");
+		//DB연동
+		BookmarkDAO bookmarkdao =BookmarkDAO.newInstance();
+		DetailDAO dao = DetailDAO.newInstance();
+		//찜하기 목록
+		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
+		List<DetailVO> dList = new ArrayList<DetailVO>();
+		for(BookmarkVO vo:jList)
+		{
+			DetailVO dvo =dao.detailData(vo.getRecipeno());
+			String poster = dvo.getPoster();
+			dvo.setPoster(poster);
+			
+			dList.add(dvo);
+			
+		}
+		request.setAttribute("dList", dList);
+		request.setAttribute("jList", jList);
 		
 		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 		return "../main/main.jsp";
