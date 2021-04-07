@@ -8,9 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Ogani | Template</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 #login_div {
     display: table;
@@ -42,7 +40,32 @@
     top: -2.7em;
     opacity: 0.9;
 }
+.list_tr{
+    height: 36em;
+    display: none;
+}
 </style>
+ <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.chef_tr').click(function(){
+		$(this).next().show();
+		let name=$(this).attr('data-name');
+		console.log(name);
+		$.ajax({
+			type:'post',
+			url:'../recipe/chefs_recipe.do',
+			data:{'name':name},
+			success:function(result){
+				$('.list_span').html(result);
+				return;
+			}
+			
+		})
+		
+	});
+});
+</script>
 </head>
 <body>
     <!-- Blog Details Hero Begin -->
@@ -74,7 +97,7 @@
                <div class="container">
                     <div class="blog__details__content">
                         <div class="row">
-							<table class="table table-hover">
+							<table class="table table-hover" id="chef_table">
 								<thead>
 									<tr style="font-size: 16px;text-weight:bold">  
 									  <th style="text-align:center;width:10%">순위</th>
@@ -88,7 +111,7 @@
 								</thead>
 								<tbody>
 								  <c:forEach var="vo" items="${cList }">
-								    <tr height=100px>
+								    <tr height=100px class="chef_tr"  data-name="${vo.chef_name }">
 								    <%-- private int id, ranking;
 									     private String chef_name, chef_img, cooking_count, cooking_clip, hit, follower; --%>
 										<td width=10% class=rank 
@@ -106,8 +129,14 @@
 										<td width=15% style="text-align:center;vertical-align: middle;">${vo.hit }회</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.follower }명</td>
 								    </tr>
+								    <tr class="list_tr">
+								    	<td colspan="7" >
+								    	<span class="list_span"></span>
+								    	</td>
+								    </tr>
 								  </c:forEach>
 								</tbody>
+								
 							</table>  
                         </div>
                     </div>

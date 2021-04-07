@@ -115,7 +115,7 @@ public class ChefsDAO {
 					+ "WHERE num BETWEEN ? and ?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, name);
-			int rowSize=9;
+			int rowSize=8;
 			int start=1+(page-1)*rowSize;
 			int end=rowSize*page;
 			ps.setInt(2, start);
@@ -144,7 +144,7 @@ public class ChefsDAO {
 		int total=0;
 		try {
 			getConnection();
-			String sql="SELECT CEIL(COUNT(*)/9.0) FROM list_data_v5 "
+			String sql="SELECT CEIL(COUNT(*)/8.0) FROM list_data_v5 "
 					+ "WHERE chef=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, name);

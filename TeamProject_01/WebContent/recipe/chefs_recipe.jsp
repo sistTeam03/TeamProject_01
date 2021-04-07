@@ -11,36 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
-#login_div {
-    display: table;
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    top: 3em;
-    left: 90.2em;
-    float: right;
-}
-#login_div input {
-    font-size: 12pt;
-    height: 23px;
-    border: 0.5px solid #7fad39;
-    border-radius: 15px;
-    line-height: 23px;
-    width: 11em;
-    margin-top: 1px;
-}
-#login_div #login_go {
-    width: 37px;
-    height: 34px;
-    color: #ffffff;
-    border-radius: 35px;
-    background-color: #7fad39;
-    text-align: center;
-    position: relative;
-    right: -4.8em;
-    top: -2.7em;
-    opacity: 0.9;
-}
+
 </style>
 </head>
 <body>
@@ -61,21 +32,22 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-	<section class="blog spad">
+	<section class="blog spad" style="padding-top: 0px;">
         <div class="container">
                     <div class="row">
-                        <div class="col-3">
+                        
                           <c:forEach var="vo" items="${list }">
+                          <div class="col-3">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <a href="../recipe/recipe_detail.do"><img src="${vo.poster }"></a>
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no}"><img src="${vo.poster }"></a>
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
                                         <!-- <li><i class="fa fa-calendar-o"></i> May 4,2019</li> -->
                                         <li><i class="fa fa-comment-o"></i> ${vo.hit }</li>
                                     </ul>
-                                    <h5><a href="../recipe/recipe_detail.do">${vo.title }</a></h5>
+                                    <h5><a href="../recipe/recipe_detail.do?no=${vo.no}">${vo.title }</a></h5>
                                     <!-- <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
                                         quaerat </p> -->
                                     <!-- <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a> -->
@@ -83,8 +55,9 @@
                                 
                                 </div>
                             </div>
+                             </div>
                           </c:forEach>
-                        </div>
+                       
                         
                         <!-- <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">

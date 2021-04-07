@@ -71,7 +71,7 @@ public class ChefsModel {
 	    request.setAttribute("curpage", curpage);
 	    request.setAttribute("totalpage", totalpage);
 	    request.setAttribute("list", list); 
-	    request.setAttribute("main_jsp","../recipe/chefs_recipe.jsp"); 
-	    return "../main/main.jsp";
+	    
+	    return "../recipe/chefs_recipe.jsp";
 	}
 }
