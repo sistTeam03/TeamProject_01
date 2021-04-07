@@ -233,7 +233,6 @@ $(function(){
 	    						<span class="primary-btn" style="background-color: lightred;margin:0px auto;">찜 완료</span>&nbsp;&nbsp;
 	    					</c:if>
     					</c:if>
-    					
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

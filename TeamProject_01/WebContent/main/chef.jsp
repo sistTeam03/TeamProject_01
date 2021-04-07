@@ -161,18 +161,7 @@ $(function(){
 					          </c:if>
 					        </ul>
 					      </div>
-					    </div>
-                    <!-- <div class=row style="margin: 0px auto;">
-                       	 <div  style="margin: 0px auto;">
-                       	 	<ul class="pagination">
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							</ul> 
-                       	 </div>
-                       </div>   -->  
+					    </div>          
                 </div>
     </section>
     <!-- Blog Details Section End -->
