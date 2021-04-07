@@ -118,6 +118,7 @@ $(function(){
 			  		let replyno=$(this).attr('data-no');
 			  		console.log(no);
 			  		$('.updateBtnok').show();
+			  		$('#replyBtn').hide();
 					console.log(replyno);
 			  		 $.ajax({
 							type:'post',
@@ -132,10 +133,10 @@ $(function(){
 			  				let msg=$('#msg').val();
 			  				let page=$('.delBtn').attr('reply-page');
 					  		$(this).hide();
-					  		$('#msg').text("");
+					  		$('#msg').val("");
 					  		$('.updateBtn').show();
 					  		$('.updateBtnok').hide();
-					  			
+					  		$('#replyBtn').show();
 							console.log(no);
 							console.log(page);
 							console.log(msg);
@@ -147,6 +148,8 @@ $(function(){
 									success:function(result)
 									{
 										$('.reply_print').html(result);
+										
+										return;
 									}
 							 });
 			   		});

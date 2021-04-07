@@ -86,7 +86,6 @@ public class ReplyModel {
 	  @RequestMapping("recipe/recipe_reply_update.do")
 	  public String food_reply_update(HttpServletRequest request,HttpServletResponse response)
 	  {
-		  System.out.println(1);
 		  try
 		  {
 			  request.setCharacterEncoding("UTF-8");
@@ -105,13 +104,13 @@ public class ReplyModel {
 		  System.out.println(no);
 		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&?page="+page;
 	  }
-	  @RequestMapping("recipe/recipe_update_show.do")
+	  @RequestMapping("recipe/recipe_update_show.do")//댓글 수정시 출력
 	  public String recipe_upate_show(HttpServletRequest request,HttpServletResponse response) {
 		  String no=request.getParameter("replyno");
 		  
 		  ReplyDAO dao=ReplyDAO.newInstance();
 		  String msg=dao.detailReplyShow(Integer.parseInt(no));
-		 System.out.println(msg);
+		  msg=msg.trim();
 		  request.setAttribute("msg", msg);
 		  return "../recipe/recipe_update_show.jsp";
 	  }
