@@ -55,18 +55,21 @@
                                 
                                 </div>
                             </div>
-                             </div>
+                             </div>	<!-- ===== 여기 링크 수정필요 -->
                           </c:forEach>
-                       
+                       	<div class="product__pagination" style="margin-left: 17em;">
+                    	<c:if test="${startPage>1 }">
+                       <a href="../recipe/chefs_recipe.do?page=${startPage-10}&name=${name}"><i class="fa fa-long-arrow-left"></i></a>
+                        </c:if>
+                        <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
+                        	<a href="../recipe/chefs_recipe.do?page=${i }&name=${name}">${i }</a>
+                      	</c:forEach>
+                      	<c:if test="${endPage<totalpage }">
+                        <a href="../recipe/chefs_recipe.do?page=${endPage+10}&name=${name}"><i class="fa fa-long-arrow-right"></i></a>
+                    	</c:if>
+                    </div>
                         
-                        <!-- <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div> -->
+                       
              </div>
          </div>
     </section>
