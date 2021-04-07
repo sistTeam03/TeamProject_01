@@ -163,7 +163,7 @@ a.loginco{
                 <ul class="header__menu__dropdown">
                         <li><a href="../admin/notice.jsp">공지사항</a></li>
                         <li><a href="../admin/event.jsp">이벤트</a></li>
-                        <li><a href="../admin/qna_board.jsp">질답 게시판</a></li>
+                        <li><a href="../admin/qna_board.jsp">문의 게시판</a></li>
                     </ul>
                     </li>
                 <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
@@ -209,7 +209,7 @@ a.loginco{
                             	 <ul class="header__menu__dropdown">
                                     <li><a href="../admin/notice.do">공지사항</a></li>
                                     <li><a href="../admin/event.do">이벤트</a></li>
-                                    <li><a href="../admin/qna_board.do">문의 게시판</a></li>
+                                    <li><a href="../board/qna_board.do">문의 게시판</a></li>
                                 </ul>
                             </li>
                             <li><a href="../mypage/mypage.do">마이페이지</a></li>
