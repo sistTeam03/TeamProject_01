@@ -108,7 +108,7 @@ public class MemberModel {
 		session.invalidate();
 		
 		
-		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함
+		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함??
 	}
 	//마이페이지 설정
 	@RequestMapping("mypage/mypage.do")
