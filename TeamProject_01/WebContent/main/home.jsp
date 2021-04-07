@@ -42,10 +42,10 @@
                    
                     <div class="hero__item set-bg" data-setbg="../img/hero/banner.jpg" >
                     	
-                        <div class="hero__text">
+                        <div class="hero__text text-left">
                           <!--  <span>FRUIT FRESH</span>-->
                             <h2>냉장고 재료<br />레시피추천</h2>
-                            <p>냉장고에 있는 재료로 레시피를 활용해보세요!</p>
+                              <h6 style="color:grey">냉장고에 있는 재료로 레시피를 활용해보세요!</h6><br>
                             <a href="#" class="primary-btn">GO</a>
                         </div>
                     </div>
