@@ -6,24 +6,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	for(let i=0;i<10;i++){
+		let str=$('#keyword'+i).text();
+		let arr=str.split(',');
+		$('#keyword'+i).text(arr[0]);
+		$('#state'+i).text(arr[1]);
+	}
+	
+	for(let j=0;j<10;j++){
+		let no=$('#state'+j).text();
+		if(no>0){
+			$('#state'+j)
+			$('#state'+j).css('color','red');
+		}else if(no<0){
+			$('#state'+j).text(no+"하락")
+			$('#state'+j).css('color','#0080ff');
+		}else{
+			$('#state'+j).text(no+"유지")
+			$('#state'+j).css('color','black');
+		}
+		
+	}
+	
+});
+</script>
 </head>
 <body>
 				<section class="product spad">
         <div class="container">
             <div class="row">
                  <div class="col-lg-3 col-md-5">
-                 	<table class="top10">
-                 		<c:forEach var="vo" items="{list}">
+                 	<table class="top10" style="width: 16em;">
                  		<tr>
-                 		<td></td>
+                 			<th width="20%">순위</th>
+                 			<th width="60%">검색어</th>
+                 			<th width="20%">비고</th>
                  		</tr>
-                 		</c:forEach>
+                 	<c:forEach var="key" items="${tList}" begin="0" end="9" varStatus="s">
+                 				<tr>
+                 					<td>${s.index+1 }</td>
+                 					<td id="keyword${s.index }">${key}</td>
+                 					<td id="state${s.index }">      </td>
+                 					<td><img alt="" src="../img/up.jpg"></td>
+                 				</tr>
+                 	</c:forEach>
                  	</table>
                  </div>
                 <div class="col-lg-9 col-md-7">
                     
                     <div class="filter__item">
                         <div class="row" >
+                        
                         <div class="col-lg-8 col-md-7"></div>
                             <div class="col-lg-4 col-md-5" id="sort_tab">
                                

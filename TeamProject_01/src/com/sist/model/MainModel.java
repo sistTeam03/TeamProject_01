@@ -6,6 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -78,6 +81,7 @@ public class MainModel {
 		}
 		int curpage=Integer.parseInt(page);
 		List<ListVO> sList=dao.searchList(list, curpage);
+	
 		int totalpage=(int)(Math.ceil(sList.size()));
 		int block=10;
 		int startPage=((curpage-1)/block*block)+1;
@@ -85,8 +89,24 @@ public class MainModel {
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
+		HttpSession session=request.getSession();//아이디 있으면 검색어 저장
+		String id=(String)session.getAttribute("sesson_id");
+		MemberDAO memDao=MemberDAO.newInstance();
+		if(id!=null) {
+			memDao.searchInsert(msg);
+		}
+		Date date=new Date();
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd");
+		String today=format.format(date);
+		System.out.println("오늘:"+today);
+		String yesterday=format.format(cal.getTime());
+		System.out.println("어제:"+yesterday);
 		
-		
+		List<String> top10_list=memDao.searchTOP10(today,yesterday);
+		System.out.println(top10_list.size());
+		request.setAttribute("tList", top10_list);
 		request.setAttribute("sList", sList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
@@ -96,4 +116,5 @@ public class MainModel {
 		request.setAttribute("main_jsp", "../main/search.jsp");
 		return "../main/main.jsp";
 	}
+	
 }
