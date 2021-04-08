@@ -43,7 +43,7 @@ public class DetailDAO {
 	
 	//목록 불러오기 - 0402 수정
 		public DetailVO detailData(int no) {
-			System.out.println("no="+no);
+
 			DetailVO vo=new DetailVO();
 			/*
 			 * private int no, hit2;
@@ -124,9 +124,9 @@ public class DetailDAO {
 	}
 	
 	//북마크용 가져오기
-	public DetailVO BookmarkData(int no) {
+	public ListVO BookmarkData(int no) {
 		System.out.println("no="+no);
-		DetailVO vo=new DetailVO();
+		ListVO vo=new ListVO();
 		
 		try {
 			getConnection();

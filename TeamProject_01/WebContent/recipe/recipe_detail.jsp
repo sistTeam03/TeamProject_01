@@ -16,9 +16,11 @@
 }
 .reply_print{
 
-   border: 1px solid black;
+   
+    border-radius: 23px;
+    background-color: #f1e4d3;
     width: 61em;
-    height: 19em;
+   height: 21em;
     margin: 0px auto;
 }
 #info{
@@ -301,7 +303,7 @@ $(function(){
         
         
 
-        <div class="comment" style="border: 1px soild black;width:960;height: 300px;">
+        <div class="comment" style="border: 1px soild black;width:960;">
         <!-- 댓글 목록 출력 -->
 	        <div class="reply_print" >
 	       	

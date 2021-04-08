@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.moreBtn{
+	border: none;
+    background: none;
+    float: right;
+    position: relative;
+    left: -67px; 
+}
 .detail_reply tr{
 	 display: block;
 }
@@ -33,15 +40,47 @@
 	background: #f8fdf7;
 	border-radius: 6px;
 }
-.updateBtn,.delBtn{
-	background-color: #ddf2bc;
+.updateBtn{
+	 background-color: #ddf2bc;
+    border: #fff;
+     width: 5em;
+     color: #400202;
+      border-radius: 9px;
+}
+.delBtn{
+background-color: #ff7474;
+    border: #fff;
+     width: 5em;	
+     color: #2c312b;
+      border-radius: 9px;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	for(let i=0;i<3; i++){
+		let str=$('.length'+i).text();
+		let length=str.length;
+		if(length>50){
+			 strshow=str.substring(0,50)+"...";
+			 strhide=str.substring(50,length)
+			 
+			$('.length'+i).html(strshow);
+			
+		}
+	}//댓글 글자수 제어
+	$('.moreBtn').click(function(){
+		
+		$(this).prev().children().css("overflow-y","auto");
+	})
+})
+</script>
 </head>
 <body>	
 		<div style="height: 330px;">
 			<c:forEach var="rvo" items="${rList }" begin="0" end="2" varStatus="s">
-			<table class="detail_reply"	 >
+			<table class="detail_reply"	>
 
 	        <tr>
 	        	<td colspan="2" style="padding-left: 100px;">${rvo.regdate }</td>
@@ -49,17 +88,23 @@
 	        <tr>
 	        	<td width="20%" rowspan="2">${rvo.nickname }</td>
 	        	<td style="width: 30em;">
-	        		<div id="replyshow">${rvo.msg }</div>
-	  
+	        		<div id="replyshow" style="height: 80px;" class="length${s.index }">${rvo.msg }
+	        		
+	        		</div>
+	 				
+	        	</td>
+	        	<td>
+	        	<input type="button" id="" class="moreBtn " value="더보기 "> 
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
-		        			<input type=button id="" class="updatOkBtn " value="완료 " style="width: 40px;height: 20px;font-size: 9pt;display: none;" data-no="${rvo.no }">
-		        			 <input type=button id="" class="updateBtn " value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }"> 
-		        			<input type=button id="" class="delBtn " value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " reply-page="${curpage }">
+	        					 
+		      	  			 <input type=button id="" class="updateBtn " value="수정 " data-no="${rvo.no }"> 
+		        			<input type=button id="" class="delBtn " value=삭제  data-no="${rvo.no } " reply-page="${curpage }">
 		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
 		        		</td>
 	        	</tr>
-	         </table>	
+	         </table>
+	         <hr style="margin:0px;border-top: 1px rgb(0 0 0 / 30%) dotted;">	
      </c:forEach>
      </div>
         <table style="width: 970px;height: 50px;margin: 0px auto;">

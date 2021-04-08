@@ -15,6 +15,7 @@ import com.sist.dao.MemberDAO;
 import com.sist.dao.UserIngreDAO;
 import com.sist.vo.BookmarkVO;
 import com.sist.vo.DetailVO;
+import com.sist.vo.ListVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.UserIngreVO;
 import com.sist.vo.ZipcodeVO;
@@ -123,10 +124,10 @@ public class MemberModel {
 		DetailDAO dao = DetailDAO.newInstance();
 		//찜하기 목록
 		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
-		List<DetailVO> dList = new ArrayList<DetailVO>();
+		List<ListVO> dList = new ArrayList<ListVO>();
 		for(BookmarkVO vo:jList)
 		{
-			DetailVO dvo =dao.detailData(vo.getRecipeno());
+			ListVO dvo =dao.BookmarkData(vo.getRecipeno());
 			String poster = dvo.getPoster();
 			dvo.setPoster(poster);
 			
@@ -153,6 +154,7 @@ public class MemberModel {
 		
 		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 		return "../main/main.jsp";
-	}
 	
+
+	}
 }
