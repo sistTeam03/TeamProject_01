@@ -113,4 +113,23 @@ public class BookmarkDAO {
 		   }
 		   return list;
 	   }
+	   //찜 삭제
+	 //삭제
+	   public void bookmarkDelete(int no,String id)
+	   {
+		   try {
+			   getConnection();
+			   String sql="DELETE bookmark_list WHERE recipeno=? AND id=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ps.setString(2,id);
+			   ps.executeUpdate();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }finally {
+			   disConnection();
+		   }
+	   }
+	   
+	   
 }

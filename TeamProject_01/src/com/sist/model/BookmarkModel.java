@@ -28,5 +28,17 @@ public class BookmarkModel {
 		  dao.bookmarkInsert(Integer.parseInt(no), id);
 		  return "redirect:../recipe/recipe_detail.do?no="+no;
 	  }
+	  //찜하기 삭제
+	//마이페이지에서 삭제 
+		@RequestMapping("mypage/bookmarkDelete.do")
+		public String bookmark_delete(HttpServletRequest request, HttpServletResponse response)
+		{
+			HttpSession session=request.getSession();
+			String id=(String)session.getAttribute("sesson_id");
+			int no=Integer.parseInt(request.getParameter("no"));
+			BookmarkDAO dao=BookmarkDAO.newInstance();
+			dao.bookmarkDelete(no,id);
+			return "redirect:../mypage/mypage.do";
+		}
 	  
 }

@@ -142,7 +142,7 @@ a:hover{
                                     </a>
                                     </td>
                                     <td>
-                                    <a href="../recipe/recipe_detail.do?no=${vo.no }">
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no  }">
                                      ${vo.title }
                                      </a>
                                     </td>
@@ -150,7 +150,9 @@ a:hover{
                                      ${vo.chef }
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span><!-- 비고버튼 취소하기 기능 넣기 -->
+                                        <a href="../mypage/bookmarkDelete.do?no=${vo.no}">
+                                        	<span class="icon_close"></span><!-- 비고버튼 취소하기 기능 넣기 -->
+                                        </a>
                                     </td>
                                 </tr>
                                 </c:forEach>
