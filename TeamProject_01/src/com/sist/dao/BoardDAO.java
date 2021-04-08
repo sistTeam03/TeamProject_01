@@ -217,6 +217,41 @@ public class BoardDAO {
 		   }
 		   
 	   }
+	   
+	   
+	   
+	   
+	   public void boardUpdateAlt(BoardVO vo)
+	   {
+		   try
+		   {
+			   getConnection();
+			   String sql = "UPDATE wboard SET name=?,subject=?content=? WHERE no=?";
+					   		
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, vo.getName());
+			   ps.setString(2, vo.getSubject());
+			   ps.setString(3, vo.getContent());
+			   ps.setInt(4, vo.getNo());
+			   
+			   ps.executeUpdate();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }finally
+		   {
+			   disConnection();
+		   }
+	   }
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
 	   public List<NoticeVO> noticeListData(int page)
 	   {
 		   List<NoticeVO> list = new ArrayList<NoticeVO>();
