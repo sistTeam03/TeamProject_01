@@ -15,4 +15,5 @@ ID           VARCHAR2(20)
 public class UserIngreVO {
 	private int no, ino;
 	private String id;
+	private String name;
 }

@@ -93,6 +93,16 @@ public class UserIngreModel {
 		dao.ingreDelete(no);
 		return "redirect:../mypage/ingrelist.do?kono="+kono;
 	}
+	
+	//마이페이지에서 삭제 
+	@RequestMapping("mypage/mypageuseringredelete.do")
+	public String user_ingre_mypagedelete(HttpServletRequest request, HttpServletResponse response)
+	{
+		int no=Integer.parseInt(request.getParameter("no"));
+		UserIngreDAO dao=UserIngreDAO.newInstance();
+		dao.ingreDelete(no);
+		return "redirect:../mypage/mypage.do";
+	}
 	//목록 불러오기- 마이페이지에서 처리?
 	
 	//데이터 출력
@@ -117,11 +127,14 @@ public class UserIngreModel {
 		 */
 		String ko=request.getParameter("kono");
 		
-		//마이페이지와 아직 연결이 안됨 - 테스트를 위해 임의로 로그인 처리 
+		
 		HttpSession session=request.getSession();
-		session.setAttribute("name", "홍길동");
-		session.setAttribute("sesson_id", "hong");
+
 		String id=(String)session.getAttribute("sesson_id");
+		if(id==null) {
+			session.setAttribute("name", "홍길동");
+			session.setAttribute("sesson_id", "hong");//테스트를 위한 임의 로그인 처리
+		}
 		System.out.println(id);
 		//마이페이지와 연결될시 수정 
 		

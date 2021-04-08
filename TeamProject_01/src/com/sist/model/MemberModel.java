@@ -12,9 +12,11 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.BookmarkDAO;
 import com.sist.dao.DetailDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.UserIngreDAO;
 import com.sist.vo.BookmarkVO;
 import com.sist.vo.DetailVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.UserIngreVO;
 import com.sist.vo.ZipcodeVO;
 
 @Controller
@@ -131,6 +133,21 @@ public class MemberModel {
 			dList.add(dvo);
 			
 		}
+		
+		//추가
+		UserIngreDAO udao=UserIngreDAO.newInstance();
+		
+		List<UserIngreVO> ulist=udao.ingreListNameData(id);
+		
+		List<UserIngreVO> ulist_cut=new ArrayList<UserIngreVO>();
+		
+		for(int i=0; i<6; i++) {
+			ulist_cut.add(ulist.get(i));
+			
+		}
+		request.setAttribute("ulist", ulist_cut);
+		//추가 끝
+		
 		request.setAttribute("dList", dList);
 		request.setAttribute("jList", jList);
 		

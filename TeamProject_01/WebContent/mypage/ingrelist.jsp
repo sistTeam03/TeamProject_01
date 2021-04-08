@@ -6,7 +6,41 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
-
+#userListTable th {
+	font-weight:normal;
+	font-size:small;
+	padding:0;
+    position: sticky;
+    top: 0px;
+    background-color: white !important;
+}
+.sidebar__item li:hover a {
+	background: #b9cf7c;
+	border-color: #b9cf7c;
+	color:white;
+	font-weight: bold;
+		
+}
+.sidebar__item__active a
+{
+	background: #b9cf7c;
+	border-color: #b9cf7c;
+	color:white !important;
+	font-weight: bold;
+}
+.table th
+{
+	text-align:center;
+	padding: 0;
+}
+a{
+	color: black;
+	text-decoration: none; !important
+}
+a:hover{
+	color: black;
+	text-decoration: none; !important
+}
 </style>
 </head>
 
@@ -19,9 +53,9 @@
                         <div class="sidebar__item">
                             <h4>마이페이지</h4>
                             <ul>
-                                <li><a href="#" >나의 정보</a></li>
+                                <li><a href="../mypage/mypage.do" >나의 정보</a></li>
                                 <li><a href="#">나의 활동</a></li>
-                            	<li  class="sidebar__item__active"><a href="#">냉장고 재료</a></li>
+                            	<li  class="sidebar__item__active"><a href="#">나의 재료</a></li>
                             </ul>
                         </div>
                     </div>

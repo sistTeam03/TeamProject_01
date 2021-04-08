@@ -124,6 +124,34 @@ public class UserIngreDAO {
 		   return list;
 	   }
 	   
+	 //목록이름 불러오기
+	   public List<UserIngreVO> ingreListNameData(String id)
+	   {
+		   List<UserIngreVO> list=new ArrayList<UserIngreVO>();
+		   try {
+			   getConnection();
+			   String sql="SELECT no, ino, ingre FROM user_ingre_list, ingre_v3 "
+			   		+ "WHERE user_ingre_list.id=? AND user_ingre_list.ino=ingre_v3.num "
+			   		+ "ORDER BY no ASC";
+			   ps=conn.prepareStatement(sql); 
+			   ps.setString(1, id);
+			   ResultSet rs=ps.executeQuery();
+			   while(rs.next()) {
+				   UserIngreVO vo=new UserIngreVO();
+				   vo.setNo(rs.getInt(1));
+				   vo.setIno(rs.getInt(2));
+				   vo.setName(rs.getString(3));
+				   list.add(vo);
+			   }
+			   rs.close();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }finally {
+			   disConnection();
+		   }
+		   return list;
+	   }
+	   
 	   //데이터 전체 목록 출력하기
 	   public List<IngreVO> ingreList(int start, int end)
 	   {

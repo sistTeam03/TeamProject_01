@@ -55,7 +55,7 @@ a:hover{
                             <ul>
                                 <li class="sidebar__item__active"><a href="#" >나의 정보</a></li>
                                 <li><a href="#">나의 활동</a></li>
-                            
+                            	<li><a href="../mypage/ingrelist.do?kono=1">나의 재료</a></li>
                             </ul>
                         </div>
                     </div>
@@ -90,7 +90,30 @@ a:hover{
                 <!--   <div class="text-right">${sessionScope.name}(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</div> -->
                  <!-- ##############찜 목록############# -->
                 
-                
+                <div class=ing_list>
+                	<div class="section-title product__discount__title">
+                            <h2>나의 재료 목록</h2>
+                        </div>
+                        
+                         <div class="row" style="height: 200px;  overflow-y:auto ">
+                         	<div class="col-lg-12">
+                         		<table class=table>
+                         			<c:forEach var="uvo" items="${ulist }" varStatus="s">
+                         				<c:if test="${s.index%2==0 }">
+                         					<tr>
+                         						<td width=40%>${uvo.name }</td>
+                         						<td width=10%><a href="../mypage/mypageuseringredelete.do?no=${uvo.no}"><span class="icon_close"></span></a></td>           				
+                         				</c:if>
+                         				<c:if test="${s.index%2==1 }">
+                         						<td width=40%>${uvo.name }</td>
+                         						<td width=10%><span class="icon_close"></span></td>
+                         					</tr>
+                         				</c:if>
+                         			</c:forEach>
+                         		</table>
+                         	</div>
+                         </div>
+                </div>
                 
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
