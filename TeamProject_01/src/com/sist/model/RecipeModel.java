@@ -48,7 +48,10 @@ public class RecipeModel {
 					cookies[i].setPath("/");
 					int no=Integer.parseInt(cookies[i].getValue());
 					cList2.add(no);
-				}	
+					if(cList2.size()>6)
+						break;
+				}
+				
 			}
 		}
 		
