@@ -90,18 +90,16 @@ public class ReplyModel {
 		  {
 			  request.setCharacterEncoding("UTF-8");
 		  }catch(Exception ex) {}
-		  String msg=request.getParameter("msg");
-		  String no=request.getParameter("replyno");
-		  String page=request.getParameter("page");
-		  
-		  
-		  ReplyVO vo=new ReplyVO();
-		  vo.setNo(Integer.parseInt(no));
-		  vo.setMsg(msg);
+			  String msg=request.getParameter("msg");
+			  String replyno=request.getParameter("replyno");
+			  String page=request.getParameter("page");
+			  String no=request.getParameter("no");//레시피 번호
+			  System.out.println(msg);
+			  System.out.println(no);
+			  System.out.println(replyno);
 		  ReplyDAO dao=ReplyDAO.newInstance();
-		  dao.replyUpdate(vo);
-		  no=request.getParameter("no");
-		  System.out.println(no);
+		  dao.replyUpdate(msg,Integer.parseInt(replyno));
+		  
 		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&?page="+page;
 	  }
 	  @RequestMapping("recipe/recipe_update_show.do")//댓글 수정시 출력
@@ -111,6 +109,7 @@ public class ReplyModel {
 		  ReplyDAO dao=ReplyDAO.newInstance();
 		  String msg=dao.detailReplyShow(Integer.parseInt(no));
 		  msg=msg.trim();
+		  request.setAttribute("no", no);
 		  request.setAttribute("msg", msg);
 		  return "../recipe/recipe_update_show.jsp";
 	  }

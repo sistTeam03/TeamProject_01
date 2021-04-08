@@ -18,10 +18,7 @@
                         <div class="row" >
                         <div class="col-lg-8 col-md-7"></div>
                             <div class="col-lg-4 col-md-5" id="sort_tab">
-                                <div class="filter__sort">
-                                        <div data="0" class="sort" id="sort_top">인기순</div>
-                                        <div data="1" class="sort" id="sort_new" >최신순</div>               
-                                </div>
+                               
                             </div>
                         </div>
                     

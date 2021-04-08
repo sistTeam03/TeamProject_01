@@ -146,7 +146,7 @@ public class ReplyDAO {
 	   }
 	   
 	   //댓글 수정
-	   public void replyUpdate(ReplyVO vo)
+	   public void replyUpdate(String msg,int no)
 	   {
 		   try {
 			   getConnection();
@@ -154,8 +154,8 @@ public class ReplyDAO {
 			   		+ "msg=? "
 			   		+ "WHERE no=?";
 			   ps=conn.prepareStatement(sql);
-			   ps.setString(1, vo.getMsg());
-			   ps.setInt(2, vo.getNo());
+			   ps.setString(1, msg);
+			   ps.setInt(2, no);
 			   ps.executeUpdate();
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
