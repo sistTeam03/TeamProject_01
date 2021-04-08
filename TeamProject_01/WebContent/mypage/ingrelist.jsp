@@ -166,16 +166,16 @@ a:hover{
 							  <li><a href="../mypage/ingrelist.do?kono=11">카</a></li>
 							</c:if>
 							<c:if test="${ko==12 }">
-							  <li class=active><a href="../mypage/ingrelist.do?kono=12">파</a></li>
+							  <li class=active><a href="../mypage/ingrelist.do?kono=12">타</a></li>
 							 </c:if>
 							 <c:if test="${ko!=12 }">
-							  <li><a href="../mypage/ingrelist.do?kono=12">파</a></li>
+							  <li><a href="../mypage/ingrelist.do?kono=12">타</a></li>
 							</c:if>
 							<c:if test="${ko==13 }">
-							  <li class=active><a href="../mypage/ingrelist.do?kono=13">타</a></li>
+							  <li class=active><a href="../mypage/ingrelist.do?kono=13">파</a></li>
 							 </c:if>
 							 <c:if test="${ko!=13 }">
-							  <li><a href="../mypage/ingrelist.do?kono=13">타</a></li>
+							  <li><a href="../mypage/ingrelist.do?kono=13">파</a></li>
 							</c:if>
 							<c:if test="${ko==14 }">
 							  <li class=active><a href="../mypage/ingrelist.do?kono=14">하</a></li>

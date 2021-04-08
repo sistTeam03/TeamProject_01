@@ -106,7 +106,7 @@ a:hover{
                          				</c:if>
                          				<c:if test="${s.index%2==1 }">
                          						<td width=40%>${uvo.name }</td>
-                         						<td width=10%><span class="icon_close"></span></td>
+                         						<td width=10%><a href="../mypage/mypageuseringredelete.do?no=${uvo.no}"><span class="icon_close"></span></a></td>
                          					</tr>
                          				</c:if>
                          			</c:forEach>
