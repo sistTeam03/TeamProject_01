@@ -219,16 +219,16 @@ public class ListDAO {
 			int size=sList.size();
 			for(int i=0;i<size;i++) {
 				String sql="SELECT no,poster,title,chef_poster,chef,hit,num "
-						+ "FROM(no,poster,title,chef_poster,chef,hit,rownum as num "
-						+ "FROM(no,poster,title,chef_poster,chef,hit FROM list_data_v5 WHERE title like '%'||?||'%' order by no asc)) "
+						+"FROM(SELECT no,poster,title,chef_poster,chef,hit,rownum as num "
+						+"FROM(SELECT no,poster,title,chef_poster,chef,hit FROM list_data_v5 WHERE title like '%'||?||'%' order by no asc)) "
 						+"WHERE num between ? and ?";	
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, sList.get(0));
 				int rowSize=20;
 				int start=1+(page-1)*rowSize;
 				int end=page*rowSize;
-				ps.setInt(1, start);
-				ps.setInt(2, end);
+				ps.setInt(2, start);
+				ps.setInt(3, end);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
 					ListVO vo=new ListVO();
@@ -248,5 +248,6 @@ public class ListDAO {
 		}
 		return list;
 	}
+
 	
 }
