@@ -45,24 +45,25 @@ public class EventBoardDAO {
 	}
 	public List<EventBoardVO> eventBoardList(int page)
 	{
+		
 		List<EventBoardVO> list=new ArrayList<EventBoardVO>();
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT no,subject,name,regdate,hit,num "
-					     +"FROM (SELECT no,subject,name,regdate,hit,rownum as num "
-					     +"FROM (SELECT no,subject,name,regdate,hit "
-					     +"FROM eboard ORDER BY no DESC)) "
-					     +"WHERE num BETWEEN ? AND ?";
+			   System.out.println(4);
+			   String sql="SELECT no,subject,name,regdate,hit "
+					     +"FROM eboard ORDER BY no DESC ";
+					    
 			   int rowSize=10;
-			   int start=(rowSize*page)-(rowSize-1);
+			   int start=1+(page-1)*rowSize;
 			   int end=rowSize*page;
 			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, start);
-			   ps.setInt(2, end);
+			  /* ps.setInt(1, start);
+			   ps.setInt(2, end);*/
 			   ResultSet rs=ps.executeQuery();
 			   while(rs.next())
 			   {
+				   System.out.println(4);
 				   EventBoardVO vo=new EventBoardVO();
 				   vo.setNo(rs.getInt(1));
 				   vo.setSubject(rs.getString(2));
@@ -70,6 +71,9 @@ public class EventBoardDAO {
 				   vo.setRegdate(rs.getDate(4));
 				   vo.setHit(rs.getInt(5));
 				   list.add(vo);
+				   int i=0;
+				   System.out.println(list.get(i));
+				   i++;
 			   }
 			   rs.close();
 		   }catch(Exception ex)
@@ -142,7 +146,7 @@ public class EventBoardDAO {
 		try
 		   {
 			   getConnection();
-			   String sql="INSERT INTO databoard(no,name,subject,content,pwd,filename,filesize) "
+			   String sql="INSERT INTO eboard(no,name,subject,content,pwd,filename,filesize) "
 					     +"VALUES((SELECT NVL(MAX(no)+1,1) FROM databoard),?,?,?,?,?,?)";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, vo.getName());

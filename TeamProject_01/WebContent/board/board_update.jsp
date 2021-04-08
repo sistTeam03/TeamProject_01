@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('pwd').keyup(function(){
+			let pwd=$(this).val();
+			
+		})
+	})
+</script>
 <style type="text/css">
 #login_div {
     display: table;
@@ -65,43 +74,54 @@
     </section>
 <div class="container">
 <div class="row">
+<div class="aligning" style="margin:0px auto;margin-top:50px;">
     <center>
      
      <form method="post" action="../board/board_update_ok.do">
-     <table class="table_content" width=500>
-       <tr>
-         <th width=15% align=right>이름</th>
-         <td width=85%>
-           <input type=text name=name size=15 required>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>제목</th>
-         <td width=85%>
-           <input type=text name=subject size=45 required>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>내용</th>
-         <td width=85%>
-           <textarea rows="7" cols="55" name="content" required></textarea>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>비밀번호</th>
-         <td width=85%>
-           <input type=password name=pwd size=10 required>
-         </td>
-       </tr>
-       <tr>
-         <td colspan="2" align=center>
-          <input type=submit value="수정하기">
-          
-         </td>
-       </tr>
-     </table>
+     <table class="table table-hover" style="vertical-align: middle; height:800px"  >
+     <tr style="background-color: orange; vertical-align: ">
+       <th class="text-right" width=15% style="">이름</th>
+       <td width=85%>
+         <input type=text name=name size=15 class="input-sm" value="${vo.name }">
+         <input type=hidden name=no value="${bvo.no }">
+       </td>
+     </tr>
+     <tr>
+       <th class="text-right" width=15%>제목</th>
+       <td width=85%>
+         <input type=text name=subject size=45 class="input-sm" value="${vo.subject }">
+       </td>
+     </tr>
+     <tr>
+       <th class="text-right" width=15%>내용</th>
+       <td width=85%>
+         <textarea rows="10" cols="50" name=content>${vo.content }</textarea>
+       </td>
+     </tr>
+     <tr>
+       <th class="text-right" width=15%>비밀번호</th>
+       <td width=85%>
+         <input type=password name=pwd size=10 class="input-sm" id="pwd" data-no="${vo.no }">
+       </td>
+     </tr>
+     <tr>
+       <td colspan="2">
+         <span id="result"></span>
+       </td>
+     </tr>
+     <tr>
+       <td colspan="2" class="text-center">
+       
+         <input type=submit value=수정 class="btn btn-sm btn-primary">
+         <input type=button value=취소 class="btn btn-sm btn-primary"
+           onclick="javascript:history.back()"
+         >
+       </td>
+     </tr>
+   </table>
      </form>
    </center>
+   </div>
 </div>   
 </div>
 </body>

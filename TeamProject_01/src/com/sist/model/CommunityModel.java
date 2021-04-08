@@ -1,5 +1,6 @@
 package com.sist.model;
 import java.io.*;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList; 
 import java.util.List;
 import java.util.*;
@@ -15,7 +16,7 @@ import com.sist.vo.BoardVO;
 import com.sist.vo.NoticeVO;
 import com.sist.vo.EventBoardVO;
 import com.sist.dao.EventBoardDAO;
-import java.net.URLEncoder;
+import java.net.URLEncoder;import java.net.http.HttpRequest;
 @Controller
 public class CommunityModel {
 	@RequestMapping("board/board.do")
@@ -99,7 +100,8 @@ public class CommunityModel {
 		String no=request.getParameter("no");
 		BoardDAO dao = BoardDAO.newInstance(); 
 				
-		BoardVO vo = dao.boardUpdateData(Integer.parseInt(no));
+		BoardVO bvo = dao.boardUpdateData(Integer.parseInt(no));
+		request.setAttribute("bvo", bvo);
 		request.setAttribute("main_jsp", "../board/board_update.jsp");
 		return "../main/main.jsp";
 	}
@@ -118,7 +120,7 @@ public class CommunityModel {
 		String content = request.getParameter("content");
 		String name = request.getParameter("name");
 		String subject = request.getParameter("subject");
-		
+		String pwd=request.getParameter("pwd");
 		BoardDAO dao=BoardDAO.newInstance();
 		BoardVO bvo=dao.boardUpdateData(bno);
 		bvo.setName(name);
@@ -128,7 +130,7 @@ public class CommunityModel {
 		
 		request.setAttribute("bvo", bvo);
 		request.setAttribute("main_jsp", "../board/board_update.jsp");
-		return "redirect:../board/board_detail.do?no=?"+no;
+		return "redirect:../board/board.do";
 	}
 	
 	@RequestMapping("board/board_delete.do")
@@ -148,20 +150,27 @@ public class CommunityModel {
 	@RequestMapping("board/eventboard.do")
 	public String eventboard_list(HttpServletRequest request,HttpServletResponse response)
 	{
-		 
+		
 		 String page=request.getParameter("page");
 		  if(page==null)
 			  page="1";
 		  int curpage=Integer.parseInt(page);
-		  
+		  System.out.println(curpage);
 		  EventBoardDAO dao=EventBoardDAO.newInstance();
-		  List<EventBoardVO> eList = dao.eventBoardList(curpage);
+		  List<EventBoardVO> list = dao.eventBoardList(curpage);
 		  int totalpage=dao.eboardTotalPage();
-		  
-		  request.setAttribute("eList", eList);
+		  System.out.println(list.size());
+		  request.setAttribute("list", list);
+		  request.setAttribute("curpage", curpage);
+		  request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("main_jsp", "../board/eventboard.jsp");
 		return "../main/main.jsp";
 	}
+	
+	
+	
+	
+	
 	@RequestMapping("board/event_detail.do")
 	public String event_detail(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -177,14 +186,14 @@ public class CommunityModel {
 	public String eboard_insert(HttpServletRequest request, HttpServletResponse response)
 	{
 		request.setAttribute("main_jsp", "../board/event_insert.jsp");
-		return "../main/main.do";
+		return "../main/main.jsp";
 	}
 	@RequestMapping("board/event_insert_ok.do")
 	public String event_insert_ok(HttpServletRequest request, HttpServletResponse response)
 	{
 		try
 		{
-			request.setCharacterEncoding("UTF-8");
+			  request.setCharacterEncoding("UTF-8");
 			  String path="c:\\upload\\";
 			  int size=1024*1024*100;
 			  String enctype="UTF-8";
@@ -280,11 +289,53 @@ public class CommunityModel {
 		BoardDAO dao = BoardDAO.newInstance();
 		List<NoticeVO> nList=dao.noticeListData(curpage);
 		
+		
+		
 		request.setAttribute("nList", nList);
 		request.setAttribute("main_jsp", "../board/notice.jsp");
 		return "../main/main.jsp";
 	}
-	
+	@RequestMapping("board/notice_write.do")
+	public String notice_write(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		
+		
+		request.setAttribute("main_jsp", "../board/notice_write.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("board/notice_write_ok.do")
+	public String notice_write_ok(HttpServletRequest request, HttpServletResponse reponse)
+	{
+		/*
+		 * try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String content=request.getParameter("content");
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String pwd=request.getParameter("pwd");
+		
+		BoardDAO dao=BoardDAO.newInstance();
+		BoardVO bvo=new BoardVO();
+		
+		bvo.setName(name);
+		bvo.setContent(content);
+		bvo.setSubject(subject);
+		bvo.setPwd(pwd);
+		dao.boardInsert(bvo);
+		 */
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+			String no = request.getParameter("no");
+			String content= request.getParameter("");
+		}catch(Exception ex) {}
+		request.setAttribute("", reponse);
+		return "redirect:../board/notice.jsp";
+	}
 }
 
 

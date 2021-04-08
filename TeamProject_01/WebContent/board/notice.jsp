@@ -69,12 +69,11 @@
     
     
     <!-- ------------------------------------------------------------------------------- -->
+    
      <section class="blog-details spad">
        
                <div class="container">
              
-             		
-               
                     <div class="blog__details__content">
                     	
                         <div class="row">
@@ -88,11 +87,11 @@
 									<th style="text-align:center;">제목</th>
 									<th style="text-align:center;">조회수</th>
 								</tr>
-								<c:forEach var="vo" items="${nList }" varStatus="s">
+								<c:forEach var="nvo" items="${nList }" varStatus="s">
 									<tr>
-									  <td>${vo.no }</td>
-									  <td>${vo.subject }</td>
-									  <td>${vo.hit }</td>
+									  <td>${nvo.no }</td>
+									  <td>${nvo.subject }</td>
+									  <td>${nvo.hit }</td>
 									</tr>
 								</c:forEach> 
 							</table>

@@ -92,6 +92,7 @@ public class MemberModel {
 		String pwd=request.getParameter("pwd");
 		MemberDAO dao=MemberDAO.newInstance();
 		String result=dao.loginCheck(id, pwd);
+		String admin=request.getParameter("admin");
 		if(result.equals("NOID")) {
 			request.setAttribute("msg", result);
 		}else if(result.equals("NOPWD")){
@@ -101,6 +102,7 @@ public class MemberModel {
 			session.setAttribute("name", result);
 			session.setAttribute("sesson_id", id);
 			request.setAttribute("msg", result); //이름,닉네임
+			request.setAttribute("admin", admin);
 		}
 		
 		return "../member/login_ok.jsp";

@@ -20,7 +20,7 @@
 	        </div>
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2 style="text-align: center;">이벤트 게시판</h2>
+                        <h2>이벤트 게시판</h2>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -30,6 +30,7 @@
         </div>
         </div>
     </section>
-
+    
+	
 </body>
 </html>

@@ -177,7 +177,7 @@ public class BoardDAO {
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT no,name,subject,content,regdate,hit "
+			   String sql="SELECT no,name,subject,content "
 			   			+ "FROM wboard "
 			   			+ "WHERE no=?";
 			   ps.setInt(1, no);
@@ -191,10 +191,10 @@ public class BoardDAO {
 		   }
 		   return vo;
 	   }
-	   
+	   				
 	   public void boardUpdate(BoardVO vo)
 	   {
-		   boolean bCheck=false;
+		   
 		   try
 		   {
 			   getConnection();
@@ -226,7 +226,7 @@ public class BoardDAO {
 			   String sql = "SELECT no,subject,hit,num "
 			   				+ "FROM (SELECT no, subject, hit, rownum as num "
 			   				+ "FROM (SELECT no,subject,hit "
-			   				+ "FROM nboard ORDER BY no DESC)) "
+			   				+ "FROM notice_board ORDER BY no DESC)) "
 			   				+ "WHERE num BETWEEN ? AND ?";
 			   
 			   int rowSize=12;

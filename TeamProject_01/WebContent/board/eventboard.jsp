@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,9 +56,9 @@
 	           	<button id="login_go">go</button>
 	           </div>
 	        </div>
-                <div class="col-lg-12">
-                    <div class="blog__details__hero__text">
-                        <h2 style="text-align: center;">이벤트 게시판</h2>
+                <div class="col-lg-12" >
+                    <div class="blog__details__hero__text"">
+                        <h2 style="">이벤트 게시판</h2>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -71,12 +72,12 @@
     
     
     <div class="wrapper row3 mypage_row">
-	  <h2 class="sectiontitle">자료실</h2>
-	  <div style="height: 500px;width:750px;overflow-y:auto;margin:0px auto">
+	  
+	  <div style="height: 500px;width:750px;overflow-y:auto;margin:0px auto;margin-top:50px;">
 	   <table class="table" style="float:left;">
 	     <tr>
 	      <td>
-	       <a href="../board/event_insert.do" class="btn btn-sm btn-danger">등록</a>
+	       <a href="../board/event_insert.do" class="btn btn-sm btn-danger" style="float: left;">등록</a>
 	      </td>
 	     </tr>
 	   </table>
@@ -88,19 +89,18 @@
 	      <th class="text-center" width=20%>작성일</th>
 	      <th class="text-center" width=10%>조회수</th>
 	     </tr>
-	     <c:forEach var="vo" items="${list }">
+	     <c:forEach var="evo" items="${list }">
 	       <tr>
-		      <td class="text-center" width=10%>${vo.no }</td>
+		      <td class="text-center" width=10%>${evo.no }</td>
 		      <td class="text-left" width=45%>
-		        <a href="../board/event_detail.do?no=${vo.no }">${vo.subject }</a>
+		        <a href="../board/event_detail.do?no=${evo.no }">${evo.subject }</a>
 		      </td>
-		      <td class="text-center" width=15%>${vo.name }</td>
-		      <td class="text-center" width=20%>${vo.regdate }</td>
-		      <td class="text-center" width=10%>${vo.hit }</td>
+		      <td class="text-center" width=15%>${evo.name }</td>
+		      <td class="text-center" width=20%>${evo.regdate }</td>
+		      <td class="text-center" width=10%>${evo.hit }</td>
 	     </tr>
 	     </c:forEach>
 	   </table>
-	   
 	  </div>
 	</div>
     
