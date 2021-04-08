@@ -53,18 +53,21 @@ public class IngreRecipeDAO {
 		   List<ListVO> list=new ArrayList<ListVO>();
 		   try {
 			   getConnection();
-			   String sql="SELECT detail_data_v3.no, list_data_v5.poster, list_data_v5.title, list_data_v5.chef_poster, "
+			  /* String sql="SELECT detail_data_v3.no, list_data_v5.poster, list_data_v5.title, list_data_v5.chef_poster, "
 			   		+ "list_data_v5.chef, list_data_v5.link, list_data_v5.hit, rownum "
 			   		+ "FROM detail_data_v3, list_data_v5 "
-			   		+ "WHERE detail_data_v3.ingre LIKE '%'||?||'%' ";
+			   		+ "WHERE detail_data_v3.ingre LIKE '%'||?||'%' ";*/
+			   String sql="SELECT no, poster, title, chef_poster, chef, link, hit, rownum "
+			   		+ "FROM listdata_with_ingre "
+			   		+ "WHERE ingre LIKE  '%'||?||'%' ";
 			   int size=slist.size();
 			   System.out.println("slist_size: "+size);
 			   if(size>0) {
 				   for(int i=2; i<=size; i++) {
-					   sql+="AND detail_data_v3.ingre LIKE '%'||?||'%' ";
+					   sql+="AND ingre LIKE '%'||?||'%' ";
 				   }
 			   }
-			   sql+= "AND detail_data_v3.no=list_data_v5.no AND rownum<=10";
+			   sql+= "AND rownum<=10";
 			   sql+= "ORDER BY hit DESC";
 			   System.out.println(sql);
 			   ps=conn.prepareStatement(sql);

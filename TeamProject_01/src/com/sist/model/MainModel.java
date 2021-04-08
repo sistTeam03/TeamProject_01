@@ -31,15 +31,20 @@ public class MainModel {
 					List<UserIngreVO> ulist=udao.ingreListNameData(id);
 					List<String> uinglist=new ArrayList<String>();
 					int size=ulist.size();
-					for(int i=0; i<3; i++) {
-						int rand=(int)(Math.random()*size);
-						uinglist.add(ulist.get(rand).getName());
-						System.out.println(uinglist.get(i));
-						if(i==size)
+					while(true) {
+						uinglist.clear();
+						for(int i=0; i<3; i++) {
+							int rand=(int)(Math.random()*size);
+							uinglist.add(ulist.get(rand).getName());
+							System.out.println(uinglist.get(i));
+							if(i==size)
+								break;
+						}
+						IngreRecipeDAO idao=IngreRecipeDAO.newInstance();
+						ingreRecipe = idao.ingreSearchRecipe(uinglist);
+						if(ingreRecipe.size()>4)
 							break;
 					}
-					IngreRecipeDAO idao=IngreRecipeDAO.newInstance();
-					ingreRecipe = idao.ingreSearchRecipe(uinglist);
 				}
 				request.setAttribute("ingreRecipe", ingreRecipe);
 				//추가종료
