@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%= application.getRealPath("/") %>
+
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
-<div class="contact-form spad">
+<div class="contact-form spad" style="margin:0px auto;"">
         <div class="container">
             <div class="row">
             <div id="login_input">
@@ -21,7 +21,7 @@
 	        </div>
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2 style="text-align: center;">이벤트 게시판</h2>
+                        <h2 ">이벤트 게시판</h2>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -31,12 +31,12 @@
         </div>
         </div>
     </section>
-	<div class="contact-form spad">
+	<div class="contact-form spad" style="margin:0px auto;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact__form__title">
-                        <h2>이벤트 참여 등록</h2>
+                        <h2>이벤트 참여</h2>
                     </div>
                 </div>
             </div>

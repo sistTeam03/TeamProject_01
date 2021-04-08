@@ -210,8 +210,9 @@ a.loginco{
                             
                             <li><a href="../admin/community.do">커뮤니티</a>
                             	 <ul class="header__menu__dropdown">
-                                    <li><a href="../admin/notice.do">공지사항</a></li>
-                                    <li><a href="../admin/event.do">이벤트</a></li>
+                                    <li><a href="../board/notice.do">공지사항</a></li>
+                                    <li><a href="../board/eventboard.do">이벤트</a></li>
+                                    <li><a href="../board/board.do">자유게시판</a></li>
 <!-- <<<<<<< HEAD
                                     <li><a href="../board/qna_board.do">문의 게시판</a></li>
 ======= -->

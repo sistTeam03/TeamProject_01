@@ -66,33 +66,35 @@
             </div>
         </div>
     </section>
-    <div class="container">
-       <div class="row">
+    
+    <div class="wrapper row3 mypage_row">
+   		<div style="width:800px;margin:0px auto;margin-top:30px;">
 	    <center>
-	    	<table class="table_content" width=750 border=1>
+	    	<table class="table">
 	    	  <tr>
-	    	    <th width=20%>글번호</th>
-	    	    <td width=20%>${bvo.no }</td>
-	    	    <th width=20%>작성일</th>
-	    	    <td width=20%>${bvo.regdate }</td>
+	    	    <th width=20% class="text-center">글번호</th>
+	    	    <td width=20% class="text-center">${bvo.no }</td>
+	    	    <th width=20% class="text-center">작성일</th>
+	    	    <td width=20% class="text-center">${bvo.regdate }</td>
 	    	  </tr>
 	    	  <tr>
-	    	    <th width=20%>이름</th>
-	    	    <td width=20%>${bvo.name }</td>
-	    	    <th width=20%>조회수</th>
-	    	    <td width=20%>${bvo.hit }</td>
+	    	    <th width=20% class="text-center">이름</th>
+	    	    <td width=20% class="text-center">${bvo.name }</td>
+	    	    <th width=20% class="text-center">조회수</th>
+	    	    <td width=20% class="text-center">${bvo.hit }</td>
 	    	  </tr>
 	    	  <tr>
-         <th width=20%>제목</th>
-         <td  align="left">${bvo.subject }</td>
+         <th width=20% class="text-center">제목</th>
+         <td  align="left" class="text-center">${bvo.subject }</td>
        </tr>
        <tr>
-         <td  height="200" valign="top" colspan="4"><pre>${bvo.content }</pre></td>
+         <td colspan="4" class="text-left" valign="top" height="200">
+            <pre style="white-space: pre-wrap;border:none;height:500px;">${bvo.content }</pre>
+          </td>
        </tr>
 	    	</table>
 	    </center>
-	   </div> 
-    </div>
+	 </div>
     <div class="lower_btn">
      <tr>
           <td colspan="4" class="text-right">
@@ -100,7 +102,7 @@
             <a href="../board/board_delete.do?no=${bvo.no }" class="btn btn-sm btn-info">삭제</a>
           </td>
         </tr>
-    </div>
+    </div></div>
 </body>
 </html>
 

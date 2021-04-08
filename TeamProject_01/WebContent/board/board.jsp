@@ -81,15 +81,16 @@
 		  </td>
 		</tr>
 	</table>
+	<div class="blog__details__content">
 		<div class="row">
 		<table class="table table-hover">
-			<tr height=60px  style="border-color: black; background-color: orange;vertical-align:middle;">
-			  <th width=10% style="vertical-align:middle;text-align:center">번호</th>  	
-			  <th width=45% style="vertical-align:middle;text-align:center">제목</th>
-			  <th width=15% style="vertical-align:middle;text-align:center">이름</th>
-			  <th width=20% style="vertical-align:middle;text-align:center">작성일</th>
-			  <th width=10% style="vertical-align:middle;text-align:center">조회수</th>	
-			</tr>
+			<tr>
+					          <th class="text-center" width=10%>번호</th>
+					          <th class="text-center" width=45%>제목</th>
+					          <th class="text-center" width=15%>이름</th>
+					          <th class="text-center" width=20%>작성일</th>
+					          <th class="text-center" width=10%>조회수</th>
+					        </tr>
 			<c:forEach var="vo" items="${bList }">
 				
 				<tr>
@@ -102,6 +103,7 @@
 			</c:forEach>
 			</table>
 		</div>	
+	</div>
 	</div>
 	
 </section>

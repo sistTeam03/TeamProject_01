@@ -74,22 +74,21 @@
                     </div>
                 </div>
             </div>
-            <form action="event_insert_ok.do">
+            <form method=post action="../board/notice_write_ok.do">
                 <div class="row">
-                <div class="col-lg-2 col-md-6" style="background-color: pink;height:45px;margin-left: 15px;margin-top: 5px;" ><font style="vertical-align: middle;">제목</font>
-                </div>
-                <div class="col-lg-8 col-md-6">
-                        <input type="text" placeholder="제목">
+                    <div class="col-lg-6">
+                        <input type="text" id="id" placeholder="이름" name="name">
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <input type="text" placeholder="이름">
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <input type="text" placeholder="조회수">
+                    
+                    <div class="col-lg-12">
+                        <input type="text" id="subject" placeholder="제목" name="subject">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="Your message"></textarea>
-                        <button type="submit" class="site-btn">SEND MESSAGE</button>
+                        <textarea placeholder="내용" name="content"></textarea>
+                        <button type="submit" class="site-btn">등록</button>
+                          &nbsp;
+                        <button type="button" onclick="javascript:history.back()"
+                         class="site-btn">취소</button>
                     </div>
                 </div>
             </form>

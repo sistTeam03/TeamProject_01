@@ -16,6 +16,7 @@ import com.sist.vo.BoardVO;
 import com.sist.vo.NoticeVO;
 import com.sist.vo.EventBoardVO;
 import com.sist.dao.EventBoardDAO;
+import com.sist.vo.NoticeVO;
 import java.net.URLEncoder;import java.net.http.HttpRequest;
 @Controller
 public class CommunityModel {
@@ -155,11 +156,11 @@ public class CommunityModel {
 		  if(page==null)
 			  page="1";
 		  int curpage=Integer.parseInt(page);
-		  System.out.println(curpage);
+		  
 		  EventBoardDAO dao=EventBoardDAO.newInstance();
 		  List<EventBoardVO> list = dao.eventBoardList(curpage);
 		  int totalpage=dao.eboardTotalPage();
-		  System.out.println(list.size());
+		  
 		  request.setAttribute("list", list);
 		  request.setAttribute("curpage", curpage);
 		  request.setAttribute("totalpage", totalpage);
@@ -193,19 +194,22 @@ public class CommunityModel {
 	{
 		try
 		{
+			
 			  request.setCharacterEncoding("UTF-8");
-			  String path="c:\\upload\\";
+			  String path="C:\\WebDev\\WebStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\TeamProject_01\\";
 			  int size=1024*1024*100;
 			  String enctype="UTF-8";
-			   
+			  //<%= application.getRealPath("/") %>
 			  MultipartRequest mr=new MultipartRequest(request, path,size,enctype,
 					    new DefaultFileRenamePolicy());
+
+			  
 			  
 			  String name=mr.getParameter("name");
 			  String subject=mr.getParameter("subject");
 			  String content=mr.getParameter("content");
 			  String pwd=mr.getParameter("pwd");
-			  
+			 
 			  EventBoardVO vo = new EventBoardVO();
 			  vo.setName(name);
 			  vo.setSubject(subject);
@@ -228,7 +232,7 @@ public class CommunityModel {
 			  
 			  EventBoardDAO dao = EventBoardDAO.newInstance();
 			  dao.eventInsertData(vo);
-					  
+				
 		}catch(Exception ex) {}
 		return "redirect:../board/eventboard.do";
 		
@@ -242,7 +246,7 @@ public class CommunityModel {
 		{
 			request.setCharacterEncoding("UTF-8");
 			String fn=request.getParameter("fn");
-			File file=new File("c:\\upload\\"+fn);
+			File file=new File("C:\\WebDev\\WebStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\TeamProject_01\\"+fn);
 					response.setContentLength((int)file.length());
 			  response.setHeader("Content-Disposition", "attachment;filename="
 			                      +URLEncoder.encode(fn, "UTF-8"));
@@ -307,34 +311,37 @@ public class CommunityModel {
 	@RequestMapping("board/notice_write_ok.do")
 	public String notice_write_ok(HttpServletRequest request, HttpServletResponse reponse)
 	{
-		/*
-		 * try
-		{
-			request.setCharacterEncoding("UTF-8");
-		}catch(Exception ex) {}
-		String no=request.getParameter("no");
-		String content=request.getParameter("content");
-		String name=request.getParameter("name");
-		String subject=request.getParameter("subject");
-		String pwd=request.getParameter("pwd");
 		
-		BoardDAO dao=BoardDAO.newInstance();
-		BoardVO bvo=new BoardVO();
-		
-		bvo.setName(name);
-		bvo.setContent(content);
-		bvo.setSubject(subject);
-		bvo.setPwd(pwd);
-		dao.boardInsert(bvo);
-		 */
 		try
 		{
 			request.setCharacterEncoding("UTF-8");
-			String no = request.getParameter("no");
-			String content= request.getParameter("");
 		}catch(Exception ex) {}
-		request.setAttribute("", reponse);
-		return "redirect:../board/notice.jsp";
+		String no = request.getParameter("no");
+		String content=request.getParameter("content");
+		String subject=request.getParameter("subject");
+		String nfile=request.getParameter("nfile");
+		
+		BoardDAO dao=BoardDAO.newInstance();
+		NoticeVO vo = new NoticeVO();
+		
+		
+		vo.setContent(content);
+		vo.setSubject(subject);
+		vo.setNfile(nfile);
+		dao.notice_insert(vo);
+		
+		request.setAttribute("main_jsp", "../board/notice_write.jsp");
+		return "redirect:../board/notice.do";
+	}
+	@RequestMapping("board/notice_detail.do")
+	public String notice_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no = request.getParameter("no");
+		BoardDAO dao=BoardDAO.newInstance();
+		NoticeVO vo = dao.noticeDetailData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../board/notice_detail.jsp");
+		return "../main/main.jsp";
 	}
 }
 

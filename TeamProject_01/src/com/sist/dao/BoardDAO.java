@@ -281,7 +281,14 @@ public class BoardDAO {
 		   try
 		   {
 			   getConnection();
-			   String sql = "INSERT INTO notice_board (SELECT NVL(MAX(no)+1,1) FROM notice_board),?,?,?,?,?";
+			   String sql = "INSERT INTO notice_board (SELECT NVL(MAX(no)+1,1) FROM notice_board),?,?,?,0,'y'";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, vo.getSubject());
+			   ps.setString(2, vo.getContent());
+			   ps.setString(3, vo.getNfile());
+			   
+			   ps.executeUpdate();
+			   
 		   }catch(Exception ex)
 		   {
 			   ex.printStackTrace();
@@ -289,6 +296,43 @@ public class BoardDAO {
 		   {
 			   disConnection();
 		   }
+	   }
+	   public NoticeVO noticeDetailData(int no)
+	   {
+		   NoticeVO vo = new NoticeVO();
+		   try
+		   {
+			   getConnection();
+			   String sql = "UPDATE notice_board SET hit=hit+1 WHERE no=? ";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ps.executeUpdate();
+			   
+			   sql="SELECT * FROM notice_board WHERE no = ?";
+			   
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			
+			   ResultSet rs = ps.executeQuery();
+			   rs.next();
+			   
+			   vo.setNo(rs.getInt(1));
+			   vo.setSubject(rs.getString(2));
+			   vo.setContent(rs.getString(3));
+			   vo.setNfile(rs.getString(4));
+			   vo.setHit(rs.getInt(5));
+			   
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }finally
+		   {
+			   disConnection();
+		   }
+		   
+		   
+		   return vo;
 	   }
 	   
 	   public boolean boardDelete(int no,String pwd)

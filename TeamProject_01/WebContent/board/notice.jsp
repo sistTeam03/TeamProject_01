@@ -77,8 +77,8 @@
                     <div class="blog__details__content">
                     	
                         <div class="row">
-                        <c:if test="${sessionScope.admin=='y' }">
-                        <a href="#" style="float:left;margin-bottom: 10px;margin-left: 10px;">
+                        <c:if test="${sessionScope.sesson_id=='admin' }">
+                        <a href="../board/notice_write.do" style="float:left;margin-bottom: 10px;margin-left: 10px;">
                         	<div class="btn btn-sm btn-primary">공지사항 등록</div></a>
                         </c:if>
 							  <table class="table table-hover" id="chef_table">
@@ -90,7 +90,9 @@
 								<c:forEach var="nvo" items="${nList }" varStatus="s">
 									<tr>
 									  <td>${nvo.no }</td>
-									  <td>${nvo.subject }</td>
+									
+									  <td> <a href="../board/notice_detail.do?no=${nvo.no }">${nvo.subject }</a></td>
+									 
 									  <td>${nvo.hit }</td>
 									</tr>
 								</c:forEach> 

@@ -45,7 +45,7 @@
 </head>
 <body>
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
-<div class="contact-form spad">
+<div class="contact-form spad" style="margin:0px auto;">
         <div class="container">
             <div class="row">
             <div id="login_input">
@@ -68,15 +68,15 @@
         </div>
     </section>
     
-<div class="container" text-align=center">    
-	<div class="row"margin:0px auto;>
+<div class="wrapper row3 mypage_row" style="width:700px;margin:0px auto;">    
+	<div class="table"margin:0px auto;>
 	
     <center>
     
-    <div class="write_align" style="border-color: pink; ">
+    <div class="write_align" style="width:700px; ">
      <h1>새글 쓰기</h1>
      <form method="post" action="../board/board_write_ok.do">
-     <table class="table_content" width=500>
+     <table class="table_content" width=700>
        <tr>
          <th width=15% align=right>이름</th>
          <td width=85%>
@@ -92,7 +92,7 @@
        <tr>
          <th width=15% align=right>내용</th>
          <td width=85%>
-           <textarea rows="7" cols="55" name="content" required></textarea>
+           <textarea rows="7" cols="55" name="content" required style="height:400px;width:600px;"></textarea>
          </td>
        </tr>
        <tr>
@@ -103,7 +103,7 @@
        </tr>
        <tr>
          <td colspan="2" align=center>
-          <input type=submit value="글쓰기">
+          <input type=submit value="글쓰기" class="site-btn">
           
          </td>
        </tr>
