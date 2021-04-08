@@ -236,7 +236,9 @@ a.loginco{
                             <c:if test="${not empty sesson_id}">
                             	<span class=loginco id="logout_logo" style="cursor: pointer;"><i class="fa fa-user"></i>Logout</span>
                              </c:if>	
+                             <c:if test="${empty sesson_id}">
                             	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
+                             </c:if>
                            </li>
                         </ul>
                     </div>
