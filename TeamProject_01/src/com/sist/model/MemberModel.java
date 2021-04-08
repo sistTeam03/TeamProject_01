@@ -122,7 +122,7 @@ public class MemberModel {
 		//DB연동
 		BookmarkDAO bookmarkdao =BookmarkDAO.newInstance();
 		DetailDAO dao = DetailDAO.newInstance();
-		//찜하기 목록
+		//찜하기 목록ㅇㄴ
 		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
 		List<ListVO> dList = new ArrayList<ListVO>();
 		for(BookmarkVO vo:jList)
