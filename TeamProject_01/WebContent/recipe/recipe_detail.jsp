@@ -64,10 +64,10 @@ text-align: right;
 	 top: -8em;
     left: 9em;
  }
- #replyBtn,#updateBtnok{
- 	background-color: #ddf2bc
+ #replyBtn,.updateBtnok{
+ 	background-color: #ddf2bc;
  }
-  #replyBtn:hover,#updateBtnok:hover{
+  #replyBtn:hover,.updateBtnok:hover{
   	  color: #fff;
     background-color: #7fad39;
     border-color: #7fad39;

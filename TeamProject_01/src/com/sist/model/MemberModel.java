@@ -154,7 +154,6 @@ public class MemberModel {
 		
 		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 		return "../main/main.jsp";
-	
-
 	}
+	
 }
