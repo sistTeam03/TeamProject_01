@@ -166,16 +166,16 @@ a:hover{
 							  <li><a href="../mypage/ingrelist.do?kono=11">카</a></li>
 							</c:if>
 							<c:if test="${ko==12 }">
-							  <li class=active><a href="../mypage/ingrelist.do?kono=12">파</a></li>
+							  <li class=active><a href="../mypage/ingrelist.do?kono=12">타</a></li>
 							 </c:if>
 							 <c:if test="${ko!=12 }">
-							  <li><a href="../mypage/ingrelist.do?kono=12">파</a></li>
+							  <li><a href="../mypage/ingrelist.do?kono=12">타</a></li>
 							</c:if>
 							<c:if test="${ko==13 }">
-							  <li class=active><a href="../mypage/ingrelist.do?kono=13">타</a></li>
+							  <li class=active><a href="../mypage/ingrelist.do?kono=13">파</a></li>
 							 </c:if>
 							 <c:if test="${ko!=13 }">
-							  <li><a href="../mypage/ingrelist.do?kono=13">타</a></li>
+							  <li><a href="../mypage/ingrelist.do?kono=13">파</a></li>
 							</c:if>
 							<c:if test="${ko==14 }">
 							  <li class=active><a href="../mypage/ingrelist.do?kono=14">하</a></li>
@@ -187,7 +187,7 @@ a:hover{
                         </div>
                         <div class=row >
                         	<ul>
-                        	<c:forEach var="vo" items="${ilist}">
+                        	<c:forEach var="vo" items="${ilist}"> 
                         		<c:if test="${vo.ingre_count==0}">
                         			<a href="../mypage/useringreinsert.do?ino=${vo.num }"><li class="btn btn-default">${vo.ingre }</li></a><!-- 추가버튼 -->
                         		</c:if>

@@ -236,7 +236,9 @@ a.loginco{
                             <c:if test="${not empty sesson_id}">
                             	<span class=loginco id="logout_logo" style="cursor: pointer;"><i class="fa fa-user"></i>Logout</span>
                              </c:if>	
+                             <c:if test="${empty sesson_id}">
                             	<a href="../member/join.do" class=loginco><i class="fa fa-user"></i> SignUp</a>
+                             </c:if>
                            </li>
                         </ul>
                     </div>
@@ -248,12 +250,12 @@ a.loginco{
                 <div class="col-lg-12">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="../main/search.do">
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" placeholder="What do yo u need?" name="msg">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>

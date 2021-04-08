@@ -22,7 +22,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class QnaboardVO {
+public class QnaBoardVO {
 	private int no;
 	// 기본 게시물
 	private String id;

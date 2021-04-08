@@ -70,6 +70,8 @@ $(function(){
 			 
 			$('.length'+i).html(strshow);
 			
+		}else{
+			$('.moreBtn').hide();		
 		}
 	}//댓글 글자수 제어
 	$('.moreBtn').click(function(){
@@ -89,6 +91,7 @@ $(function(){
 			$('.length'+num).text(reply2);
 			$(this).hide();
 		}
+		
 		
 	})//댓글 더보기 
 })
@@ -115,7 +118,7 @@ $(function(){
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
 	        					 
-		      	  			 <input type=button id="" class="updateBtn " value="수정 " data-no="${rvo.no }"> 
+		      	  			 <input type=button id="updateBtn${s.index }" class="updateBtn " value="수정 " data-no="${rvo.no }"> 
 		        			<input type=button id="" class="delBtn " value=삭제  data-no="${rvo.no } " reply-page="${curpage }">
 		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
 		        		</td>
@@ -139,5 +142,6 @@ $(function(){
 	        		</td>
 	        	</tr>
         </table>
+        
 </body>
 </html>

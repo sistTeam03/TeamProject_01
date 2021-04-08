@@ -91,7 +91,6 @@ public class DetailDAO {
 		try {
 			getConnection();
 			int k=1;
-			
 			for(int i=0; i<list.size();i++) {
 			String sql="SELECT no,poster,title "
 					+ "FROM list_data_v5 "
@@ -125,7 +124,6 @@ public class DetailDAO {
 	
 	//북마크용 가져오기
 	public ListVO BookmarkData(int no) {
-		System.out.println("no="+no);
 		ListVO vo=new ListVO();
 		
 		try {

@@ -5,99 +5,40 @@
 <html lang="zxx">
 
 <head>
-<meta charset="UTF-8">
-<title>Ogani | Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
 
-<style type="text/css">
-#login_div {
-    display: table;
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    top: 3em;
-    left: 90.2em;
-    float: right;
-}
-#login_div input {
-    font-size: 12pt;
-    height: 23px;
-    border: 0.5px solid #7fad39;
-    border-radius: 15px;
-    line-height: 23px;
-    width: 11em;
-    margin-top: 1px;
-}
-#login_div #login_go {
-    width: 37px;
-    height: 34px;
-    color: #ffffff;
-    border-radius: 35px;
-    background-color: #7fad39;
-    text-align: center;
-    position: relative;
-    right: -4.8em;
-    top: -2.7em;
-    opacity: 0.9;
-}
-.list_tr{
-    height: 36em;
-    display: none;
-}
-</style>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+<title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<!-- <script type="text/javascript">
-$(function(){
-	$('.chef_tr').click(function(){
-		$(this).next().show();
-		let name=$(this).attr('data-name');
-		console.log(name);
-		$.ajax({
-			type:'post',
-			url:'../board/qna_board.do',
-			data:{'name':name},
-			success:function(result){
-				$('.list_span').html(result);
-				return;
-			}
-			
-		})
-		
-	});
-});
-</script> -->
 </head>
 <body>
-    <!-- Blog Details Hero Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
-            <div id="login_input">
-	            <div id="login_div">
-	            <input type="text" size=15 id="login_id" placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
-	            <input type="password" size=15 id="login_pwd" placeholder="비밀번호" style="padding-left: 10px;">
-	           	<button id="login_go">go</button>
-	           </div>
-	        </div>
+           
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <!-- <h2>문의 게시판</h2> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Blog Details Hero End -->
-    
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>문의 게시판</h2>
+                        <h2>Q & A</h2>
                         <div class="breadcrumb__option">
-                            <!-- <a href="./index.html">Home</a>
-                            <span>Checkout</span> -->
+                            <a href="./index.html">Home</a>
+                            <span>커뮤니티</span>
                         </div>
                     </div>
                 </div>
@@ -106,58 +47,69 @@ $(function(){
     </section>
     <!-- Breadcrumb Section End -->
     
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
+    <!-- Blog Details Section Begin -->
+
+      <div class="contact-form spad">
         <div class="container">
-            <div class="row">
-                <!-- <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                    </h6>
-                </div> -->
-            </div>
-            <div class="checkout__form">
-              <h4>문의하기</h4>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-6">
-                            <div class="row">
-                              <c:forEach var="vo" items="${list }">
-                                <table class="table table-borderless">
-                                  <tr class="info">
-                                    <th scope="col" class="text-center" width=10%>#</th>
-                                    <th class="text-center" width=45%>제목</th>
-                                    <th class="text-center" width=15%>이름</th>
-                                    <th class="text-center" width=20%>작성일</th>
-                                    <th class="text-center" width=10%>조회수</th> 
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center">${vo.no }</td>
-                                      <c:if test="${vo.group_tab==1 }">
-                                        &nbsp;&nbsp;
-                                        <img src="../img/reply_icon.png" style="height:15px;width:15px">
-                                      </c:if>
-                                    <td class="text-center">${vo.subject }</td>
-                                    <td class="text-center">${vo.name }</td>
-                                    <td class="text-center">${vo.regdate }</td>
-                                    <td class="text-center">${vo.hit }</td>
-                                  </tr>
-                                </table>
-                              </c:forEach>
-                            </div>
-                        </div>
-                    <table class="table">
-                      <tr>
-                        <td class="text-right">
-                          <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-danger">이전</a>
-                            ${curpage } page / ${count } pages
-                          <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-info">다음</a>
-                        </td>
-                      <tr>
-                    </table>
+           <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h3 class="text-left">작성하기</h3>
+                        <table class="text-right">
+                          <tr>
+                            <td>
+                              <a href="../board/qnaInsert.do" class="btn btn-sm btn-success">등록</a>
+                            </td>
+                          </tr>
+                        </table>
                     </div>
-                </form>
-        </div>
-      </div>
-    </section>
+                </div>
+            </div>
+                    <div class="blog__details__content">
+                        <div class="row">
+					      <table class="table">
+					        <tr>
+					          <th class="text-center" width=10%>번호</th>
+					          <th class="text-center" width=45%>제목</th>
+					          <th class="text-center" width=15%>이름</th>
+					          <th class="text-center" width=20%>작성일</th>
+					          <th class="text-center" width=10%>조회수</th>
+					        </tr>
+					        <c:forEach var="vo" items="${list }">
+					        <tr>
+					          <td class="text-center" width=10%>${vo.no }</td>
+					          <td class="text-left" width=45%>
+					            <c:if test="${vo.group_tab==1 }">
+					              &nbsp;&nbsp;
+					              <img src="../img/reply_icon.png">
+					            </c:if>
+					            <a href="../board/qnaDetail.do?no=${vo.no }">${vo.subject }</a>
+					          </td>
+					          <td class="text-center" width=15%>${vo.name }</td>
+					          <td class="text-center" width=20%>${vo.regdate }</td>
+					          <td class="text-center" width=10%>${vo.hit }</td>
+					        </tr>
+					        </c:forEach>
+					      </table> 
+                        </div>
+                    
+
+                      
+                      <table class="table">
+                         <tr>
+					       <td class="text-center" style="font-color:grey;font-weight:bold">
+						     <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="site-btn">이전</a>
+						       ${curpage } page / ${count } pages
+						     <a href="../board/qnaList.do?page=${curpage<count?curpage+1:curpage }" class="site-btn">다음</a>
+						    </td>
+						 <tr>
+				     	</table>
+					 
+					</div>
+				</div> 
+			</div>         
+
+
+    <!-- Blog Details Section End -->
 </body>
 </html>

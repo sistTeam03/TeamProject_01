@@ -78,9 +78,6 @@ text-align: right;
 
 $(function(){
 	let no=$('#detail_no').attr('data-no');//레시피 no
-	
-	
-	
 	$.ajax({
 		type:'post',
 		url:'../recipe/recipe_reply_print.do',
@@ -88,6 +85,7 @@ $(function(){
 		success:function(result)
 		{
 			$('.reply_print').html(result);
+			return;
 			//$('.post').css("overflow","auto");  replyPageBtn
 			  
 			 
@@ -135,27 +133,29 @@ $(function(){
 					}
 			 });
 		}); //등록  
+
 		  $(document).on("click",".updateBtn",function(){
 			  		$(this).hide();
-			  		let replyno=$(this).attr('data-no');
-			  		console.log(no);
+			  		let replyno=$(this).attr('data-no');	
 			  		$('.updateBtnok').show();
 			  		$('#replyBtn').hide();
-					console.log(replyno);
+			  		console.log("횟수");
 			  		 $.ajax({
 							type:'post',
 							url:'../recipe/recipe_update_show.do',
 							data:{"replyno":replyno},
+							
 							success:function(result)
 							{
-								$('#msg').text(result);
+								$('#msg').val(result);
+								
 							}
 					 });
+			  		let count=0;
 			  	 $('.updateBtnok').click(function(){
 			  				let msg=$('#msg').val();
 			  				let page=$('.delBtn').attr('reply-page');
-					  		$(this).hide();
-					  		$('#msg').val("");
+			  				$(this).hide();
 					  		$('.updateBtn').show();
 					  		$('.updateBtnok').hide();
 					  		$('#replyBtn').show();
@@ -163,23 +163,27 @@ $(function(){
 							console.log(page);
 							console.log(msg);
 							console.log(replyno);
+							
+							if(count==1){
+								return;
+							}
 							 $.ajax({
 									type:'post',
 									url:'../recipe/recipe_reply_update.do',
 									data:{"page":page,"no":no,"msg":msg,"replyno":replyno},
+									async: false,
 									success:function(result)
 									{
 										$('.reply_print').html(result);
-										
-										return;
+										$('#msg').val('');
+										count=1;
 									}
 							 });
-			   		});
-				 });//수정
-				
-		
-	
+			   		
+				 });
+		  });//수정
 });
+
 
 	 
 		
