@@ -211,4 +211,42 @@ public class ListDAO {
 		}
 		return list;
 	}
+	//검색용 리스트
+	public List<ListVO> searchList(List<String> sList,int page){
+		List<ListVO> list=new ArrayList<ListVO>();
+		try {
+			getConnection();
+			int size=sList.size();
+			for(int i=0;i<size;i++) {
+				String sql="SELECT no,poster,title,chef_poster,chef,hit,num "
+						+ "FROM(no,poster,title,chef_poster,chef,hit,rownum as num "
+						+ "FROM(no,poster,title,chef_poster,chef,hit FROM list_data_v5 WHERE title like '%'||?||'%' order by no asc)) "
+						+"WHERE num between ? and ?";	
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, sList.get(0));
+				int rowSize=20;
+				int start=1+(page-1)*rowSize;
+				int end=page*rowSize;
+				ps.setInt(1, start);
+				ps.setInt(2, end);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					ListVO vo=new ListVO();
+					vo.setNo(rs.getInt(1));
+					vo.setPoster(rs.getString(2));
+					vo.setTitle(rs.getString(3));
+					vo.setChef_poster(rs.getString(4));
+					vo.setChef(rs.getString(5));
+					vo.setHit(rs.getInt(6));
+					list.add(vo);
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+	}
+	
 }
