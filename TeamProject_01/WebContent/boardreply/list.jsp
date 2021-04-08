@@ -2,15 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Q & A</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -24,8 +23,12 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-<title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<style type="text/css">
+.mypage_row{
+  margin: 0px auto;
+  width: 960px;
+}
+</style>
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -46,7 +49,7 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-    
+
     <!-- Blog Details Section Begin -->
 
       <div class="contact-form spad">
@@ -54,19 +57,16 @@
            <div class="row">
                 <div class="col-lg-12">
                     <div class="contact__form__title">
-                        <h3 class="text-left">작성하기</h3>
-                        <table class="text-right">
-                          <tr>
-                            <td>
-                              <a href="../board/qnaInsert.do" class="btn btn-sm btn-success">등록</a>
-                            </td>
-                          </tr>
-                        </table>
+                        <h2>문의 게시판</h2>
+                        <div align="right">
+                           <a href="../boardreply/insert.do" class="btn btn-sm btn-danger">등록</a>
+						</div>
                     </div>
                 </div>
             </div>
-                    <div class="blog__details__content">
-                        <div class="row">
+    
+      <div class="blog__details__content">
+                        <div class="row" style="height:560px;overflow-y:auto;">
 					      <table class="table">
 					        <tr>
 					          <th class="text-center" width=10%>번호</th>
@@ -82,34 +82,28 @@
 					            <c:if test="${vo.group_tab==1 }">
 					              &nbsp;&nbsp;
 					              <img src="../img/reply_icon.png">
+					              <!-- <img src="../img/reply_icon.png"> -->
 					            </c:if>
-					            <a href="../board/qnaDetail.do?no=${vo.no }">${vo.subject }</a>
-					          </td>
+            <a href="../boardreply/detail.do?no=${vo.no }">${vo.subject }</a>
+          </td>
 					          <td class="text-center" width=15%>${vo.name }</td>
 					          <td class="text-center" width=20%>${vo.regdate }</td>
 					          <td class="text-center" width=10%>${vo.hit }</td>
 					        </tr>
 					        </c:forEach>
-					      </table> 
-                        </div>
-                    
-
-                      
-                      <table class="table">
-                         <tr>
-					       <td class="text-center" style="font-color:grey;font-weight:bold">
-						     <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="site-btn">이전</a>
-						       ${curpage } page / ${count } pages
-						     <a href="../board/qnaList.do?page=${curpage<count?curpage+1:curpage }" class="site-btn">다음</a>
-						    </td>
-						 <tr>
-				     	</table>
-					 
-					</div>
-				</div> 
-			</div>         
-
-
-    <!-- Blog Details Section End -->
+      </table>
+      </div>
+      <table class="table">
+        <tr>
+          <td class="text-center">
+            <a href="../boardreply/list.do?page=${curpage>1?curpage-1:curpage }" class="site-btn">이전</a>
+             &nbsp;&nbsp; ${curpage }   page /   ${totalpage } pages &nbsp;&nbsp;
+            <a href="../boardreply/list.do?page=${curpage<count?curpage+1:curpage }" class="site-btn">다음</a>
+          </td>
+        </tr>
+      </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

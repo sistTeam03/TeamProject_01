@@ -164,7 +164,7 @@ a.loginco{
                         <li><a href="../admin/notice.jsp">공지사항</a></li>
                         <li><a href="../admin/event.jsp">이벤트</a></li>
 <!-- <<<<<<< HEAD -->
-                        <li><a href="../board/qnaList.do">문의 게시판</a></li>
+                        <li><a href="../boardreply/list.do">문의 게시판</a></li>
                        
 <!-- >>>>>>> branch 'master' of https://github.com/sistTeam03/TeamProject_01.git -->
                     </ul>
@@ -215,7 +215,7 @@ a.loginco{
 <!-- <<<<<<< HEAD
                                     <li><a href="../board/qna_board.do">문의 게시판</a></li>
 ======= -->
-                                    <li><a href="../board/qnaList.do">문의 게시판</a></li>
+                                    <li><a href="../boardreply/list.do">문의 게시판</a></li>
                                      <li><a href="../recom/recomlist.do">추천 테스트</a></li>
 <!-- >>>>>>> branch 'master' of https://github.com/sistTeam03/TeamProject_01.git -->
                                 </ul>
