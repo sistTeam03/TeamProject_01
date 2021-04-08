@@ -86,12 +86,11 @@ margin-left: 2em;
 	text-align: left;
 	margin-left: 20em;
 	color: red;
-	font-family: 나눔고딕;
 	
 } 
 .table{
 	font-size: 11pt;
-	font-family: inherit;
+
 }
 .table th{
 	background-color: #ddf2bc;
