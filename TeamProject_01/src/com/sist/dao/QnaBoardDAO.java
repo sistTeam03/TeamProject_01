@@ -24,7 +24,9 @@ public class QnaBoardDAO {
 			   Context c=(Context)init.lookup("java://comp/env");
 			   DataSource ds=(DataSource)c.lookup("jdbc/oracle");
 			   conn=ds.getConnection();
-		   }catch(Exception ex) {}
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }
 	   }
 	   // 사용후에 반환 
 	   public void disConnection()
@@ -33,7 +35,9 @@ public class QnaBoardDAO {
 		   {
 			   if(ps!=null) ps.close();
 			   if(conn!=null) conn.close();
-		   }catch(Exception ex){}
+		   }catch(Exception ex){
+			   ex.printStackTrace();
+		   }
 	   }
 	   // DAO  객체를 클라이언트당 1개씩만 사용 => 싱글턴 
 	   public static QnaBoardDAO newInstance()
@@ -46,9 +50,9 @@ public class QnaBoardDAO {
 	   
 	   ///////////////// 게시판 기능 /////////////////
 	   // QnA 목록
-	   public List<QnaboardVO> qnaListData(int page)
+	   public List<QnaBoardVO> qnaListData(int page)
 	   {
-		   List<QnaboardVO> list=new ArrayList<QnaboardVO>();
+		   List<QnaBoardVO> list=new ArrayList<QnaBoardVO>();
 		   /*
 		    *  NO         NOT NULL NUMBER        
 		   	ID                  VARCHAR2(20)  
@@ -67,9 +71,9 @@ public class QnaBoardDAO {
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT no,id,name,subject,content,pwd,regdate,hit,group_tab,num "
-			   		+ "FROM (SELECT no,id,name,subject,content,pwd,regdate,hit,group_tab,rownum as num "
-			   		+ "FROM (SELECT no,id,name,subject,content,pwd,regdate,hit,group_tab "
+			   String sql="SELECT no,id,name,subject,hit,group_tab,regdate,num "
+			   		+ "FROM (SELECT no,id,name,subject,hit,group_tab,regdate,rownum as num "
+			   		+ "FROM (SELECT no,id,name,subject,hit,group_tab,regdate "
 			   		+ "FROM qnaBoard ORDER BY group_id DESC,group_step ASC)) "
 			   		+ "WHERE num BETWEEN ? AND ?";
 			   int rowSize=10;
@@ -81,14 +85,15 @@ public class QnaBoardDAO {
 			   ResultSet rs=ps.executeQuery();
 			   while(rs.next())
 			   {
-				   QnaboardVO vo=new QnaboardVO();
+				   QnaBoardVO vo=new QnaBoardVO();
 				   vo.setNo(rs.getInt(1));
 				   vo.setId(rs.getString(2));
 				   vo.setName(rs.getString(3));
 				   vo.setSubject(rs.getString(4));
-				   vo.setRegdate(rs.getDate(5));
-				   vo.setHit(rs.getInt(6));
-				   vo.setGroup_tab(rs.getInt(7));
+				   vo.setHit(rs.getInt(5));
+				   vo.setGroup_tab(rs.getInt(6));
+				   vo.setRegdate(rs.getDate(7));
+				   
 				   list.add(vo);
 			   }
 			   rs.close();
@@ -126,7 +131,7 @@ public class QnaBoardDAO {
 	   }
 	   
 	   // qna 글쓰기
-	   public void qnaInsert(QnaboardVO vo)
+	   public void qnaInsert(QnaBoardVO vo)
 	   {
 		   try
 		   {
@@ -153,9 +158,9 @@ public class QnaBoardDAO {
 	   }
 	   
 	   // 내용보기 => SQL문장:2개
-		  public QnaboardVO qnaOneRowData(int no)
+		  public QnaBoardVO qnaDetailData(int no)
 		  {
-			  QnaboardVO vo=new QnaboardVO();
+			  QnaBoardVO vo=new QnaBoardVO();
 			  try
 			  {
 				  getConnection();
@@ -192,7 +197,32 @@ public class QnaBoardDAO {
 			  return vo;
 		  }
 		  // 답변
-		  public void qnaReplyInsert(QnaboardVO vo)
+		  public int qnaGetGroupId(int no)
+			{
+				int gi=0;
+				try
+				{
+					getConnection();
+					String sql="SELECT group_id FROM qnaBoard "
+							+ "WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setInt(1, no);
+					ResultSet rs=ps.executeQuery();
+					rs.next();
+					gi=rs.getInt(1);
+					rs.close();
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+				finally
+				{
+					disConnection();
+				}
+				return gi;
+			}
+		  
+		  //답변등록
+		  public void qnaReplyInsert(QnaBoardVO vo)
 		  {
 			  try
 				{
@@ -219,7 +249,7 @@ public class QnaBoardDAO {
 		  }
 		  
 		  // 답변 등록 확인
-			public boolean boardReplyCheck(int no)
+			public boolean qnaReplyCheck(int no)
 			{
 				boolean bCheck=false;
 				try
@@ -259,7 +289,7 @@ public class QnaBoardDAO {
 		   *       main(), doGet(), doPost()
 		   *    사용자정의 메소드: Callback이 없다 => 반드시 호출 후에 사용
 		   */
-		  public boolean qnaUpdate(QnaboardVO vo)
+		  public boolean qnaUpdate(QnaBoardVO vo)
 		  {
 			  boolean bCheck=false;
 			  try
