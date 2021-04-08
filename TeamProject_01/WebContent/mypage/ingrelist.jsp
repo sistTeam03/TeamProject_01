@@ -187,7 +187,7 @@ a:hover{
                         </div>
                         <div class=row >
                         	<ul>
-                        	<c:forEach var="vo" items="${ilist}">
+                        	<c:forEach var="vo" items="${ilist}"> 
                         		<c:if test="${vo.ingre_count==0}">
                         			<a href="../mypage/useringreinsert.do?ino=${vo.num }"><li class="btn btn-default">${vo.ingre }</li></a><!-- 추가버튼 -->
                         		</c:if>

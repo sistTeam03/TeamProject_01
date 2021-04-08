@@ -90,7 +90,7 @@ public class IngreRecipeDAO {
 				  vo.setLink(rs.getString(6));
 				  vo.setHit(rs.getInt(7));
 				  list.add(vo);
-			   }
+			   } 
 			   rs.close();
 
 		   }catch(Exception ex) {

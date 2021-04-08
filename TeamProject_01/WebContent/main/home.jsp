@@ -11,7 +11,7 @@
 
 </style>
 </head>
-<body>
+<body> 
 	   <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">

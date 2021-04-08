@@ -43,7 +43,7 @@ public class MainModel {
 						IngreRecipeDAO idao=IngreRecipeDAO.newInstance();
 						ingreRecipe = idao.ingreSearchRecipe(uinglist);
 						if(ingreRecipe.size()>4)
-							break;
+							break; 
 					}
 				}
 				request.setAttribute("ingreRecipe", ingreRecipe);
