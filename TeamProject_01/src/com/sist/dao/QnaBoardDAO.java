@@ -157,22 +157,26 @@ public class QnaBoardDAO {
 
 	   }
 	   
-	   // 내용보기 => SQL문장:2개
-		  public QnaBoardVO qnaDetailData(int no)
+	   // 내용보기 => SQL문장:2개(상세보기+수정하기)
+		  public QnaBoardVO qnaDetailData(int no,int type)
 		  {
 			  QnaBoardVO vo=new QnaBoardVO();
 			  try
 			  {
 				  getConnection();
-				  String sql="UPDATE qnaBoard SET "
+				  String sql="";
+				  // 상세보기만 적용
+				  if(type==1)
+				  {
+					  sql="UPDATE qnaBoard SET "
 					  		+ "hit=hit+1 "
 					  		+ "WHERE no=?";
-				  ps=conn.prepareStatement(sql);
-				  ps.setInt(1, no);
-				  ps.executeUpdate();
-				  
+					  ps=conn.prepareStatement(sql);
+					  ps.setInt(1, no);
+					  ps.executeUpdate();
+				  }
 				  // 상세보기, 수정하기 동일하게 적용
-				  sql="SELECT no,id,name,subject,content,regdate,hit "
+				  sql="SELECT no,id,name,subject,content,hit,regdate "
 				  		+ "FROM qnaBoard "
 				  		+ "WHERE no=?";
 				  ps=conn.prepareStatement(sql);
@@ -184,8 +188,8 @@ public class QnaBoardDAO {
 				  vo.setName(rs.getString(3));
 				  vo.setSubject(rs.getString(4));
 				  vo.setContent(rs.getString(5));
-				  vo.setRegdate(rs.getDate(6));
-				  vo.setHit(rs.getInt(7));
+				  vo.setHit(rs.getInt(6));
+				  vo.setRegdate(rs.getDate(7));
 				  rs.close();
 			  }catch(Exception ex) {
 				  ex.printStackTrace();
@@ -196,14 +200,15 @@ public class QnaBoardDAO {
 			  }
 			  return vo;
 		  }
-		  // 답변
-		  public int qnaGetGroupId(int no)
+		  
+		// 답변
+			public int boardReplyGetGroupId(int no)
 			{
 				int gi=0;
 				try
 				{
 					getConnection();
-					String sql="SELECT group_id FROM qnaBoard "
+					String sql="SELECT group_id FROM project_boardReply "
 							+ "WHERE no=?";
 					ps=conn.prepareStatement(sql);
 					ps.setInt(1, no);
@@ -221,66 +226,139 @@ public class QnaBoardDAO {
 				return gi;
 			}
 		  
-		  //답변등록
-		  public void qnaReplyInsert(QnaBoardVO vo)
+		  // 답변
+		  public void qnaReplyInsert(int root,QnaBoardVO vo)
 		  {
-			  try
-				{
-					getConnection();
-					String sql="INSERT INTO project_boardReply(no,id,name,subject,content,pwd,group_id,group_step,group_tab) "
-							+ "VALUES((SELECT NVL(MAX(no)+1,1) FROM qnaBoard),?,?,?,?,?,"
-							+ "?,1,1)";
-					ps=conn.prepareStatement(sql);
-					ps.setString(1, vo.getId());
-					ps.setString(2, vo.getName());
-					ps.setString(3, vo.getSubject());
-					ps.setString(4, vo.getContent());
-					ps.setString(5, vo.getPwd());
-					ps.setInt(6, vo.getGroup_id());
-					
-					ps.executeUpdate();
-				}catch(Exception ex) {
-					ex.printStackTrace();
-				}
-				finally
-				{
-					disConnection();
-				}
-		  }
-		  
-		  // 답변 등록 확인
-			public boolean qnaReplyCheck(int no)
-			{
-				boolean bCheck=false;
 				try
 				{
 					getConnection();
-					String sql="SELECT COUNT(group_id) FROM qnaBoard "
-							+ "WHERE group_id=(SELECT group_id FROM qnaBoard WHERE no=?)";
+					conn.setAutoCommit(false);
+					String sql="SELECT group_id,group_step,group_tab "
+							+ "FROM qnaBoard "
+							+ "WHERE no=?";
 					ps=conn.prepareStatement(sql);
-					ps.setInt(1, no);
+					ps.setInt(1, root);
 					ResultSet rs=ps.executeQuery();
 					rs.next();
-					int count=rs.getInt(1);
+					int gi=rs.getInt(1);
+					int gs=rs.getInt(2);
+					int gt=rs.getInt(3);
 					rs.close();
-					if(count==2)
-					{
-						bCheck=true;
-					}
-					else
-					{
-						bCheck=false;
-					}
-				}catch(Exception ex)
-				{
+					// 전체 번호(group_step) 증가
+					sql="UPDATE qnaBoard SET "
+						+ "group_step=group_step+1 "
+						+ "WHERE group_id=? AND group_step>?";
+					ps=conn.prepareStatement(sql);
+					  ps.setInt(1, gi);
+					  ps.setInt(2, gs);
+					  ps.executeUpdate();
+					  
+					  // INSERT 
+					  // no,id,name,subject,content,pwd,hit,group_id,group_step,group_tab,root,depth,regdate
+					  sql="INSERT INTO qnaBoard VALUES("
+					  	+ "qb_no_seq.nextval,?,?,?,?,?,0,?,?,?,?,0,SYSDATE)";
+					  ps=conn.prepareStatement(sql);
+					  // ?에 값을 채운다
+					  ps.setString(1, vo.getId());
+					  ps.setString(2, vo.getName());
+					  ps.setString(3, vo.getSubject());
+					  ps.setString(4, vo.getContent());
+					  ps.setString(5, vo.getPwd());
+					  
+					  ps.setInt(6, gi);
+					  ps.setInt(7, gs+1);
+					  ps.setInt(8, gt+1);
+					  ps.setInt(9, root);
+					  
+					  ps.executeUpdate();
+					  
+					  // root의 depth를 증가 => UPDATE
+					  sql="UPDATE qnaBoard SET "
+						  		+ "depth=depth+1 "
+						  		+ "WHERE no=?";
+					  ps=conn.prepareStatement(sql);
+					  // ?에 값을 채운다
+					  ps.setInt(1, root);
+					  // 실행
+					  ps.executeUpdate();
+					  conn.commit();
+				}catch(Exception ex) {
+					try
+					  {
+						  conn.rollback();
+					  }catch(Exception e) {
+						  ex.printStackTrace();
+					  }
 					ex.printStackTrace();
 				}
 				finally
 				{
+					try {
+						  conn.setAutoCommit(true);
+					  }catch(Exception ex) {
+						  ex.printStackTrace();
+					  }
 					disConnection();
 				}
-				return bCheck;
 			}
+		  
+//		  //답변등록
+//		  public void qnaReplyInsert(int root,QnaBoardVO vo)
+//		  {
+//			  try
+//				{
+//					getConnection();
+//					String sql="INSERT INTO qnaBoard(no,id,name,subject,content,pwd,group_id,group_step,group_tab) "
+//							+ "VALUES((SELECT NVL(MAX(no)+1,1) FROM qnaBoard),?,?,?,?,?,"
+//							+ "?,1,1)";
+//					ps=conn.prepareStatement(sql);
+//					ps.setString(1, vo.getId());
+//					ps.setString(2, vo.getName());
+//					ps.setString(3, vo.getSubject());
+//					ps.setString(4, vo.getContent());
+//					ps.setString(5, vo.getPwd());
+//					ps.setInt(6, vo.getGroup_id());
+//					
+//					ps.executeUpdate();
+//				}catch(Exception ex) {
+//					ex.printStackTrace();
+//				}
+//				finally
+//				{
+//					disConnection();
+//				}
+//		  }
+//		  
+
+		  // 답변 등록 확인 
+		  public boolean qnaReplyCheck(int no) 
+		  { 
+			  boolean bCheck=false; 
+			  try { 
+				  getConnection(); 
+				  String sql="SELECT COUNT(group_id) FROM qnaBoard " 
+				  + "WHERE group_id=(SELECT group_id FROM qnaBoard WHERE no=?)";
+				  ps=conn.prepareStatement(sql); 
+				  ps.setInt(1, no); 
+				  ResultSet rs=ps.executeQuery(); 
+				  rs.next(); 
+				  int count=rs.getInt(1); 
+				  rs.close();
+				  if(count==2) { 
+					  bCheck=true; 
+				  } 
+				  else { 
+					  bCheck=false; 
+				  } 
+			 }catch(Exception ex) {
+				 ex.printStackTrace(); 
+			 } 
+		  	 finally { 
+		  		 disConnection(); 
+			 } 
+		  return bCheck; 
+		  }
+			 
 		  
 		  // 수정(비밀번호 확인 필요 = boolean)
 		  /*
@@ -314,11 +392,11 @@ public class QnaBoardDAO {
 					  bCheck=true;
 					  // 수정하기
 					  sql="UPDATE qnaBoard SET "
-					  	+ "id=?,subject=?,content=? "
+					  	+ "name=?,subject=?,content=? "
 					  	+ "WHERE no=?";
 					  ps=conn.prepareStatement(sql);
 					  // ?에 값 채운다
-					  ps.setString(1, vo.getId());
+					  ps.setString(1, vo.getName());
 					  ps.setString(2, vo.getSubject());
 					  ps.setString(3, vo.getContent());
 					  ps.setInt(4, vo.getNo());
@@ -371,17 +449,17 @@ public class QnaBoardDAO {
 				  
 				  if(db_pwd.equals(pwd)) {
 					  bCheck=true;
-					  sql="SELECT group_step,group_tab FROM qnaBoard "
+					  sql="SELECT root,depth FROM qnaBoard "
 					  		+ "WHERE no=?";
 					  ps=conn.prepareStatement(sql);
 					  ps.setInt(1, no);
 					  rs=ps.executeQuery();
 					  rs.next();
-					  int group_step=rs.getInt(1);
-					  int group_tab=rs.getInt(2);
+					  int root=rs.getInt(1);
+					  int depth=rs.getInt(2);
 					  rs.close();
 					  
-					  if(group_tab==0)   // 댓글이 없는 상태
+					  if(depth==0)   // 댓글이 없는 상태
 					  {
 						  sql="DELETE FROM qnaBoard "
 						  		+ "WHERE no=?";
@@ -403,10 +481,10 @@ public class QnaBoardDAO {
 						  ps.executeUpdate();
 					  }
 					  sql="UPDATE qnaBoard SET "
-					  		+ "group_tab=group_tab-1 "
+					  		+ "depth=depth-1 "
 					  		+ "WHERE no=?";
 					  ps=conn.prepareStatement(sql);
-					  ps.setInt(1, group_step);
+					  ps.setInt(1, root);
 					  ps.executeUpdate();
 				  }
 				  else {
