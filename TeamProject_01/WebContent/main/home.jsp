@@ -147,6 +147,15 @@ display: block;
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
+        <c:if test="${not empty sesson_id}">
+             <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title from-blog__title">
+                        <h2 style="font-size:x-large;">냉장고 재료 추천 레시피</h2>
+                    </div>
+                </div> 
+            </div>
+         </c:if>
             <div class="row">
                 <div class="categories__slider owl-carousel">
                 	<c:forEach var="uvo" items="${ingreRecipe }" varStatus="i">
