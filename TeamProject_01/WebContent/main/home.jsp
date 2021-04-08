@@ -62,8 +62,8 @@ display: block;
             </div>
             <div id="login_input"><!-- 로그인 div -->        	
 	            	<div id="login_div">
-			            <input type="text" id="login_id" size=15 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
-			            <input type="password" id="login_pwd" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+			            <input type="text" id="login_id" size=20 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
+			            <input type="password" id="login_pwd" size=20 placeholder="비밀번호" style="padding-left: 10px;">
 			           	<button id="login_go">go</button>
 	           		</div>          
             </div>
@@ -81,7 +81,8 @@ display: block;
                 		<c:if test="${i.index<10 }">
 		                    <div class="col-lg-3">
 		                        <div class="categories__item set-bg" data-setbg="${uvo.poster }">
-		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }">${uvo.title }</a></h5>
+		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }" style="border-radius: 18px;
+		                            ">${uvo.title }</a></h5>
 		                        </div>
 		                    </div>
 	                    </c:if>
