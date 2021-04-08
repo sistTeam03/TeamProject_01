@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -156,5 +159,71 @@ public class MemberDAO {
 			disConnection();
 		}
 		return result;
+	}
+	//검색어 저장
+		public void searchInsert(String msg) {
+			try {
+				getConnection();
+				String sql="INSERT INTO search_keyword "
+						+ "VALUES((SELECT NVL(MAX(no)+1,1) FROM search_keyword),?,SYSDATE)";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, msg);
+				ps.executeUpdate();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection();
+			}
+		}
+		//TOP10출력
+	public List<String> searchTOP10(String today,String yesterday){
+		List<String> list=new ArrayList<String>();
+		
+		try {
+			int i=1;
+			getConnection();
+			String sql="SELECT keyword "
+					+"FROM search_keyword "
+					+"where TO_char(regdate,'YY/MM/DD')=? "
+					+"GROUP BY keyword "
+					+"ORDER BY count(keyword) DESC";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, today);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				System.out.println("테스트");
+				
+				System.out.println(i);
+				String keyword=rs.getString(1);
+				sql="SELECT keyword,TO_NUMBER(rank()OVER( ORDER BY count(keyword) DESC, keyword)) as rank "
+						+"FROM search_keyword "
+						+"where TO_char(regdate,'YY/MM/DD')=? "
+						+"GROUP BY keyword";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, yesterday);
+				ResultSet rs2=ps.executeQuery();
+				while(rs2.next()){
+					String yKeyword=rs2.getString(1);
+					int yRank=rs2.getInt(2);
+					if(keyword.equals(yKeyword)) {
+					int upRank=yRank-i;
+					list.add(keyword+","+upRank);
+					}
+					
+					
+				}
+				i++;
+				if(i==10)break;
+			}
+			
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		
+		return list;
 	}
 }
