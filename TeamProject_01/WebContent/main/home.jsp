@@ -18,6 +18,73 @@ padding: 12px 0 10px;
 background: none;
 display: block;
 }
+.modal-window {
+	 position: fixed;
+	 background-color: rgba(0, 0, 0, 0.25);
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 z-index: 999;
+	 visibility: hidden;
+	 opacity: 0;
+	 pointer-events: none;
+	 transition: all 0.3s;
+}
+ .modal-window:target {
+	 visibility: visible;
+	 opacity: 1;
+	 pointer-events: auto;
+}
+ .modal-window > div {
+	 width: 400px;
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+	 padding: 2em;
+	 background: white;
+}
+ .modal-window header {
+	 font-weight: bold;
+}
+ .modal-window h1 {
+	 font-size: 150%;
+	 margin: 0 0 15px;
+}
+ .modal-close {
+	 color: #aaa;
+	 line-height: 50px;
+	 font-size: 80%;
+	 position: absolute;
+	 right: 0;
+	 text-align: center;
+	 top: 0;
+	 width: 70px;
+	 text-decoration: none;
+}
+ .modal-close:hover {
+	 color: black;
+}
+
+ .modal-window > div {
+	 border-radius: 1rem;
+}
+ .modal-window div:not(:last-of-type) {
+	 margin-bottom: 15px;
+}
+ small {
+	 color: lightgray;
+}
+ .btn {
+	 background-color: white;
+	 padding: 1em 1.5em;
+	 border-radius: 1rem;
+	 text-decoration: none;
+}
+ .btn i {
+	 padding-right: 0.3em;
+}
 </style>
 </head>
 <body> 
@@ -55,7 +122,12 @@ display: block;
                           <!--  <span>FRUIT FRESH</span>-->
                             <h2>냉장고 재료<br />레시피추천</h2>
                               <h6 style="color:grey">냉장고에 있는 재료로 레시피를 활용해보세요!</h6><br>
-                            <a href="#" class="primary-btn">GO</a>
+                            <c:if test="${empty sesson_id}">
+                            <a href="#open-modal" class="primary-btn">GO</a>
+                            </c:if>
+                            <c:if test="${not empty sesson_id}">
+                            <a href="../mypage/mypage.do" class="primary-btn">GO</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -157,7 +229,23 @@ display: block;
                 </div>
         
     </section>
-   
+    <!-- 모달######################################### -->
+    <!--  
+	    <div class="container">
+		  <div class="interior">
+		    <a class="btn" href="#open-modal">👋 Basic CSS-Only Modal</a>
+		  </div>
+		</div>
+-->
+	<div id="open-modal" class="modal-window">
+	  	<div>
+	    <a href="#" title="Close" class="modal-close">Close</a>
+	    <h1>로그인을 해주세요</h1>
+	    <div>마이페이지에서 냉장고 재료를 선택하면 레시피를 추천해드립니다!</div>
+	    <div><small>Check out</small></div>
+	    <a href="../member/join.do" target="_blank">회원이 아니시라면 가입해주세요 <br>바로가기></a>
+	    </div>
+    </div>
 
     <!-- Latest Product Section Begin -->
     <section class="latest-product spad">
