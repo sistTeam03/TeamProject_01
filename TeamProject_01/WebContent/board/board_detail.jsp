@@ -99,7 +99,7 @@
      <tr>
           <td colspan="4" class="text-right">
             <a href="../board/board_update.do?no=${bvo.no }" class="btn btn-sm btn-success">수정</a>
-            <a href="../board/board_delete.do?no=${bvo.no }" class="btn btn-sm btn-info">삭제</a>
+            <a href="../board/boardDelete.do?no=${bvo.no }" class="btn btn-sm btn-info">삭제</a>
           </td>
         </tr>
     </div></div>

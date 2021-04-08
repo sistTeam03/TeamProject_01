@@ -7,7 +7,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+#login_div {
+    display: table;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 3em;
+    left: 90.2em;
+    float: right;
+}
+#login_div input {
+    font-size: 12pt;
+    height: 23px;
+    border: 0.5px solid #7fad39;
+    border-radius: 15px;
+    line-height: 23px;
+    width: 11em;
+    margin-top: 1px;
+}
+#login_div #login_go {
+    width: 37px;
+    height: 34px;
+    color: #ffffff;
+    border-radius: 35px;
+    background-color: #7fad39;
+    text-align: center;
+    position: relative;
+    right: -4.8em;
+    top: -2.7em;
+    opacity: 0.9;
+}
+</style>
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
 <div class="contact-form spad" style="margin:0px auto;"">
         <div class="container">
@@ -31,20 +65,16 @@
         </div>
         </div>
     </section>
-	<div class="contact-form spad" style="margin:0px auto;">
+	    <div class="contact-form spad">
         <div class="container">
-            <div class="row">
+        <div class="row">
                 <div class="col-lg-12">
                     <div class="contact__form__title">
-                        <h2>이벤트 참여</h2>
+                        <h2>공지사항 등록</h2>
                     </div>
                 </div>
             </div>
-            <div class="wrapper row3 mypage_row">
-	  <h2 class="sectiontitle">등록하기</h2>
-	  <div style="height: 500px;width:750px;margin:0px auto">
-	 
-	   <form method=post action="../board/event_insert_ok.do"
+              <form method=post action="../board/event_insert_ok.do"
 	     enctype="multipart/form-data">
 	   <table class="table">
 	    <tr>
@@ -78,18 +108,12 @@
 	      </td>
 	    </tr>
 	    <tr>
-	      <td colspan="2" class="text-center">
-	        <input type=submit value="등록" class="btn btn-sm btn-danger">
-	        <input type=button value="취소" onclick="javascript:history.back()"
-	         class="btn btn-sm btn-success"
-	        >
-	      </td> 
+	      
 	    </tr>
 	   </table>
+	   <button type="submit" class="site-btn">등록</button>
 	   </form>
-	  </div>
-	</div>
-        </div>
-    </div>
+            </div>
+           </div>
 </body>
 </html>

@@ -134,6 +134,53 @@ public class CommunityModel {
 		return "redirect:../board/board.do";
 	}
 	
+	
+	
+	
+	@RequestMapping("board/boardUpdate.do")
+	public String boardUpdate(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no = request.getParameter("no");
+		BoardDAO dao = BoardDAO.newInstance();
+		BoardVO vo = dao.boardDetailData(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../board/board_update.jsp");
+		return "";
+	}
+	
+	
+	@RequestMapping("board/boardUpdate_ok")
+	public String boardUpdate_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String no = request.getParameter("no");
+		String content = request.getParameter("content");
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String pwd = request.getParameter("pwd");
+		
+		BoardDAO dao = BoardDAO.newInstance();
+		BoardVO vo = new BoardVO();
+		vo.setName(name);
+		vo.setContent(content);
+		vo.setSubject(subject);
+		vo.setPwd(pwd);
+		
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../board/board_update.jsp");
+		return "redirect:../board/board.do";
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("board/board_delete.do")
 	public String board_delete(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -147,6 +194,33 @@ public class CommunityModel {
 		dao.boardDelete(Integer.parseInt(no), pwd);
 		return "../board/board_delete.jsp";
 	}
+	
+	
+	
+	
+	
+	@RequestMapping("board/boardDelete.do")
+	public String boardDelete(HttpServletRequest request, HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		
+		BoardDAO dao = BoardDAO.newInstance();
+		dao.boardDeleteAlt(Integer.parseInt(no));
+		request.setAttribute("main_man", "board_delete.jsp");
+		return "redirect:../board/board.do";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("board/eventboard.do")
 	public String eventboard_list(HttpServletRequest request,HttpServletResponse response)
@@ -271,17 +345,6 @@ public class CommunityModel {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("board/notice.do")
 	public String notice_board(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -343,6 +406,9 @@ public class CommunityModel {
 		request.setAttribute("main_jsp", "../board/notice_detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	
+	
 }
 
 

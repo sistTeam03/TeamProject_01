@@ -335,6 +335,26 @@ public class BoardDAO {
 		   return vo;
 	   }
 	   
+	   public void boardDeleteAlt(int no)
+	   {
+		   try
+		   {
+			   getConnection();
+			   String sql="DELETE FROM wboard WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ps.executeUpdate();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   
+	   }
+	   
 	   public boolean boardDelete(int no,String pwd)
 	   {
 		   boolean bCheck=false;

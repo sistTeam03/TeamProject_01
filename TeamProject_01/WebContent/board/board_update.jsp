@@ -9,14 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('pwd').keyup(function(){
-			let pwd=$(this).val();
-			
-		})
-	})
-</script>
+
 <style type="text/css">
 #login_div {
     display: table;
@@ -80,40 +73,40 @@
     
     <div class="write_align" style="width:700px; ">
      <h1>게시물 수정</h1>
-     <form method="post" action="../board/board_update_ok.do">
-     <table class="table_content" width=700>
-       <tr>
-         <th width=15% align=right>이름</th>
-         <td width=85%>
-           <input type=text name=name size=15 required>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>제목</th>
-         <td width=85%>
-           <input type=text name=subject size=45 required>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>내용</th>
-         <td width=85%>
-           <textarea rows="7" cols="55" name="content" required style="height:400px;width:600px;"></textarea>
-         </td>
-       </tr>
-       <tr>
-         <th width=15% align=right>비밀번호</th>
-         <td width=85%>
-           <input type=password name=pwd size=10 required>
-         </td>
-       </tr>
-       <tr>
-         <td colspan="2" align=center>
-          <input type=submit value="글쓰기" class="site-btn">
-          
-         </td>
-       </tr>
-     </table>
-     </form>
+     <form method="post" action="../board/boardUpdate_ok.jsp">
+       <table class="table">
+         <tr>
+           <th class="container" width=15%>이름</th>
+           <td width=85%>
+             <input type=text name=name size=15 class="input-sm" value="${vo.name }">
+           </td>
+         </tr>
+         <tr>
+           <th class="text-right" width=15%>제목</th>
+           <td width=85%>
+             <input type=text name=subject size=45 class="input-sm" value="${vo.subject }">
+           </td>
+         </tr>
+         <tr>
+           <th class="text-right" width=15%>내용</th>
+           <td width=85%>
+             <textarea rows="10" cols="55" name=content>${vo.content }</textarea>
+           </td>
+         </tr>
+         <tr>
+           <th class="text-right" width=15%>비밀번호</th>
+           <td width=85%>
+             <input type="password" name=pwd size=10 class="input-sm">
+           </td>
+         </tr>
+         <tr>
+           <td colspan="2" class="text-center">
+             <input type="submit" value="수정" class="btn btn-sm btn-primary">
+            
+           </td>
+         </tr>
+       </table>
+       </form>
      </div>
    </center>
    </div>
