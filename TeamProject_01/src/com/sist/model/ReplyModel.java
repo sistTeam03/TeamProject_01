@@ -79,7 +79,7 @@ public class ReplyModel {
 		  //DB연동 
 		  dao.replyDelete(Integer.parseInt(no));
 		  no=request.getParameter("no");//레시피번호
-		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&?page="+page;
+		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&page="+page;
 	  }
 
 	  // 댓글 수정 
@@ -100,7 +100,7 @@ public class ReplyModel {
 		  ReplyDAO dao=ReplyDAO.newInstance();
 		  dao.replyUpdate(msg,Integer.parseInt(replyno));
 		  
-		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&?page="+page;
+		  return "redirect:../recipe/recipe_reply_print.do?no="+no+"&page="+page;
 	  }
 	  @RequestMapping("recipe/recipe_update_show.do")//댓글 수정시 출력
 	  public String recipe_upate_show(HttpServletRequest request,HttpServletResponse response) {

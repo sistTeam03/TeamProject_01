@@ -8,7 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+.categories__item h5 a{
+font-size: 21px;
+color: #fff;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 2px;
+padding: 12px 0 10px;
+background: none;
+display: block;
+}
 </style>
 </head>
 <body> 
@@ -53,8 +62,8 @@
             </div>
             <div id="login_input"><!-- 로그인 div -->        	
 	            	<div id="login_div">
-			            <input type="text" id="login_id" size=15 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
-			            <input type="password" id="login_pwd" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+			            <input type="text" id="login_id" size=20 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
+			            <input type="password" id="login_pwd" size=20 placeholder="비밀번호" style="padding-left: 10px;">
 			           	<button id="login_go">go</button>
 	           		</div>          
             </div>
@@ -72,7 +81,8 @@
                 		<c:if test="${i.index<10 }">
 		                    <div class="col-lg-3">
 		                        <div class="categories__item set-bg" data-setbg="${uvo.poster }">
-		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }">${uvo.title }</a></h5>
+		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }" style="border-radius: 18px;
+		                            ">${uvo.title }</a></h5>
 		                        </div>
 		                    </div>
 	                    </c:if>

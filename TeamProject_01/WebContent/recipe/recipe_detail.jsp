@@ -64,10 +64,10 @@ text-align: right;
 	 top: -8em;
     left: 9em;
  }
- #replyBtn,#updateBtnok{
- 	background-color: #ddf2bc
+ #replyBtn,.updateBtnok{
+ 	background-color: #ddf2bc;
  }
-  #replyBtn:hover,#updateBtnok:hover{
+  #replyBtn:hover,.updateBtnok:hover{
   	  color: #fff;
     background-color: #7fad39;
     border-color: #7fad39;
@@ -192,7 +192,15 @@ $(function(){
 </script>
 </head>
 <body>
-
+	<div class=row>
+		  <div id="login_input"><!-- 로그인 div -->        	
+	            	<div id="login_div">
+			            <input type="text" id="login_id" size=20 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
+			            <input type="password" id="login_pwd" size=20 placeholder="비밀번호" style="padding-left: 10px;">
+			           	<button id="login_go">go</button>
+	           		</div>          
+            </div>
+	</div>
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">

@@ -75,9 +75,10 @@ public class ListDAO {
 	//리스트 출력
 	public List<ListVO> listAllData(int page,int sort){
 		List<ListVO> list=new ArrayList<ListVO>();
+		System.out.println("쏘트:"+sort);
 		try {
 			getConnection();
-			if(sort==0) {
+			if(sort==2) {
 			String sql="SELECT no,poster,title,chef_poster,chef,hit,num "
 					+ "FROM (SELECT no,poster,title,chef_poster,chef,hit,rownum as num "
 					+ "FROM (SELECT no,poster,title,chef_poster,chef,hit FROM list_data_v5 "
@@ -124,6 +125,7 @@ public class ListDAO {
 					list.add(vo);
 				
 				}
+				System.out.println("최신순");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

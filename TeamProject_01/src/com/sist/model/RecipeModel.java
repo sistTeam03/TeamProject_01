@@ -17,15 +17,16 @@ public class RecipeModel {
 	{	
 		
 		String sort=request.getParameter("sort");
+		System.out.println(sort);
 		if(sort==null) {
-			sort="0";
+			sort="2";
 		}
+		System.out.println(sort);
 		String page=request.getParameter("page");
 		if(page==null) {
 			page="1";
 		}
 		int curpage=Integer.parseInt(page);
-		
 		ListDAO dao=ListDAO.newInstance();
 		DetailDAO dDao=DetailDAO.newInstance();
 		int count=dao.listCount();//0406추가
@@ -38,7 +39,6 @@ public class RecipeModel {
 		}
 		
 		List<ListVO> list=dao.listAllData(curpage,Integer.parseInt(sort));
-		System.out.println(list.size());
 		List<DetailVO> cList=new ArrayList<DetailVO>();//쿠키담을 그릇
 		List<Integer> cList2=new ArrayList<Integer>(); //no 저장
 		Cookie[] cookies=request.getCookies();
@@ -54,7 +54,7 @@ public class RecipeModel {
 				
 			}
 		}
-		
+		System.out.println(sort);
 		cList=dDao.detailCookie(cList2);
 		request.setAttribute("count", count);//0406추가
 		request.setAttribute("cList", cList);
@@ -63,6 +63,7 @@ public class RecipeModel {
 		request.setAttribute("startPage", startPage); 
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("list", list);
+		request.setAttribute("sort", sort);
 		request.setAttribute("main_jsp", "../recipe/recipe.jsp");
 		return "../main/main.jsp";
 	}

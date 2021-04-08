@@ -11,7 +11,15 @@
 				<section class="product spad">
         <div class="container">
             <div class="row">
-                
+                 <div class="col-lg-3 col-md-5">
+                 	<table class="top10">
+                 		<c:forEach var="vo" items="{list}">
+                 		<tr>
+                 		<td></td>
+                 		</tr>
+                 		</c:forEach>
+                 	</table>
+                 </div>
                 <div class="col-lg-9 col-md-7">
                     
                     <div class="filter__item">

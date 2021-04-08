@@ -77,11 +77,9 @@ $(function(){
 
  	$('.sort').click(function(){
  		let sort=$(this).attr('data');
- 		if(sort==0){
+ 		
  		location.href="../recipe/recipe.do?sort="+sort;
- 		}else{
- 		location.href="../recipe/recipe.do?sort="+sort;
- 		}
+ 		
  	});
  	
 });
@@ -102,8 +100,8 @@ $(function(){
 	            <div class="row">
 	            <div id="login_input">
 		            <div id="login_div">
-		            <input type="text" size=15 placeholder="ID" style="padding-left: 10px;">           
-		            <input type="text" size=15 placeholder="비밀번호" style="padding-left: 10px;">
+		            <input type="text" size=20 placeholder="ID" style="padding-left: 10px;">           
+		            <input type="text" size=20 placeholder="비밀번호" style="padding-left: 10px;">
 		           	<button id="login_go">go</button>
 		           </div>
 	            </div>
@@ -159,7 +157,7 @@ $(function(){
                         <div class="col-lg-8 col-md-7"></div>
                             <div class="col-lg-4 col-md-5" id="sort_tab">
                                 <div class="filter__sort">
-                                        <div data="0" class="sort" id="sort_top">인기순</div>
+                                        <div data="2" class="sort" id="sort_top">인기순</div>
                                         <div data="1" class="sort" id="sort_new" >최신순</div>               
                                 </div>
                             </div>
@@ -183,13 +181,13 @@ $(function(){
                     </div>
                     <div class="product__pagination">
                     	<c:if test="${startPage>1 }">
-                       <a href="../recipe/recipe_reply_print.do?page=${startPage-10}"><i class="fa fa-long-arrow-left"></i></a>
+                       <a href="../recipe/recipe.do?page=${startPage-10}&sort=${sort}"><i class="fa fa-long-arrow-left"></i></a>
                         </c:if>
                         <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1" >
-                        	<a href="../recipe/recipe_reply_print.do?page=${i }">${i }</a>
+                        	<a href="../recipe/recipe.do?page=${i }&sort=${sort}">${i }</a>
                       	</c:forEach>
                       	<c:if test="${endPage<totalpage }">
-                        <a href="../recipe/recipe_reply_print.do?page=${endPage+10}"><i class="fa fa-long-arrow-right"></i></a>
+                        <a href="../recipe/recipe.do?page=${endPage+10}&sort=${sort}"><i class="fa fa-long-arrow-right"></i></a>
                     	</c:if>
                     </div>
                 </div>
