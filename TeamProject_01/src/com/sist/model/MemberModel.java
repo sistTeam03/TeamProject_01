@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.BookmarkDAO;
+import com.sist.dao.DetailDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.UserIngreDAO;
+import com.sist.vo.BookmarkVO;
+import com.sist.vo.DetailVO;
+import com.sist.vo.ListVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.UserIngreVO;
 import com.sist.vo.ZipcodeVO;
 
 @Controller
@@ -103,14 +111,50 @@ public class MemberModel {
 		session.invalidate();
 		
 		
-		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함
+		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함??
 	}
-	@RequestMapping("mypage/mypage.do")//마이페이지
+	//마이페이지 설정
+	@RequestMapping("mypage/mypage.do")
 	public String myPage(HttpServletRequest request,HttpServletResponse response) {
 		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("sesson_id");
+		//DB연동
+		BookmarkDAO bookmarkdao =BookmarkDAO.newInstance();
+		DetailDAO dao = DetailDAO.newInstance();
+		//찜하기 목록
+		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
+		List<ListVO> dList = new ArrayList<ListVO>();
+		for(BookmarkVO vo:jList)
+		{
+			ListVO dvo =dao.BookmarkData(vo.getRecipeno());
+			String poster = dvo.getPoster();
+			dvo.setPoster(poster);
+			
+			dList.add(dvo);
+			
+		}
+		
+		//추가
+		UserIngreDAO udao=UserIngreDAO.newInstance();
+		
+		List<UserIngreVO> ulist=udao.ingreListNameData(id);
+		
+		List<UserIngreVO> ulist_cut=new ArrayList<UserIngreVO>();
+		
+		for(int i=0; i<6; i++) {
+			ulist_cut.add(ulist.get(i));
+			
+		}
+		request.setAttribute("ulist", ulist_cut);
+		//추가 끝
+		
+		request.setAttribute("dList", dList);
+		request.setAttribute("jList", jList);
 		
 		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 		return "../main/main.jsp";
-	}
 	
+
+	}
 }

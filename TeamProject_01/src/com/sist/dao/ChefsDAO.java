@@ -56,7 +56,6 @@ public class ChefsDAO {
 			int rowSize=20;
 			int start=(page*rowSize)-(rowSize-1);
 			int end=rowSize*page;
-			
 			ps.setInt(1, start);
 			ps.setInt(2, end); 
 			

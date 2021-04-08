@@ -44,14 +44,35 @@
     height: 36em;
     display: none;
 }
+.cheflistBtn,.cheflist_nextBtn,.cheflist_beforeBtn{
+	display: inline-block;
+	width: 45px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	transition: all, 0.3s;
+	background-color:#f8fdf7;
+	border-radius: 6px;
+
+}
+.cheflistBtn:hover{
+	background-color: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
 </style>
  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.chef_tr').click(function(){
 		$(this).next().show();
+		let no=$(this).attr('page');
+		$('.page1').css('background-color','#7fad39');
 		let name=$(this).attr('data-name');
-		console.log(name);
 		$.ajax({
 			type:'post',
 			url:'../recipe/chefs_recipe.do',
@@ -62,9 +83,57 @@ $(function(){
 			}
 			
 		})
-		
 	});
+	$(document).on("click",".cheflistBtn",function(){
+		let page=$(this).text();
+		let name=$('.chef_tr').attr('data-name');
+				$.ajax({
+			type:'post',
+			url:'../recipe/chefs_recipe.do',
+			data:{'name':name,'page':page},
+			success:function(result){
+				$('.list_span').html(result);
+				return;
+			}	
+		});
+
+	});//페이지 이동
+		$(document).on("click",".cheflist_nextBtn",function(){
+		let endpage=$('.cheflist_nextBtn').attr('endpage');
+		let name=$(this).attr('chefname');
+		page=Number(endpage)+1;
+		
+		$.ajax({
+			type:'post',
+			url:'../recipe/chefs_recipe.do',
+			data:{'name':name,'page':page},
+			success:function(result){
+				$('.list_span').html(result);
+				
+				return;
+			}	
+		});
+	});//페이지 증가
+		$(document).on("click",".cheflist_beforeBtn",function(){
+			let startpage=$('.cheflist_beforeBtn').attr('startpage');
+			let name=$(this).attr('chefname');
+			page=Number(startpage)-10;
+			$.ajax({
+				type:'post',
+				url:'../recipe/chefs_recipe.do',
+				data:{'name':name,'page':page},
+				success:function(result){
+					$('.list_span').html(result);
+					return;
+				}	
+			});
+		});//페이지 감소
+		 /* 현재 페이지 작업 */
+		 
+	
+	
 });
+
 </script>
 </head>
 <body>
@@ -111,18 +180,17 @@ $(function(){
 								</thead>
 								<tbody>
 								  <c:forEach var="vo" items="${cList }">
-								    <tr height=100px class="chef_tr"  data-name="${vo.chef_name }">
+								    <tr height=100px class="chef_tr"  data-name="${vo.chef_name }" page="1">
 								    <%-- private int id, ranking;
 									     private String chef_name, chef_img, cooking_count, cooking_clip, hit, follower; --%>
 										<td width=10% class=rank 
 										 style="text-align:center;vertical-align: middle;font-weight:bold;font-size:18px;color:orange">${vo.ranking }</td>
 										<td width=20% style="text-align:center;vertical-align: middle;">
-										  <a href="../recipe/chefs_recipe.do?name=${vo.chef_name }">
 										    <img src="${vo.chef_img }" width=80px height=80px>
-										  </a>
+										 
 										</td>
 										<td width=25% style="text-align: left;vertical-align: middle;font-size: 18px;font-weight:bold;" >
-										  <a href="../recipe/chefs_recipe.do?name=${vo.chef_name }">${vo.chef_name }</a>
+										 ${vo.chef_name }
 										</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_count }개</td>
 										<td width=10% style="text-align:center;vertical-align: middle;">${vo.cooking_clip }명</td>
@@ -140,7 +208,7 @@ $(function(){
 							</table>  
                         </div>
                     </div>
-                 <div class=row style="margin: 0px auto;">
+                 <div class=product__pagination style="margin: 0px auto;padding-left: 22em;">
                        	 <div  style="margin: 0px auto;">
                        	 	<ul class="pagination">
 					          <c:if test="${startPage>1 }">
@@ -160,18 +228,7 @@ $(function(){
 					          </c:if>
 					        </ul>
 					      </div>
-					    </div>
-                    <!-- <div class=row style="margin: 0px auto;">
-                       	 <div  style="margin: 0px auto;">
-                       	 	<ul class="pagination">
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							</ul> 
-                       	 </div>
-                       </div>   -->  
+					    </div>          
                 </div>
     </section>
     <!-- Blog Details Section End -->

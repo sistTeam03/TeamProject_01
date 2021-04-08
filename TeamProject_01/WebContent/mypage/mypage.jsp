@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,14 @@
 	text-align:center;
 	padding: 0;
 }
-
+a{
+	color: black;
+	text-decoration: none; !important
+}
+a:hover{
+	color: black;
+	text-decoration: none; !important
+}
 </style>
 </head>
 <body>
@@ -47,7 +55,7 @@
                             <ul>
                                 <li class="sidebar__item__active"><a href="#" >나의 정보</a></li>
                                 <li><a href="#">나의 활동</a></li>
-                            
+                            	<li><a href="../mypage/ingrelist.do?kono=1">나의 재료</a></li>
                             </ul>
                         </div>
                     </div>
@@ -72,17 +80,40 @@
 	                 	<tr>
 	                 		<td class="text-center"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2017/12/06/c3e305ae9ddd252fb21ef0f02f5dd0d81.de9e26210e79e8c2fa5707df5f84c55d" 
 	                 		style="height: 90px; width:90px; border-radius: 100px"></td>
-	                 		<td>닉넴데이터</td>
-	                 		<td class="text-center">일반사용자</td>
+	                 		<td>${sessionScope.name}</td>
+	                 		<td class="text-center">${sessionScope.admin=='Y'?"관리자":"일반사용자" }</td>
 	                 	</tr>
 	                 </table>
                         
                            
                  </div>
-                
+                <!--   <div class="text-right">${sessionScope.name}(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</div> -->
                  <!-- ##############찜 목록############# -->
                 
-                
+                <div class=ing_list>
+                	<div class="section-title product__discount__title">
+                            <h2>나의 재료 목록</h2>
+                        </div>
+                        
+                         <div class="row" style="height: 200px;  overflow-y:auto ">
+                         	<div class="col-lg-12">
+                         		<table class=table>
+                         			<c:forEach var="uvo" items="${ulist }" varStatus="s">
+                         				<c:if test="${s.index%2==0 }">
+                         					<tr>
+                         						<td width=40%>${uvo.name }</td>
+                         						<td width=10%><a href="../mypage/mypageuseringredelete.do?no=${uvo.no}"><span class="icon_close"></span></a></td>           				
+                         				</c:if>
+                         				<c:if test="${s.index%2==1 }">
+                         						<td width=40%>${uvo.name }</td>
+                         						<td width=10%><span class="icon_close"></span></td>
+                         					</tr>
+                         				</c:if>
+                         			</c:forEach>
+                         		</table>
+                         	</div>
+                         </div>
+                </div>
                 
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
@@ -103,20 +134,26 @@
                             </thead>
                             <tbody >
                             <!-- 데이터 for -->
+                            	<c:forEach var="vo" items="${dList }" varStatus="s">
                                 <tr>
                                     <td>
-                                        <img src="img/cart/cart-1.jpg" alt=""><!-- 요리 썸네일 이미지 -->
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no }">
+                                        <img src="${vo.poster }" alt=""><!-- 요리 썸네일 이미지 -->
+                                    </a>
                                     </td>
                                     <td>
-                                      요리제목 데이터공간
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no }">
+                                     ${vo.title }
+                                     </a>
                                     </td>
                                     <td>
-                                      쉐프명머시기
+                                     ${vo.chef }
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span><!-- 비고버튼 취소하기 기능 넣기 -->
                                     </td>
                                 </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

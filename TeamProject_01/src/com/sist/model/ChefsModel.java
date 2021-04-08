@@ -62,16 +62,26 @@ public class ChefsModel {
 		}
 		int curpage=Integer.parseInt(page);
 		name=name.trim();
-		
+		System.out.println(name);
 		ChefsDAO dao=ChefsDAO.newInstance();
 		int totalpage=dao.chefListTotalPage(name);
+		System.out.println(name);
+		System.out.println(curpage);
 		List<ListVO> list=dao.shefListData(name, curpage);
 		// no,poster,title,chef,hit
-		
+		int block=10;
+		int startPage=((curpage-1)/block*block)+1;
+		int endPage=((curpage-1)/block*block)+block;
+		if(endPage>totalpage) {
+			endPage=totalpage;
+		}
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 	    request.setAttribute("curpage", curpage);
 	    request.setAttribute("totalpage", totalpage);
 	    request.setAttribute("list", list); 
-	    
+	    request.setAttribute("name", name);
+	   
 	    return "../recipe/chefs_recipe.jsp";
 	}
 }

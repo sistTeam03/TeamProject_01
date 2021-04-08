@@ -163,7 +163,10 @@ a.loginco{
                 <ul class="header__menu__dropdown">
                         <li><a href="../admin/notice.jsp">공지사항</a></li>
                         <li><a href="../admin/event.jsp">이벤트</a></li>
-                        <li><a href="../admin/qna_board.jsp">질답 게시판</a></li>
+<!-- <<<<<<< HEAD -->
+                        <li><a href="../board/qnaList.do">문의 게시판</a></li>
+                       
+<!-- >>>>>>> branch 'master' of https://github.com/sistTeam03/TeamProject_01.git -->
                     </ul>
                     </li>
                 <li><a href="../mypage/mypage.jsp">마이페이지</a></li>
@@ -209,10 +212,17 @@ a.loginco{
                             	 <ul class="header__menu__dropdown">
                                     <li><a href="../admin/notice.do">공지사항</a></li>
                                     <li><a href="../admin/event.do">이벤트</a></li>
-                                    <li><a href="../admin/qna_board.do">문의 게시판</a></li>
+<!-- <<<<<<< HEAD
+                                    <li><a href="../board/qna_board.do">문의 게시판</a></li>
+======= -->
+                                    <li><a href="../board/qnaList.do">문의 게시판</a></li>
+                                     <li><a href="../recom/recomlist.do">추천 테스트</a></li>
+<!-- >>>>>>> branch 'master' of https://github.com/sistTeam03/TeamProject_01.git -->
                                 </ul>
                             </li>
-                            <li><a href="../mypage/mypage.do">마이페이지</a></li>
+                            <c:if test="${sessionScope.sesson_id!=null }"><!-- 로그인하면 -->
+                            	<li><a href="../mypage/mypage.do">마이페이지</a></li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>
@@ -315,7 +325,7 @@ a.loginco{
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                       <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                         <div class="footer__copyright__payment"><img src="../img/payment-item.png" alt=""></div>

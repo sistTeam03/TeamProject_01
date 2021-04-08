@@ -90,9 +90,9 @@ public class BookmarkDAO {
 	   }
 	   
 	   //찜 목록
-	   public List<Integer> bookmarkListData(String id)
+	   public List<BookmarkVO> bookmarkListData(String id)
 	   {
-		   List<Integer> list=new ArrayList<Integer>();
+		   List<BookmarkVO> list=new ArrayList<BookmarkVO>();
 		   try {
 			   getConnection();
 			   String sql="SELECT recipeno FROM bookmark_list "
@@ -102,7 +102,9 @@ public class BookmarkDAO {
 			   ResultSet rs=ps.executeQuery();
 			   while(rs.next())
 			   {
-				   list.add(rs.getInt(1));
+				   BookmarkVO vo= new BookmarkVO();
+				   vo.setRecipeno(rs.getInt(1));
+				   list.add(vo);
 			   }
 		   }catch(Exception ex) {
 			   ex.printStackTrace();

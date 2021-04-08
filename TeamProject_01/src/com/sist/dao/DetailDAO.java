@@ -43,6 +43,7 @@ public class DetailDAO {
 	
 	//목록 불러오기 - 0402 수정
 		public DetailVO detailData(int no) {
+
 			DetailVO vo=new DetailVO();
 			/*
 			 * private int no, hit2;
@@ -120,5 +121,33 @@ public class DetailDAO {
 			disConnection();
 		}
 		return cList;
+	}
+	
+	//북마크용 가져오기
+	public ListVO BookmarkData(int no) {
+		System.out.println("no="+no);
+		ListVO vo=new ListVO();
+		
+		try {
+			getConnection();
+			String sql="SELECT no,title,poster,chef "
+					+ "FROM list_data_v5 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setTitle(rs.getString(2));
+			vo.setPoster(rs.getString(3));
+			vo.setChef(rs.getString(4));
+			
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
 	}
 }
