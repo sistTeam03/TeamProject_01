@@ -42,9 +42,32 @@
 </style>
 </head>
 <body>
+<section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+        <div class="container">
+            <div class="row">
+            <div id="login_input">
+	            <div id="login_div">
+	            <input type="text" size=15 id="login_id" placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
+	            <input type="password" size=15 id="login_pwd" placeholder="비밀번호" style="padding-left: 10px;">
+	           	<button id="login_go">go</button>
+	           </div>
+	        </div>
+                <div class="col-lg-12">
+                    <div class="blog__details__hero__text">
+                        <h2>수정하기</h2>
+                        <figure>
+				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
+				        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div class="container">
+<div class="row">
     <center>
-     <h1>글쓰기</h1>
-     <form method="post" action="../board/board_write.do">
+     
+     <form method="post" action="../board/board_update_ok.do">
      <table class="table_content" width=500>
        <tr>
          <th width=15% align=right>이름</th>
@@ -72,13 +95,14 @@
        </tr>
        <tr>
          <td colspan="2" align=center>
-          <input type=submit value="글쓰기">
+          <input type=submit value="수정하기">
           
          </td>
        </tr>
      </table>
      </form>
    </center>
-
+</div>   
+</div>
 </body>
 </html>

@@ -67,33 +67,34 @@
     
     <!-- ----------------------------------------------------------------------------- -->
 <section class="blog-details spad">
-<table class="table_insert">
-		<tr>
-		  <td width=80px; style="background-color: pink;text-align: center;height:40px; size:15;vertical-align: middle;diplay:inline;">
-		    <a href="../board/board_write.do">새글</a>
-		  </td>
-		</tr>
-	</table>
-<center>
+	
+
 	<div>
 		
 	</div>
 	
-	<div class="container" ">
+	<div class="container" >
+	<table class="table_insert">
+		<tr>
+		  <td width=80px; style="text-align: center;height:40px; size:15;vertical-align: middle;diplay:inline; margin-bottom:10px;">
+		    <a href="../board/board_write.do" style=""><div class="btn btn-sm btn-primary">새글쓰기</div></a>
+		  </td>
+		</tr>
+	</table>
 		<div class="row">
 		<table class="table table-hover">
-			<tr height=80px  style="border-color: black; background-color: orange;vertical-align:middle;">
-			  <th width=10% style="text-align:center">번호</th>  	
-			  <th width=45% style="text-align:center">제목</th>
-			  <th width=15% style="text-align:center">이름</th>
-			  <th width=20% style="text-align:center">작성일</th>
-			  <th width=10% style="text-align:center">조회수</th>	
+			<tr height=60px  style="border-color: black; background-color: orange;vertical-align:middle;">
+			  <th width=10% style="vertical-align:middle;text-align:center">번호</th>  	
+			  <th width=45% style="vertical-align:middle;text-align:center">제목</th>
+			  <th width=15% style="vertical-align:middle;text-align:center">이름</th>
+			  <th width=20% style="vertical-align:middle;text-align:center">작성일</th>
+			  <th width=10% style="vertical-align:middle;text-align:center">조회수</th>	
 			</tr>
 			<c:forEach var="vo" items="${bList }">
+				
 				<tr>
 				  <td style="text-align:center">${vo.no }</td>
-				  <a href="#">
-				  <td>${vo.subject }</td></a>
+				  <td><a href="../board/board_detail.do?no=${vo.no }">${vo.subject }</a></td>
 				  <td style="text-align:center">${vo.name }</td>
 				  <td style="text-align:center">${vo.regdate }</td>
 				  <td style="text-align:center">${vo.hit }</td>
@@ -102,7 +103,7 @@
 			</table>
 		</div>	
 	</div>
-</center>	
+	
 </section>
 <div class=row style="margin: 0px auto;">
                        	 <div  style="margin: 0px auto;">

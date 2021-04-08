@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +57,7 @@
 	        </div>
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2>자유게시판</h2>
+                        <h2>공지사항</h2>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -66,53 +66,40 @@
             </div>
         </div>
     </section>
-    <div class="container">
-       <div class="row">
-	    <center>
-	    	<table class="table_content" width=750 border=1>
-	    	  <tr>
-	    	    <th width=20%>글번호</th>
-	    	    <td width=20%>${bvo.no }</td>
-	    	    <th width=20%>작성일</th>
-	    	    <td width=20%>${bvo.regdate }</td>
-	    	  </tr>
-	    	  <tr>
-	    	    <th width=20%>이름</th>
-	    	    <td width=20%>${bvo.name }</td>
-	    	    <th width=20%>조회수</th>
-	    	    <td width=20%>${bvo.hit }</td>
-	    	  </tr>
-	    	  <tr>
-         <th width=20%>제목</th>
-         <td  align="left">${bvo.subject }</td>
-       </tr>
-       <tr>
-         <td  height="200" valign="top" colspan="4"><pre>${bvo.content }</pre></td>
-       </tr>
-	    	</table>
-	    </center>
-	   </div> 
-    </div>
-    <div class="lower_btn">
-     <tr>
-          <td colspan="4" class="text-right">
-            <a href="../board/board_update.do?no=${bvo.no }" class="btn btn-sm btn-success">수정</a>
-            <a href="../board/board_delete.do?no=${bvo.no }" class="btn btn-sm btn-info">삭제</a>
-          </td>
-        </tr>
-    </div>
+    
+    
+    <!-- ------------------------------------------------------------------------------- -->
+     <section class="blog-details spad">
+       
+               <div class="container">
+             
+             		
+               
+                    <div class="blog__details__content">
+                    	
+                        <div class="row">
+                        <c:if test="${sessionScope.admin=='y' }">
+                        <a href="#" style="float:left;margin-bottom: 10px;margin-left: 10px;">
+                        	<div class="btn btn-sm btn-primary">공지사항 등록</div></a>
+                        </c:if>
+							  <table class="table table-hover" id="chef_table">
+								<tr border=1>
+									<th style="text-align:center;">글번호</th>
+									<th style="text-align:center;">제목</th>
+									<th style="text-align:center;">조회수</th>
+								</tr>
+								<c:forEach var="vo" items="${nList }" varStatus="s">
+									<tr>
+									  <td>${vo.no }</td>
+									  <td>${vo.subject }</td>
+									  <td>${vo.hit }</td>
+									</tr>
+								</c:forEach> 
+							</table>
+						</div>
+					</div>
+				</div>
+	</section>
+							
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

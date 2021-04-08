@@ -45,6 +45,7 @@
 </head>
 <body>
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+<div class="contact-form spad">
         <div class="container">
             <div class="row">
             <div id="login_input">
@@ -64,12 +65,17 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
     
-    
+<div class="container" text-align=center">    
+	<div class="row"margin:0px auto;>
+	
     <center>
-     <h1>글쓰기</h1>
-     <form method="post" action="../board/board_write.do">
+    
+    <div class="write_align" style="border-color: pink; ">
+     <h1>새글 쓰기</h1>
+     <form method="post" action="../board/board_write_ok.do">
      <table class="table_content" width=500>
        <tr>
          <th width=15% align=right>이름</th>
@@ -103,7 +109,9 @@
        </tr>
      </table>
      </form>
+     </div>
    </center>
-    
+   </div>
+</div>    
 </body>
 </html>

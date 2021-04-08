@@ -1,6 +1,6 @@
 package com.sist.dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.sist.vo.BoardVO;
-
+import com.sist.vo.NoticeVO;
 public class BoardDAO {
 	 private Connection conn;
 	   // SQL문장 전송 
@@ -115,7 +115,13 @@ public class BoardDAO {
 		   {
 			   
 			   getConnection();
-			   String sql = "SELECT no,name,subject,content,regdate,hit "
+			   
+			   String sql="UPDATE wboard SET hit=hit+1 WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ps.executeUpdate();
+			   
+			   sql = "SELECT no,name,subject,content,regdate,hit "
 			   			+ "FROM wboard "
 			   			+ "WHERE no=?";
 			   ps=conn.prepareStatement(sql);
@@ -143,6 +149,7 @@ public class BoardDAO {
 	   }
 	   public void boardInsert(BoardVO vo)
 	   {
+		   //wb_no_seq.nextVal
 		   try
 		   {
 			   getConnection();
@@ -185,24 +192,14 @@ public class BoardDAO {
 		   return vo;
 	   }
 	   
-	   public boolean boardUpdate(BoardVO vo)
+	   public void boardUpdate(BoardVO vo)
 	   {
 		   boolean bCheck=false;
 		   try
 		   {
 			   getConnection();
-			   String sql="SELEC pwd FROM wboard "
-			   			+ "WHERE no=?";
-			   ps.setInt(1, vo.getNo());
-			   ResultSet rs = ps.executeQuery();
-			   rs.next();
-			   String dbpwd=rs.getString(1);
-			   rs.close();
 			   
-			   if(dbpwd.equals(vo.getPwd()))
-			   {
-				   bCheck=true;
-				   sql="UPDATE wboard SET name=?,subject=?,content=? WHERE no=?";
+				String sql="UPDATE wboard SET name=?,subject=?,content=? WHERE no=?";
 				   ps=conn.prepareStatement(sql);
 				   ps.setString(1, vo.getName());
 				   ps.setString(2, vo.getSubject());
@@ -210,11 +207,7 @@ public class BoardDAO {
 				   ps.setInt(4, vo.getNo());
 				   
 				   ps.executeUpdate();
-			   }
-			   else
-			   {
-				   bCheck=false;
-			   }
+			  
 		   }catch(Exception ex)
 		   {
 			   ex.printStackTrace();
@@ -222,8 +215,103 @@ public class BoardDAO {
 		   {
 			   disConnection();
 		   }
+		   
+	   }
+	   public List<NoticeVO> noticeListData(int page)
+	   {
+		   List<NoticeVO> list = new ArrayList<NoticeVO>();
+		   try
+		   {
+			   getConnection();
+			   String sql = "SELECT no,subject,hit,num "
+			   				+ "FROM (SELECT no, subject, hit, rownum as num "
+			   				+ "FROM (SELECT no,subject,hit "
+			   				+ "FROM nboard ORDER BY no DESC)) "
+			   				+ "WHERE num BETWEEN ? AND ?";
+			   
+			   int rowSize=12;
+			   int start=(rowSize*page)-(rowSize-1);
+			   int end=(rowSize*page);
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, start);
+			   ps.setInt(2, end);
+			   ResultSet rs = ps.executeQuery();
+			   
+			   while(rs.next())
+			   {
+				   NoticeVO vo = new NoticeVO();
+				   vo.setNo(rs.getInt(1));
+				   vo.setSubject(rs.getString(2));
+				   vo.setHit(rs.getInt(3));
+				   list.add(vo);
+			   }
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }finally
+		   {
+			   disConnection();
+		   }
+		   return list;
+	   }
+	   public int noticeTotalPage()
+	   {
+		   int count=0;
+		   try
+		   {
+			   getConnection();
+			   String sql = "SELECT CEIL(COUNT(*)/12.0) FROM notice_board ";
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   count = rs.getInt(1);
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }finally
+		   {
+			   disConnection();
+		   }
+		   return count;
+	   }
+	   public void notice_insert(NoticeVO vo)
+	   {
+		   try
+		   {
+			   getConnection();
+			   String sql = "INSERT INTO notice_board (SELECT NVL(MAX(no)+1,1) FROM notice_board),?,?,?,?,?";
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }finally
+		   {
+			   disConnection();
+		   }
+	   }
+	   
+	   public boolean boardDelete(int no,String pwd)
+	   {
+		   boolean bCheck=false;
+		   try
+		   {
+			   getConnection();
+			   String sql = "DELET FROM wboard WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ps.executeUpdate();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
 		   return bCheck;
 	   }
+	   
 }
 
 

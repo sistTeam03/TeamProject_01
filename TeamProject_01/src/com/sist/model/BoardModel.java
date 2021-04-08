@@ -15,6 +15,6 @@ public class BoardModel {
 	{
 		request.setAttribute("msg", "게시판"); 
 		request.setAttribute("main_jsp", "../board/board.jsp");
-		return "../main/main.jsp";
+		return "../board/board.jsp";
 	}
 }

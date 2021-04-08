@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +45,7 @@
 </head>
 <body>
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+<div class="contact-form spad">
         <div class="container">
             <div class="row">
             <div id="login_input">
@@ -57,7 +57,7 @@
 	        </div>
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2>자유게시판</h2>
+                        <h2 style="text-align: center;">이벤트 게시판</h2>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -65,54 +65,47 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
-    <div class="container">
-       <div class="row">
-	    <center>
-	    	<table class="table_content" width=750 border=1>
-	    	  <tr>
-	    	    <th width=20%>글번호</th>
-	    	    <td width=20%>${bvo.no }</td>
-	    	    <th width=20%>작성일</th>
-	    	    <td width=20%>${bvo.regdate }</td>
-	    	  </tr>
-	    	  <tr>
-	    	    <th width=20%>이름</th>
-	    	    <td width=20%>${bvo.name }</td>
-	    	    <th width=20%>조회수</th>
-	    	    <td width=20%>${bvo.hit }</td>
-	    	  </tr>
-	    	  <tr>
-         <th width=20%>제목</th>
-         <td  align="left">${bvo.subject }</td>
-       </tr>
-       <tr>
-         <td  height="200" valign="top" colspan="4"><pre>${bvo.content }</pre></td>
-       </tr>
-	    	</table>
-	    </center>
-	   </div> 
-    </div>
-    <div class="lower_btn">
-     <tr>
-          <td colspan="4" class="text-right">
-            <a href="../board/board_update.do?no=${bvo.no }" class="btn btn-sm btn-success">수정</a>
-            <a href="../board/board_delete.do?no=${bvo.no }" class="btn btn-sm btn-info">삭제</a>
-          </td>
-        </tr>
-    </div>
+    
+    
+    
+    <div class="wrapper row3 mypage_row">
+	  <h2 class="sectiontitle">자료실</h2>
+	  <div style="height: 500px;width:750px;overflow-y:auto;margin:0px auto">
+	   <table class="table" style="float:left;">
+	     <tr>
+	      <td>
+	       <a href="../board/event_insert.do" class="btn btn-sm btn-danger">등록</a>
+	      </td>
+	     </tr>
+	   </table>
+	   <table class="table">
+	     <tr>
+	      <th class="text-center" width=10%>번호</th>
+	      <th class="text-center" width=45%>제목</th>
+	      <th class="text-center" width=15%>이름</th>
+	      <th class="text-center" width=20%>작성일</th>
+	      <th class="text-center" width=10%>조회수</th>
+	     </tr>
+	     <c:forEach var="vo" items="${list }">
+	       <tr>
+		      <td class="text-center" width=10%>${vo.no }</td>
+		      <td class="text-left" width=45%>
+		        <a href="../board/event_detail.do?no=${vo.no }">${vo.subject }</a>
+		      </td>
+		      <td class="text-center" width=15%>${vo.name }</td>
+		      <td class="text-center" width=20%>${vo.regdate }</td>
+		      <td class="text-center" width=10%>${vo.hit }</td>
+	     </tr>
+	     </c:forEach>
+	   </table>
+	   
+	  </div>
+	</div>
+    
+    
+    
+    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
