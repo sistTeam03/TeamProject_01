@@ -58,7 +58,9 @@ background-color: #ff7474;
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	var reply0=$('.length0').text();
+	var reply1=$('.length1').text();
+	var reply2=$('.length2').text();
 	for(let i=0;i<3; i++){
 		let str=$('.length'+i).text();
 		let length=str.length;
@@ -71,9 +73,24 @@ $(function(){
 		}
 	}//댓글 글자수 제어
 	$('.moreBtn').click(function(){
+		let num=$(this).attr('data');
+	 	
 		
-		$(this).prev().children().css("overflow-y","auto");
-	})
+		if(num==0){
+			$('.length0').css("overflow-y","auto");
+			$('.length'+num).text(reply0);
+			$(this).hide();
+		}else if(num==1){
+			$('.length1').css("overflow-y","auto");
+			$('.length'+num).text(reply1);
+			$(this).hide();
+		}else if(num==2){
+			$('.length2').css("overflow-y","auto");
+			$('.length'+num).text(reply2);
+			$(this).hide();
+		}
+		
+	})//댓글 더보기 
 })
 </script>
 </head>
@@ -94,7 +111,7 @@ $(function(){
 	 				
 	        	</td>
 	        	<td>
-	        	<input type="button" id="" class="moreBtn " value="더보기 "> 
+	        	<input type="button" id="" class="moreBtn " value="더보기 " data="${s.index }"> 
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
 	        					 
