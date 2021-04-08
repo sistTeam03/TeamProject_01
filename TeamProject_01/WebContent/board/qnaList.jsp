@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -132,21 +131,15 @@ $(function(){
                                     <th class="text-center" width=10%>조회수</th> 
                                   </tr>
                                   <tr>
-                                    <td class="text-center">
-                                      <a href="#">${vo.no }</a>
-                                    </td>
-                                    <td class="text-center">
-                                      <a href="#">${vo.title }</a>
-                                    </td>
-                                    <td class="text-center">
-                                      <a href="#">${vo.name }</a>
-                                    </td>
-                                    <td class="text-center">
-                                      <a href="#">${vo.regdate }</a>
-                                    </td>
-                                    <td class="text-center">
-                                      <a href="#">${vo.hit }</a>
-                                    </td>
+                                    <td class="text-center">${vo.no }</td>
+                                      <c:if test="${vo.group_tab==1 }">
+                                        &nbsp;&nbsp;
+                                        <img src="../img/reply_icon.png" style="height:15px;width:15px">
+                                      </c:if>
+                                    <td class="text-center">${vo.subject }</td>
+                                    <td class="text-center">${vo.name }</td>
+                                    <td class="text-center">${vo.regdate }</td>
+                                    <td class="text-center">${vo.hit }</td>
                                   </tr>
                                 </table>
                               </c:forEach>
@@ -155,9 +148,9 @@ $(function(){
                     <table class="table">
                       <tr>
                         <td class="text-right">
-                          <a href="../recipe/chef_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-danger">이전</a>
-                            ${curpage } page / ${totalpage } pages
-                          <a href="../recipe/chef_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-info">다음</a>
+                          <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-danger">이전</a>
+                            ${curpage } page / ${count } pages
+                          <a href="../board/qnaList.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-lg btn-info">다음</a>
                         </td>
                       <tr>
                     </table>

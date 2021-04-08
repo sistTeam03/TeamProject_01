@@ -14,17 +14,32 @@
     margin-left: 4em;
     height:110px; width: 970px; 
 }
+.replyPageBtn:hover{
+	background-color: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
 .replyPageBtn{
-	    margin: 0px 3px;
-    background-color: #ddf2bc;
-    border-color: #ddf2bc;
-    border-radius: 6px;
-    height: 32px;
-    width: 31px;
+	display: inline-block;
+	width: 45px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	transition: all, 0.3s;
+	background: #f8fdf7;
+	border-radius: 6px;
+}
+.updateBtn,.delBtn{
+	background-color: #ddf2bc;
 }
 </style>
 </head>
-<body>
+<body>	
+		<div style="height: 330px;">
 			<c:forEach var="rvo" items="${rList }" begin="0" end="2" varStatus="s">
 			<table class="detail_reply"	 >
 
@@ -38,16 +53,16 @@
 	  
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
-		        			<input type=button id="" class="updatOkBtn btn-info" value="완료 " style="width: 40px;height: 20px;font-size: 9pt;display: none;" data-no="${rvo.no }">
-		        			 <input type=button id="" class="updateBtn btn-info" value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }"> 
-		        			<input type=button id="" class="delBtn btn-danger" value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " reply-page="${curpage }">
+		        			<input type=button id="" class="updatOkBtn " value="완료 " style="width: 40px;height: 20px;font-size: 9pt;display: none;" data-no="${rvo.no }">
+		        			 <input type=button id="" class="updateBtn " value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }"> 
+		        			<input type=button id="" class="delBtn " value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " reply-page="${curpage }">
 		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
 		        		</td>
-	        </tr>
-	        		
+	        	</tr>
 	         </table>	
      </c:forEach>
-        <table style="width: 300px;height: 50px; position: relative;display: block;margin: 0px auto;">
+     </div>
+        <table style="width: 970px;height: 50px;margin: 0px auto;">
         		<tr>	
 	        		<td>
 	        		<c:if test="${startPage>1 }">
