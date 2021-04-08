@@ -44,6 +44,26 @@
     height: 36em;
     display: none;
 }
+.cheflistBtn,.cheflist_nextBtn,.cheflist_beforeBtn{
+	display: inline-block;
+	width: 45px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	transition: all, 0.3s;
+	background-color:#f8fdf7;
+	border-radius: 6px;
+
+}
+.cheflistBtn:hover{
+	background-color: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
 </style>
  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -67,8 +87,7 @@ $(function(){
 	$(document).on("click",".cheflistBtn",function(){
 		let page=$(this).text();
 		let name=$('.chef_tr').attr('data-name');
-		$(this).css("background-color","#7fad39")
-		$.ajax({
+				$.ajax({
 			type:'post',
 			url:'../recipe/chefs_recipe.do',
 			data:{'name':name,'page':page},
@@ -77,6 +96,7 @@ $(function(){
 				return;
 			}	
 		});
+
 	});//페이지 이동
 		$(document).on("click",".cheflist_nextBtn",function(){
 		let endpage=$('.cheflist_nextBtn').attr('endpage');
@@ -89,6 +109,7 @@ $(function(){
 			data:{'name':name,'page':page},
 			success:function(result){
 				$('.list_span').html(result);
+				
 				return;
 			}	
 		});
@@ -112,6 +133,7 @@ $(function(){
 	
 	
 });
+
 </script>
 </head>
 <body>
@@ -186,7 +208,7 @@ $(function(){
 							</table>  
                         </div>
                     </div>
-                 <div class=row style="margin: 0px auto;">
+                 <div class=product__pagination style="margin: 0px auto;padding-left: 22em;">
                        	 <div  style="margin: 0px auto;">
                        	 	<ul class="pagination">
 					          <c:if test="${startPage>1 }">
