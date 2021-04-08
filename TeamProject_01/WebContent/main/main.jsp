@@ -214,7 +214,9 @@ a.loginco{
                                      <li><a href="../recom/recomlist.do">추천 테스트</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../mypage/mypage.do">마이페이지</a></li>
+                            <c:if test="${sessionScope.sesson_id!=null }"><!-- 로그인하면 -->
+                            	<li><a href="../mypage/mypage.do">마이페이지</a></li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>

@@ -34,7 +34,14 @@
 	text-align:center;
 	padding: 0;
 }
-
+a{
+	color: black;
+	text-decoration: none; !important
+}
+a:hover{
+	color: black;
+	text-decoration: none; !important
+}
 </style>
 </head>
 <body>
@@ -73,14 +80,14 @@
 	                 	<tr>
 	                 		<td class="text-center"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2017/12/06/c3e305ae9ddd252fb21ef0f02f5dd0d81.de9e26210e79e8c2fa5707df5f84c55d" 
 	                 		style="height: 90px; width:90px; border-radius: 100px"></td>
-	                 		<td>닉넴데이터</td>
-	                 		<td class="text-center">일반사용자</td>
+	                 		<td>${sessionScope.name}</td>
+	                 		<td class="text-center">${sessionScope.admin=='Y'?"관리자":"일반사용자" }</td>
 	                 	</tr>
 	                 </table>
                         
                            
                  </div>
-                
+                <!--   <div class="text-right">${sessionScope.name}(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</div> -->
                  <!-- ##############찜 목록############# -->
                 
                 
@@ -107,10 +114,14 @@
                             	<c:forEach var="vo" items="${dList }" varStatus="s">
                                 <tr>
                                     <td>
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no }">
                                         <img src="${vo.poster }" alt=""><!-- 요리 썸네일 이미지 -->
+                                    </a>
                                     </td>
                                     <td>
+                                    <a href="../recipe/recipe_detail.do?no=${vo.no }">
                                      ${vo.title }
+                                     </a>
                                     </td>
                                     <td>
                                      ${vo.chef }

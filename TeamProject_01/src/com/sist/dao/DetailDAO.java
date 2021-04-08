@@ -122,4 +122,32 @@ public class DetailDAO {
 		}
 		return cList;
 	}
+	
+	//북마크용 가져오기
+	public DetailVO BookmarkData(int no) {
+		System.out.println("no="+no);
+		DetailVO vo=new DetailVO();
+		
+		try {
+			getConnection();
+			String sql="SELECT no,title,poster,chef "
+					+ "FROM list_data_v5 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setTitle(rs.getString(2));
+			vo.setPoster(rs.getString(3));
+			vo.setChef(rs.getString(4));
+			
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
+	}
 }

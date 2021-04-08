@@ -33,6 +33,9 @@
 	background: #f8fdf7;
 	border-radius: 6px;
 }
+.updateBtn,.delBtn{
+	background-color: #ddf2bc;
+}
 </style>
 </head>
 <body>	
@@ -50,9 +53,9 @@
 	  
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
-		        			<input type=button id="" class="updatOkBtn btn-info" value="완료 " style="width: 40px;height: 20px;font-size: 9pt;display: none;" data-no="${rvo.no }">
-		        			 <input type=button id="" class="updateBtn btn-info" value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }"> 
-		        			<input type=button id="" class="delBtn btn-danger" value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " reply-page="${curpage }">
+		        			<input type=button id="" class="updatOkBtn " value="완료 " style="width: 40px;height: 20px;font-size: 9pt;display: none;" data-no="${rvo.no }">
+		        			 <input type=button id="" class="updateBtn " value="수정 " style="width: 40px;height: 20px;font-size: 9pt" data-no="${rvo.no }"> 
+		        			<input type=button id="" class="delBtn " value=삭제  style="width: 40px;height: 20px;font-size: 9pt"  data-no="${rvo.no } " reply-page="${curpage }">
 		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
 		        		</td>
 	        	</tr>

@@ -313,7 +313,7 @@ $(function(){
 	        
 	   <%--       <c:if test="${sessionScope.sesson_id!=null }">  --%>
 			        <div class=row id="replyinsert">
-			        	<table>
+			        	<table style="margin-top: 4em;">
 			        		<tr>
 				                <td><textarea id="msg"></textarea> 
 				                	
