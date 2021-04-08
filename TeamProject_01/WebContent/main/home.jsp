@@ -8,7 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+.categories__item h5 a{
+font-size: 21px;
+color: #fff;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 2px;
+padding: 12px 0 10px;
+background: none;
+display: block;
+}
 </style>
 </head>
 <body> 
