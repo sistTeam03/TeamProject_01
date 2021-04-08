@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <style type="text/css">
 #replyinsert{
@@ -72,6 +73,18 @@ text-align: right;
     background-color: #7fad39;
     border-color: #7fad39;
   }
+  <%--0409수정--%>
+.categories__item{
+height:150px;
+position: relative;
+}
+
+a.shop{
+	color:#f8f9fa;
+	text-decoration:none;
+	background-color:rgb(0 0 0 / 25%);
+}
+<%--0409수정완료--%>
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -248,6 +261,22 @@ $(function(){
 	    					</c:if>
     					</c:if>
                     </div>
+                    <%--0409수정--%>
+ 					<div style="height:15px"></div>
+ 					<hr>
+ 					<h6 style="color:green;font-weight: bold;">관련 상품</h6>
+                    <div style="height:15px"></div>
+                    
+                     <div class="categories__slider owl-carousel">
+                     <c:forEach var="svo" items="${printlist }">
+                     	 <div class="col-lg-3">
+		                        <div class="categories__item set-bg" data-setbg="http:${svo.poster }">
+		                            <h6 style="font-size: 11pt; color:white;"><a href="#" class=shop>${svo.title }<br><fmt:formatNumber value="${svo.price }" pattern="0,000"/></a></h6>
+		                        </div>
+		                   </div>
+		             </c:forEach>
+		              </div>
+               	  <%--0409수정완료--%>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
@@ -269,6 +298,9 @@ $(function(){
                             <li><b>양</b> <span>${vo.info1 }</span></li>
                             <li><b>소요시간</b> <span>${vo.info2 }</span></li>
                             <li><b>난이도</b> <span>${vo.info3 }</span></li>
+                            <%--0409수정--%>
+                            <hr>
+                            <%--0409수정완료--%>
                             <li valign="top"><b>재료</b>
                                 <div class="share">
                                     <!-- 재료 출력 부분 -->

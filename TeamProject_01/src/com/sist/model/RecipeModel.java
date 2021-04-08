@@ -112,6 +112,32 @@ public class RecipeModel {
 			  HttpSession session=request.getSession();
 			  String id=(String)session.getAttribute("sesson_id");
 			  int count=bdao.bookmarkCheck(Integer.parseInt(no), id);
+			  
+			//0408수정
+			  int rno=Integer.parseInt(no);
+			  ShoppingDAO sdao=ShoppingDAO.newInstance();
+			  List<ShoppingVO> slist=sdao.shopListData();
+			  String ingre=sdao.ingreToString(rno);
+			  System.out.println(ingre);
+			  ArrayList<ShoppingVO> printlist=new ArrayList<ShoppingVO>();
+			  
+			  while(printlist.size()<6) {
+				  for(int i=0; i<slist.size(); i++) {
+					  if(ingre.contains(slist.get(i).getTitle())) {
+						  ShoppingVO svo=new ShoppingVO();
+						  svo.setNo(slist.get(i).getNo());
+						  svo.setPoster(slist.get(i).getPoster());
+						  svo.setPrice(slist.get(i).getPrice());
+						  svo.setTitle(slist.get(i).getTitle());
+						  System.out.println(svo.getTitle());
+						  printlist.add(svo);
+						  
+					  }
+				  }
+			  }
+			  
+			  request.setAttribute("printlist", printlist);
+			 //수정끝
 			 
 			  request.setAttribute("count", count);
 			  request.setAttribute("length", conlist.length);
