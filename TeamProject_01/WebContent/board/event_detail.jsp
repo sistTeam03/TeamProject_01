@@ -32,7 +32,7 @@
         </div>
     </section>
     <div class="wrapper row3 mypage_row">
-	  <h2 class="sectiontitle">내용보기</h2>
+    <div style="height:30px;"></div>
 	  <div style="height: 500px;width:750px;overflow-y:auto;margin:0px auto">
 	    <table class="table">
 	     <tr>

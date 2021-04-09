@@ -219,7 +219,7 @@ a.loginco{
                                     <li><a href="../board/qna_board.do">문의 게시판</a></li>
 ======= -->
                                     <li><a href="../boardreply/list.do">문의 게시판</a></li>
-                                     <li><a href="../recom/recomlist.do">추천 테스트</a></li>
+
 <!-- >>>>>>> branch 'master' of https://github.com/sistTeam03/TeamProject_01.git -->
                                 </ul>
                             </li>

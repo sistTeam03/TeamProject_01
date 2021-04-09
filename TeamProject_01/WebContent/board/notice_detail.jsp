@@ -20,7 +20,6 @@
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
                         <h2>공지사항</h2>
-                        <h4 style="color: white;font-family: cursive;">공지사항 내용을 확인해주세요</h4>
                         <figure>
 				          <header class="heading" style="color:white"> <span style="color:yellow;font-weight:bold;"></span></header>
 				        </figure>
@@ -30,7 +29,7 @@
         </div>
     </section>
     <div class="wrapper row3 mypage_row">
-	  <h2 class="sectiontitle"style="margin-top:30px;margin-bottom: 30px;">공지내용</h2>
+ 	<div style="height:30px;"></div>
 	  <div style="height: 500px;width:750px;overflow-y:auto;margin:0px auto">
 	    <table class="table">
 	     <tr>
