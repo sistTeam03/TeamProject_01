@@ -81,7 +81,8 @@
 					          <td class="text-left" width=45%>
 					            <c:if test="${vo.group_tab==1 }">
 					              &nbsp;&nbsp;
-					              <img src="../img/reply_icon.png">
+					              <img src="../img/reply.png" style="width:25px;height:22px">
+					              <!-- <img src="../img/question.png" style="width:5.5%"> -->
 					              <!-- <img src="../img/reply_icon.png"> -->
 					            </c:if>
             <a href="../boardreply/detail.do?no=${vo.no }">${vo.subject }</a>

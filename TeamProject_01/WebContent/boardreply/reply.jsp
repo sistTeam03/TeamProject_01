@@ -61,9 +61,9 @@
                     </div>
                 </div>
             </div>
-         </div>
+        
 
-    <div class="row" style="margin:0px auto">
+    <div>
       <form method=post action="../boardreply/reply_ok.do">
       <div class="row">
          <div class="col-lg-6">
@@ -80,15 +80,15 @@
            <div class="col-lg-12 text-center">
                <textarea placeholder="내용" name="content"></textarea>
                
-               <input type=submit value="답변" class="btn btn-sm btn-danger">
+               <button type=submit value="답변" class="site-btn"></button>
                  &nbsp;
-           	   <input type=button value="취소" onclick="javascript:history.back()"
-            		 class="btn btn-sm btn-info">
+           	   <button type=button value="취소" onclick="javascript:history.back()"
+            		 class="site-btn"></button>
             </div>
         </div>
       </form>
     </div>  
 </div>
-
+ </div>
 </body>
 </html>
