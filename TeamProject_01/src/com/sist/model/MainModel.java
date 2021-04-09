@@ -66,6 +66,7 @@ public class MainModel {
 	@RequestMapping("main/search.do")
 	public String main_search(HttpServletRequest request,HttpServletResponse response) {
 		ListDAO dao=ListDAO.newInstance();
+	
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception ex) {
@@ -86,7 +87,6 @@ public class MainModel {
 		}
 		int curpage=Integer.parseInt(page);
 		List<ListVO> sList=dao.searchList(list, curpage);
-	
 		int totalpage=(int)(Math.ceil(sList.size()));
 		int block=10;
 		int startPage=((curpage-1)/block*block)+1;
@@ -97,14 +97,19 @@ public class MainModel {
 	
 		MemberDAO memDao=MemberDAO.newInstance();
 		
+		System.out.println(msg);
 		memDao.searchInsert(msg);
 		Date date=new Date();
 		Calendar cal=Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);
-		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd");
+		System.out.println(1);
+		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd"	);
 		String today=format.format(date);
 		String yesterday=format.format(cal.getTime());
+		System.out.println(today);
+		System.out.println(yesterday);
 		List<String> top10_list=memDao.searchTOP10(today,yesterday);
+		System.out.println(1);
 		System.out.println(top10_list.size());
 		request.setAttribute("tList", top10_list);
 		

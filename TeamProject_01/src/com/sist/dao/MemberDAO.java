@@ -169,12 +169,13 @@ public class MemberDAO {
 		public void searchInsert(String msg) {
 			try {
 				getConnection();
+				System.out.println("테스트1"+msg);
 				String sql="INSERT INTO search_keyword "
-						+ "VALUES((SELECT NVL(MAX(no)+1,1) FROM search_keyword),?,SYSDATE)";
+						+ "VALUES(sk_no_seq.nextval,?,SYSDATE)";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, msg);
 				ps.executeUpdate();
-				
+				System.out.println("테스트2"+msg);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}finally {
@@ -187,6 +188,7 @@ public class MemberDAO {
 		
 		try {
 			int i=1;
+			System.out.println("테스트");
 			getConnection();
 			String sql="SELECT keyword "
 					+"FROM search_keyword "
@@ -205,13 +207,14 @@ public class MemberDAO {
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, yesterday);
 				ResultSet rs2=ps.executeQuery();
+				int k=0;
 				while(rs2.next()){
 					String yKeyword=rs2.getString(1);
 					int yRank=rs2.getInt(2);
 					if(keyword.equals(yKeyword)) {
 						int upRank=yRank-i;
 						list.add(keyword+","+upRank);//어제와 같은 검색어찾기
-						
+					System.out.println(k++);	
 					}
 					
 				}
