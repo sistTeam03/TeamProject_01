@@ -95,7 +95,7 @@
 				
 				<tr>
 				  <td style="text-align:center">${vo.no }</td>
-				  <td><a href="../board/board_detail.do?no=${vo.no }">${vo.subject }</a></td>
+				  <td style="text-align:left;"><a href="../board/board_detail.do?no=${vo.no }">${vo.subject }</a></td>
 				  <td style="text-align:center">${vo.name }</td>
 				  <td style="text-align:center">${vo.regdate }</td>
 				  <td style="text-align:center">${vo.hit }</td>

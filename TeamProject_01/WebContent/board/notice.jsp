@@ -91,7 +91,7 @@
 									<tr>
 									  <td>${nvo.no }</td>
 									
-									  <td> <a href="../board/notice_detail.do?no=${nvo.no }">${nvo.subject }</a></td>
+									  <td style="text-align:left;"> <a href="../board/notice_detail.do?no=${nvo.no }">${nvo.subject }</a></td>
 									 
 									  <td>${nvo.hit }</td>
 									</tr>
