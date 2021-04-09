@@ -85,6 +85,15 @@ display: block;
  .btn i {
 	 padding-right: 0.3em;
 }
+.categories__item h5 a{
+ background:rgb(0 0 0 / 40%);
+ font-size:16px;
+ color:white;
+
+}
+.categories__item{
+ border-radius: 10px;
+}
 </style>
 </head>
 <body> 
@@ -162,8 +171,12 @@ display: block;
                 		<c:if test="${i.index<10 }">
 		                    <div class="col-lg-3">
 		                        <div class="categories__item set-bg" data-setbg="${uvo.poster }">
-		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }" style="border-radius: 18px;
-		                            ">${uvo.title }</a></h5>
+		                        <c:if test="${fn:length(uvo.title)>=30 }">
+		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }" class=shop style="border-radius: 18px;">${fn:substring(uvo.title,0,25) }...</a></h5>
+		                         </c:if>
+		                         <c:if test="${fn:length(uvo.title)<30 }">
+		                            <h5><a href="../recipe/detail_before.do?no=${uvo.no }" class=shop style="border-radius: 18px;">${uvo.title}</a></h5>
+		                         </c:if>
 		                        </div>
 		                    </div>
 	                    </c:if>
