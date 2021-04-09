@@ -97,8 +97,8 @@
         <tr>
           <td class="text-center">
             <a href="../boardreply/list.do?page=${curpage>1?curpage-1:curpage }" class="site-btn">이전</a>
-             &nbsp;&nbsp; ${curpage }   page /   ${totalpage } pages &nbsp;&nbsp;
-            <a href="../boardreply/list.do?page=${curpage<count?curpage+1:curpage }" class="site-btn">다음</a>
+             &nbsp;&nbsp; ${curpage } page / ${totalpage } pages &nbsp;&nbsp;
+            <a href="../boardreply/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="site-btn">다음</a>
           </td>
         </tr>
       </table>

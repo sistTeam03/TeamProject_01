@@ -108,7 +108,7 @@ $(function(){
 	        <tr>
 	        	<td width="20%" rowspan="2">${rvo.nickname }</td>
 	        	<td style="width: 30em;">
-	        		<div id="replyshow" style="height: 80px;" class="length${s.index }">${rvo.msg }
+	        		<div id="replyshow" style="height: 80px;text-align: left;padding-left: 35px; padding-top: 11px;" class="length${s.index }">${rvo.msg }
 	        		
 	        		</div>
 	 				

@@ -84,7 +84,8 @@ a.loginco{
  <script type="text/javascript">
  let i=0;
  $(function(){
-	 
+	 let admin=$('#preloder').attr('admin');
+	 console.log("관리자 여부:"+admin);
 	 $('#logout_logo').click(function(){//로그아웃
 		 location.href="../member/logout.do";
 	 });
@@ -135,7 +136,7 @@ a.loginco{
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <div id="preloder" admin="${sessionScope.admin }">
         <div class="loader"></div>
     </div>
 

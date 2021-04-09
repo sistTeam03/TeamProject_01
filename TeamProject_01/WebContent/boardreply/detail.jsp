@@ -29,6 +29,14 @@
   width: 960px;
 }
 </style>
+ <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+ <script type="text/javascript">
+ $(function(){
+	let admin=$('#test').attr('admin');
+	console.log("관리자:"+admin);
+ });
+ 
+ </script>
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -57,14 +65,19 @@
                     <div class="contact__form__title">
                         <h2 class="sectiontitle">문의 내용</h2>
                         <div align="right">
-                          <a href="../board/qnaReply.do" class="btn btn-sm btn-danger">답변</a>
+                          <c:if test="${sessionScope.admin=='y' }">
+			                   <%-- sessionScope.id!=null &&  --%>
+			                <c:if test="${bCheck==false }">  <!-- 답변이 이미 적혀져 있을 땐 안보이게 함 -->
+			                  <a href="../boardreply/reply.do?no=${vo.no }" class="btn btn-sm btn-danger">답변</a>
+			                </c:if>
+			              </c:if>
 						</div>
                     </div>
                 </div>
             </div>
 
 <!--     <div style="overflow-y:auto;margin:0px auto"> -->
-      <table class="table">
+      <table class="table" id="test" admin="${sessionScope.admin }">
         <tr>
           <th width=20% class="text-center">번호</th>
           <td width=30% class="text-center">${vo.no }</td>
@@ -89,14 +102,9 @@
         <tr>
           <td class="text-right" colspan="6">
             <ul class="inline">
-              <c:if test="${sessionScope.id!=null && sessionScope.admin=='y' }">
-                                           <%-- admin일 때만 답변 쓸 수 있게 보이게 함 --%>
-                <c:if test="${bCheck==false }">  <!-- 답변이 이미 적혀져 있을 땐 안보이게 함 -->
-                  <a href="../boardreply/reply.do?no=${vo.no }" class="btn btn-sm btn-danger">답변</a>
-                </c:if>
-              </c:if>
+              
               <a href="../boardreply/update.do?no=${vo.no }" class="btn btn-sm btn-success">수정</a>
-              <a href="../boardreply/delete.do" class="btn btn-sm btn-info">삭제</a>
+              <a href="../boardreply/delete.do?no=${vo.no }" class="btn btn-sm btn-info">삭제</a>
               <a href="../boardreply/list.do" class="btn btn-sm btn-warning">목록</a>
             </ul>
           </td>

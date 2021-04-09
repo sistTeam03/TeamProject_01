@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -25,7 +22,6 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style type="text/css">
 .mypage_row{
   margin: 0px auto;
@@ -34,7 +30,7 @@
 </style>
 </head>
 <body>
-   <!-- Breadcrumb Section Begin -->
+    <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -51,43 +47,45 @@
             </div>
         </div>
     </section>
-    <!-- Breadcrumb Section End -->
-<div class="contact-form spad">
+    
+	<!-- Contact Form Begin -->
+    <div class="contact-form spad">
         <div class="container">
             <div class="wrapper row3 mypage_row">
                 <div class="col-lg-12">
                     <div class="contact__form__title">
-                        <h2 class="sectiontitle">답변하기</h2>
+                        <h2 class="sectiontitle">게시글 삭제</h2>
                     </div>
                 </div>
             </div>
-         </div>
+            
+    <!-- <div style="overflow-y:auto;margin:0px auto"> -->
+    <div>
+      <form method=post action="../boardreply/delete_ok.do">
 
-    <div class="row" style="margin:0px auto">
-      <form method=post action="../boardreply/reply_ok.do">
-      <div class="row">
-         <div class="col-lg-6">
-            <input type="text" placeholder="이름" name=name class="input-sm" value="관리자" readonly="readonly">            
-            <input type=hidden name=no value="${no }">
-            <input type=hidden name=group_id value="${group_id }">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input type="text" id="name" placeholder="이름" name="name" class="input-sm" value="${vo.name }">
+                        <input type="hidden" name=no value="${vo.no }">
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="password" id="pwd" placeholder="비밀번호" name="pwd" class="input-sm">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" id="subject" placeholder="제목" name="subject" class="input-sm text-left" value="${vo.subject }">
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <textarea placeholder="내용" name="content" > ${vo.content }</textarea>
+                        <button type="submit" class="site-btn">삭제</button>
+                          &nbsp;
+                        <button type="button" onclick="javascript:history.back()"
+                         class="site-btn">취소</button>
+                    </div>
+                </div>
+           </form>
           </div>
-          <div class="col-lg-6">
-              <input type="password" id="pwd" placeholder="비밀번호" name="pwd" class="input-sm">
-          </div>
-          <div class="col-lg-12">
-             <input type="text" id="subject" placeholder="제목" name="subject" class="input-sm text-left">
-           </div>
-           <div class="col-lg-12 text-center">
-               <textarea placeholder="내용" name="content"></textarea>
-               
-               <input type=submit value="답변" class="btn btn-sm btn-danger">
-           	   <input type=button value="취소" onclick="javascript:history.back()"
-            		 class="btn btn-sm btn-info">
-            </div>
-        </div>
-      </form>
-    </div>  
-</div>
 
+    </div>
+  </div>
 </body>
 </html>
