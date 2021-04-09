@@ -84,41 +84,7 @@
                 </div>
            </form>
           </div>
-      <%-- <table class="table">
-        <tr>
-          <th width=20% class="text-right">이름</th>
-          <td width=80%>
-            <input type=text name=name size=15 class="input-sm">  size는 width
-          </td>
-        </tr>
-        <tr>
-          <th width=20% class="text-right">제목</th>
-          <td width=80%>
-            <input type=text name=subject size=50 class="input-sm">
-          </td>
-        </tr>
-        <tr>
-          <th width=20% class="text-right">내용</th>
-          <td width=80%>
-            <textarea rows="10" cols="52" name=content></textarea>
-          </td>
-        </tr>
-        <tr>
-          <th width=20% class="text-right">비밀번호</th>
-          <td width=80%>
-            <input type=password name=pwd size=10 class="input-sm">
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="text-center">
-            <input type=submit value="등록" class="btn btn-sm btn-danger">
-            <input type=button value="취소" onclick="javascript:history.back()"
-            								  =========== 꼭 써야 함
-             class="btn btn-sm btn-success">
-          </td>
-        </tr>
-      </table> --%>
-      </form>
+
     </div>
   </div>
 </body>

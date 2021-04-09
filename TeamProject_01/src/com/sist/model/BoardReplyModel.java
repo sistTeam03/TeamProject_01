@@ -12,6 +12,7 @@ import com.sist.vo.BoardReplyVO;
 
 @Controller
 public class BoardReplyModel {
+	// 게시글 리스트
 	  @RequestMapping("boardreply/list.do")
 	  public String boardreply_list(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -35,6 +36,8 @@ public class BoardReplyModel {
 		  request.setAttribute("main_jsp", "../boardreply/insert.jsp");
 		  return "../main/main.jsp";
 	  }
+	  
+	  // 글 등록
 	  @RequestMapping("boardreply/insert_ok.do")
 	  public String boardReply_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -57,6 +60,7 @@ public class BoardReplyModel {
 		  dao.boardReplyInsert(vo);
 		  return "redirect:../boardreply/list.do";
 	  }
+	  // 상세페이지
 	  @RequestMapping("boardreply/detail.do")
 	  public String boardreply_detail(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -69,6 +73,8 @@ public class BoardReplyModel {
 		  request.setAttribute("main_jsp", "../boardreply/detail.jsp");
 		  return "../main/main.jsp";
 	  }
+	  
+	  // 답변
 	  @RequestMapping("boardreply/reply.do")
 	  public String boardreply_reply(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -76,11 +82,15 @@ public class BoardReplyModel {
 		  // db연동 
 		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
 		  int group_id=dao.boardReplyGetGroupId(Integer.parseInt(no));
-		  request.setAttribute("group_id", group_id);
+		  String name=request.getParameter("name");
 		  request.setAttribute("no", no);
+		  request.setAttribute("group_id", group_id);
+		  request.setAttribute("name", name);
 		  request.setAttribute("main_jsp", "../boardreply/reply.jsp");
 		  return "../main/main.jsp";
 	  }
+	  
+	  // 답변 등록
 	  @RequestMapping("boardreply/reply_ok.do")
 	  public String boardreply_reply_ok(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -104,6 +114,8 @@ public class BoardReplyModel {
 		  dao.boardReplyReplyInsert(vo);
 		  return "redirect:../boardreply/list.do";
 	  }
+	  
+	  //게시글 수정
 	  @RequestMapping("boardreply/update.do")
 	  public String boardReply_update(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -139,6 +151,45 @@ public class BoardReplyModel {
 		  if(bCheck==false)
 		  {
 			  return "redirect:../boardreply/update.do?no="+no;
+		  }
+		  return "redirect:../boardreply/list.do";
+	  }
+	  
+	  // 게시글 삭제
+	  @RequestMapping("boardreply/delete.do")
+	  public String boardReply_delete(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String no=request.getParameter("no");
+		  String pwd=request.getParameter("pwd");
+		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
+		  BoardReplyVO vo=dao.boardDePrint(Integer.parseInt(no));
+		  request.setAttribute("vo", vo);
+		  request.setAttribute("pwd", pwd);
+		  request.setAttribute("main_jsp", "../boardreply/delete.jsp");
+		  return "../main/main.jsp";
+	  }
+	  @RequestMapping("boardreply/delete_ok.do")
+	  public String boardReply_delete_ok(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+		  String no=request.getParameter("no");
+		  System.out.println("no:"+no );
+		  String pwd=request.getParameter("pwd");
+		  System.out.println("pwd: "+pwd);
+		  BoardReplyVO vo=new BoardReplyVO();
+		  vo.setNo(Integer.parseInt(no));
+		  vo.setPwd(pwd);
+		  
+		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
+		  boolean bCheck=dao.boardReplyDelete(Integer.parseInt(no),pwd);
+		  if(bCheck==false)
+		  {
+			  return "redirect:../boardreply/delete.do?no="+no;
 		  }
 		  return "redirect:../boardreply/list.do";
 	  }

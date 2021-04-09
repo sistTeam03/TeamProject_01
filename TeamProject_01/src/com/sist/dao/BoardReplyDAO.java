@@ -258,7 +258,7 @@ public class BoardReplyDAO {
 		   return bCheck;
 	   }
 	   
-	   // 수정
+	   // 수정 보이기
 	   public BoardReplyVO boardUpPrint(int no)
 	   {
 		   BoardReplyVO vo=new BoardReplyVO();
@@ -287,7 +287,7 @@ public class BoardReplyDAO {
 		   return vo;
 	   }
 	   
-	   
+	   // 수정 확정
 	   public boolean boardReplyUpdate(BoardReplyVO vo)
 	   {
 		   boolean bCheck=false;
@@ -329,5 +329,72 @@ public class BoardReplyDAO {
 		   }
 		   return bCheck;
 	   }
+	   
+	   //삭제 페이지
+	   public BoardReplyVO boardDePrint(int no)
+	   {
+		   BoardReplyVO vo=new BoardReplyVO();
+		   try
+		   {
+			   getConnection();
+			   String sql="SELECT no,name,subject,content "
+			   		+ "FROM project_boardReply "
+			   		+ "WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setNo(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setSubject(rs.getString(3));
+			   vo.setContent(rs.getString(4));
+			   rs.close();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return vo;
+	   }
+	   
+	   // 삭제
+	   public boolean boardReplyDelete(int no,String pwd)
+	   {
+		   boolean bCheck=false;
+		   try
+		   {
+			   getConnection();
+			   String sql="SELECT pwd FROM project_boardReply "
+				   		+ "WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   String db_pwd=rs.getString(1);
+			   rs.close();
+			   
+			   if(db_pwd.equals(pwd))
+			   {
+				   bCheck=true;
+				   sql="DELETE FROM project_boardReply "
+				   		+ "WHERE no=?";
+				   ps=conn.prepareStatement(sql);
+				   ps.setInt(1, no);
+				   
+				   ps.executeUpdate();
+			   } 
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return bCheck;
+	  }
 }
+
 
