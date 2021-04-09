@@ -271,7 +271,8 @@ $(function(){
                      <c:forEach var="svo" items="${printlist }">
                      	 <div class="col-lg-3">
 		                        <div class="categories__item set-bg" data-setbg="http:${svo.poster }">
-		                            <h6 style="font-size: 11pt; color:white;"><a href="#" class=shop>${svo.title }<br><fmt:formatNumber value="${svo.price }" pattern="0,000"/></a></h6>
+		                        <!-- 링크추가 -->
+		                            <h6 style="font-size: 11pt; color:white;"><a href="../recipe/shop.do" class=shop>${svo.title }<br><fmt:formatNumber value="${svo.price }" pattern="0,000"/></a></h6>
 		                        </div>
 		                   </div>
 		             </c:forEach>
