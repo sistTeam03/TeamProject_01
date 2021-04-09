@@ -141,7 +141,7 @@ display: block;
                     </div>
                 </div>
             </div>
-            <div id="login_input"><!-- 로그인 div -->        	
+            <div id="login_input"><!-- 로그인 div -->        	 
 	            	<div id="login_div">
 			            <input type="text" id="login_id" size=20 placeholder="ID" style="padding-left: 10px;" autocomplete="off">           
 			            <input type="password" id="login_pwd" size=20 placeholder="비밀번호" style="padding-left: 10px;">
