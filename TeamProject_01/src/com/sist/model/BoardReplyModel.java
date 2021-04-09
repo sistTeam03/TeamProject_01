@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -101,7 +102,8 @@ public class BoardReplyModel {
 		  String content=request.getParameter("content");
 		  String pwd=request.getParameter("pwd");
 		  String group_id=request.getParameter("group_id");
-		  
+		  HttpSession session=request.getSession();
+		  session.getAttribute("admin");
 		  BoardReplyVO vo=new BoardReplyVO();
 		  vo.setName(name);
 		  vo.setSubject(subject);

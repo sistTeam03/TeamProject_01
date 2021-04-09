@@ -78,12 +78,11 @@
              <input type="text" id="subject" placeholder="제목" name="subject" class="input-sm text-left">
            </div>
            <div class="col-lg-12 text-center">
-               <textarea placeholder="내용" name="content"></textarea>
-               
-               <button type=submit value="답변" class="site-btn"></button>
-                 &nbsp;
-           	   <button type=button value="취소" onclick="javascript:history.back()"
-            		 class="site-btn"></button>
+               <textarea placeholder="내용" name="content"></textarea>               
+               <button type="submit" class="site-btn text-center">답변</button>
+                  &nbsp;
+           	   <button type="button" onclick="javascript:history.back()"
+            		 class="site-btn">취소</button>
             </div>
         </div>
       </form>
