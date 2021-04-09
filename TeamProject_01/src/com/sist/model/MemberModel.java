@@ -131,31 +131,50 @@ public class MemberModel {
 	public String myPage(HttpServletRequest request,HttpServletResponse response) {
 		
 		HttpSession session=request.getSession();
+
 		String id=(String)session.getAttribute("sesson_id");
+
 		//DB연동
 		BookmarkDAO bookmarkdao =BookmarkDAO.newInstance();
+
 		DetailDAO dao = DetailDAO.newInstance();
+
 		//찜하기 목록
 		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
+
 		List<ListVO> dList = new ArrayList<ListVO>();
+
 		if(!jList.isEmpty()) {
+
 			for(BookmarkVO vo:jList)
 			{
+
 				ListVO dvo =dao.BookmarkData(vo.getRecipeno());
+
 				String poster = dvo.getPoster();
+
 				dvo.setPoster(poster);
+
 				dList.add(dvo);
 			}
+
 		}
 
 		//추가
 		UserIngreDAO udao=UserIngreDAO.newInstance();
+
 		List<UserIngreVO> ulist=udao.ingreListNameData(id);
+
 		List<UserIngreVO> ulist_cut=new ArrayList<UserIngreVO>();
+
 		if(!ulist.isEmpty()) {
 			for(int i=0; i<6; i++) {
+
 				ulist_cut.add(ulist.get(i));
+				if(i==ulist.size()-1)
+					break;
 			}
+
 		}
 
 		request.setAttribute("ulist", ulist_cut);
