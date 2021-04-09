@@ -269,7 +269,7 @@ display: block;
 	    </div>
     </div>
 
-    <!-- Latest Product Section Begin -->
+    <!-- Latest Product Section Begin --> 
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
