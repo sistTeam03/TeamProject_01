@@ -54,7 +54,6 @@ a:hover{
                             <h4>마이페이지</h4>
                             <ul>
                                 <li class="sidebar__item__active"><a href="#" >나의 정보</a></li>
-                                <li><a href="#">나의 활동</a></li>
                             	<li><a href="../mypage/ingrelist.do?kono=1">나의 재료</a></li>
                             </ul>
                         </div>
