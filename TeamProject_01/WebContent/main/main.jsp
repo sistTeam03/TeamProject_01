@@ -160,9 +160,9 @@ a.loginco{
                 <li><a href="../recipe/recipe.jsp">레시피</a></li>
                 <li><a href="../main/chef.do">쉐프</a>
                 </li>
-                <li><a href="../admin/community">커뮤니티</a>
+                <li><a href="../board/notice.do">커뮤니티</a>
                 <ul class="header__menu__dropdown">
-                        <li><a href="../admin/notice.jsp">공지사항</a></li>
+                        <li><a href="../board/notice.do">공지사항</a></li>
                         <li><a href="../admin/event.jsp">이벤트</a></li>
 <!-- <<<<<<< HEAD -->
                         <li><a href="../boardreply/list.do">문의 게시판</a></li>
@@ -209,7 +209,7 @@ a.loginco{
                             <li><a href="../recipe/recipe.do">레시피</a></li>
                             <li><a href="../main/chef.do">쉐프</a> </li>
                             
-                            <li><a href="../admin/community.do">커뮤니티</a>
+                            <li><a href="../board/notice.do">커뮤니티</a>
                             	 <ul class="header__menu__dropdown">
                                     <li><a href="../board/notice.do">공지사항</a></li>
                                     <li><a href="../board/eventboard.do">이벤트</a></li>
