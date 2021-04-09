@@ -255,10 +255,10 @@ a.loginco{
                         <div class="hero__search__form">
                             <form action="../main/search.do"  method="get">
                                 <div class="hero__search__categories">
-                                    All Categories
+                                    T i t l e
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?" name="msg" autocomplete="off">
+                                <input type="text" placeholder="검색 내용을 입력해주세요" name="msg" autocomplete="off">
                                 <button type="submit" class="site-btn" >SEARCH</button>
                             </form>
                         </div>
