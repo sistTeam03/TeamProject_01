@@ -34,10 +34,15 @@ public class MainModel {
 					List<UserIngreVO> ulist=udao.ingreListNameData(id);
 					List<String> uinglist=new ArrayList<String>();
 					int size=ulist.size();
+					
 					while(true) {
+						if(size==0) {
+							break;
+						}
 						uinglist.clear();
 						for(int i=0; i<3; i++) {
 							int rand=(int)(Math.random()*size);
+							
 							uinglist.add(ulist.get(rand).getName());
 							System.out.println(uinglist.get(i));
 							if(i==size)
