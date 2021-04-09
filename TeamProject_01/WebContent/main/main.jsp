@@ -61,7 +61,7 @@ a.loginco{
 }
 #login_div input{
 	font-size: 12pt;
-	 height: 23px;
+	 height: 2em;
 	border: 0.5px solid #7fad39;
 	border-radius: 15px;
 	line-height: 23px;		
@@ -114,6 +114,8 @@ a.loginco{
 					$('#login_id').val("");
 					$('#login_pwd').val("")
 					$('#login_id').attr("placeholder","ID가 존재하지 않습니다.");
+					
+					
 				}
 				else if(msg=="NOPWD")
 				{	

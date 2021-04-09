@@ -8,11 +8,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 .moreBtn{
-	border: none;
+	 border: none;
     background: none;
     float: right;
     position: relative;
-    left: -67px; 
+    left: -67px;
+    top: 17px;
+    color: #a50303;
 }
 .detail_reply tr{
 	 display: block;
@@ -64,14 +66,16 @@ $(function(){
 	for(let i=0;i<3; i++){
 		let str=$('.length'+i).text();
 		let length=str.length;
+			console.log(length);
 		if(length>50){
 			 strshow=str.substring(0,50)+"...";
-			 strhide=str.substring(50,length)
+			 strhide=str.substring(50,length);
 			 
 			$('.length'+i).html(strshow);
 			
+			
 		}else{
-			$('.moreBtn').hide();		
+			 $('#moreBtn'+i).hide(); 	
 		}
 	}//댓글 글자수 제어
 	$('.moreBtn').click(function(){
@@ -114,13 +118,14 @@ $(function(){
 	 				
 	        	</td>
 	        	<td>
-	        	<input type="button" id="" class="moreBtn " value="더보기 " data="${s.index }"> 
+	        	<input type="button" id="moreBtn${s.index }" class="moreBtn " value="더보기 " data="${s.index }"> 
 	        	</td>
 	        	<td id="temp${s.index }" width=20% rowspan="2">
-	        					 
+	        		<c:if test="${sessionScope.sesson_id==rvo.id }">			 
 		      	  			 <input type=button id="updateBtn${s.index }" class="updateBtn " value="수정 " data-no="${rvo.no }"> 
 		        			<input type=button id="" class="delBtn " value=삭제  data-no="${rvo.no } " reply-page="${curpage }">
 		        			<!-- 수정 삭제.. 버튼이 안눌립니다 -->
+		        	</c:if>	
 		        		</td>
 	        	</tr>
 	         </table>

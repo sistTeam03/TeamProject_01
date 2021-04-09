@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.sist.controller.Controller;
 
 import com.sist.controller.RequestMapping;
@@ -27,6 +28,7 @@ public class ReplyModel {
 		int curpage=Integer.parseInt(rcurpage);
 		int totalpage=dao.replyTotalPage(Integer.parseInt(no));
 		HttpSession session=request.getSession();
+		session.getAttribute("sesson_id");
 		String id=(String)request.getAttribute("id");
 		String nickname=(String)request.getAttribute("nickname");
 		int block=10;
@@ -42,6 +44,7 @@ public class ReplyModel {
 		  request.setAttribute("endPage", endPage);
 		  request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("curpage", curpage);
+		  request.setAttribute("id", id);
 		  request.setAttribute("recipeno", Integer.parseInt(no));
 		return "../recipe/recipe_reply.jsp";
 	}

@@ -99,6 +99,7 @@ public class MainModel {
 		
 		System.out.println(msg);
 		memDao.searchInsert(msg);
+		System.out.println(1);
 		Date date=new Date();
 		Calendar cal=Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);

@@ -36,6 +36,13 @@ $(function(){
 		let msg=$(this).children('.keyword_td').text();
 		location.href="../main/search.do?msg="+msg;
 	});
+	$('#main_image').click(function(){
+		let link=$(this).attr('list_link');
+		location.href=link;
+		
+	})
+	
+	
 })
 </script>
 <style type="text/css">
@@ -88,7 +95,7 @@ $(function(){
                        <c:forEach var="lvo" items="${sList }">
                         <div class="col-lg-3 col-md-5 col-sm-5">
                             <div class="product__item">             
-                                <div class="product__item__pic set-bg list_img" data-setbg="${lvo.poster }" style="border-radius: 10px;" list_link="../recipe/detail_before.do?no=${lvo.no }">
+                                <div class="product__item__pic set-bg list_img" data-setbg="${lvo.poster }" id="main_image" style="border-radius: 10px;cursor: pointer;" list_link="../recipe/detail_before.do?no=${lvo.no }">
                                     
                                 </div>
                                 <div class="product__item__text">
