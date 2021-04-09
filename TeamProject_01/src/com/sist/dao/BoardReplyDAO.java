@@ -255,7 +255,78 @@ public class BoardReplyDAO {
 		   {
 			   disConnection();
 		   }
-		   
+		   return bCheck;
+	   }
+	   
+	   // 수정
+	   public BoardReplyVO boardUpPrint(int no)
+	   {
+		   BoardReplyVO vo=new BoardReplyVO();
+		   try
+		   {
+			   getConnection();
+			   String sql="SELECT no,name,subject,content "
+			   		+ "FROM project_boardReply "
+			   		+ "WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, no);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setNo(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setSubject(rs.getString(3));
+			   vo.setContent(rs.getString(4));
+			   rs.close();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return vo;
+	   }
+	   
+	   
+	   public boolean boardReplyUpdate(BoardReplyVO vo)
+	   {
+		   boolean bCheck=false;
+		   try
+		   {
+//			   System.out.println(vo.getNo());
+			   getConnection();
+			   String sql="SELECT pwd FROM project_boardReply "
+			   		+ "WHERE no=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, vo.getNo());
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   String db_pwd=rs.getString(1);
+			   rs.close();
+			   
+			   if(db_pwd.equals(vo.getPwd()))
+			   {
+				   bCheck=true;
+				   sql="UPDATE project_boardReply SET "
+				   		+ "name=?,subject=?,content=? "
+				   		+ "WHERE no=?";
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, vo.getName());
+				   ps.setString(2, vo.getSubject());
+				   ps.setString(3, vo.getContent());
+				   ps.setInt(4, vo.getNo());
+				   
+				   ps.executeUpdate();
+			   } 
+			   
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
 		   return bCheck;
 	   }
 }

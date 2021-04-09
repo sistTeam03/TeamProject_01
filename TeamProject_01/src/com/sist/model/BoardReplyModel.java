@@ -104,4 +104,42 @@ public class BoardReplyModel {
 		  dao.boardReplyReplyInsert(vo);
 		  return "redirect:../boardreply/list.do";
 	  }
+	  @RequestMapping("boardreply/update.do")
+	  public String boardReply_update(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String no=request.getParameter("no");
+		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
+		  BoardReplyVO vo=dao.boardUpPrint(Integer.parseInt(no));
+		  request.setAttribute("vo", vo);
+		  request.setAttribute("main_jsp", "../boardreply/update.jsp");
+		  return "../main/main.jsp";
+	  }
+	  @RequestMapping("boardreply/update_ok.do")
+	  public String boardReply_update_ok(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  String no=request.getParameter("no");
+		  String name=request.getParameter("name");
+		  String subject=request.getParameter("subject");
+		  String content=request.getParameter("content");
+		  String pwd=request.getParameter("pwd");
+		  
+		  BoardReplyVO vo=new BoardReplyVO();
+		  vo.setNo(Integer.parseInt(no));
+		  vo.setName(name);
+		  vo.setSubject(subject);
+		  vo.setContent(content);
+		  vo.setPwd(pwd);
+		  
+		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
+		  boolean bCheck=dao.boardReplyUpdate(vo);
+		  if(bCheck==false)
+		  {
+			  return "redirect:../boardreply/update.do?no="+no;
+		  }
+		  return "redirect:../boardreply/list.do";
+	  }
 }

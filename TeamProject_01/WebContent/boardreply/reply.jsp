@@ -61,45 +61,30 @@
                     </div>
                 </div>
             </div>
-            
+         </div>
 
     <div class="row" style="margin:0px auto">
       <form method=post action="../boardreply/reply_ok.do">
-      <table class="table">
-        <tr class="col-lg-6">
-          <th width=20% class="text-right">이름</th>
-          <td width=80%>
-            <input type=text name=name class="input-sm" value="관리자" readonly="readonly">
+      <div class="row">
+         <div class="col-lg-6">
+            <input type="text" placeholder="이름" name=name class="input-sm" value="관리자" readonly="readonly">            
             <input type=hidden name=no value="${no }">
             <input type=hidden name=group_id value="${group_id }">
-          </td>
-        </tr>
-        <tr class="col-lg-6">
-          <th width=20% class="text-right">비밀번호</th>
-          <td width=80%>
-            <input type=password name=pwd size=10 class="input-sm">
-          </td>
-        </tr>
-        <tr class="col-lg-6">
-          <th width=20% class="text-right">제목</th>
-          <td width=80%>
-            <input type=text name=subject class="input-sm">
-          </td>
-        </tr>
-        <tr class="col-lg-12">
-          <th width=20% class="text-right">내용</th>
-          <td width=80%>
-            <textarea rows="10" name=content></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="12" class="text-center">
-            <input type=submit value="답변" class="btn btn-sm btn-danger">
-            <input type=button value="취소" onclick="javascript:history.back()"
-             class="btn btn-sm btn-success">
-          </td>
-        </tr>
-      </table>
+          </div>
+       <div class="col-lg-6">
+                        <input type="password" id="pwd" placeholder="비밀번호" name="pwd" class="input-sm">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" id="subject" placeholder="제목" name="subject" class="input-sm text-left">
+                    </div>
+                <div class="col-lg-12 text-center">
+                    <textarea placeholder="내용" name="content"></textarea>
+                    <input type=submit value="답변" class="site-btn">
+                    
+           			<input type=button value="취소" onclick="javascript:history.back()"
+            		 class="site-btn">
+            </div>
+		</div>
       </form>
     </div>
   </div>
