@@ -82,10 +82,8 @@ public class BoardReplyModel {
 		  // db연동 
 		  BoardReplyDAO dao=BoardReplyDAO.newInstance();
 		  int group_id=dao.boardReplyGetGroupId(Integer.parseInt(no));
-		  String name=request.getParameter("name");
-		  request.setAttribute("no", no);
 		  request.setAttribute("group_id", group_id);
-		  request.setAttribute("name", name);
+		  request.setAttribute("no", no);
 		  request.setAttribute("main_jsp", "../boardreply/reply.jsp");
 		  return "../main/main.jsp";
 	  }
