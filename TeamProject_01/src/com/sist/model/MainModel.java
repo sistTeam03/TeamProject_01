@@ -34,7 +34,7 @@ public class MainModel {
 					List<UserIngreVO> ulist=udao.ingreListNameData(id);
 					List<String> uinglist=new ArrayList<String>();
 					int size=ulist.size();
-					
+					int k=0;
 					while(true) {
 						if(size==0) {
 							break;
@@ -52,6 +52,17 @@ public class MainModel {
 						ingreRecipe = idao.ingreSearchRecipe(uinglist);
 						if(ingreRecipe.size()>4)
 							break; 
+						k++;
+						if(k>5) {
+							ingreRecipe.clear();
+							ListVO vo=new ListVO();
+							vo.setTitle("검색 결과가 없습니다. 재료를 더 입력해주세요!");
+							ingreRecipe.add(vo);
+							ingreRecipe.add(vo);
+							ingreRecipe.add(vo);
+							ingreRecipe.add(vo);
+							break;
+						}
 					}
 				}
 				request.setAttribute("ingreRecipe", ingreRecipe);
