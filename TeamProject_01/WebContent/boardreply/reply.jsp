@@ -81,6 +81,7 @@
                <textarea placeholder="내용" name="content"></textarea>
                
                <input type=submit value="답변" class="btn btn-sm btn-danger">
+                 &nbsp;
            	   <input type=button value="취소" onclick="javascript:history.back()"
             		 class="btn btn-sm btn-info">
             </div>

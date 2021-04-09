@@ -40,7 +40,7 @@
                     <div class="blog__details__hero__text">
                         <h2>Q & A</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="../index.jsp">Home</a>
                             <span>커뮤니티</span>
                         </div>
                     </div>

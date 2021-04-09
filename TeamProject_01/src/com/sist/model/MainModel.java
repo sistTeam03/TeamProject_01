@@ -94,12 +94,10 @@ public class MainModel {
 		if(endPage>totalpage) {
 			endPage=totalpage;
 		}
-		HttpSession session=request.getSession();//아이디 있으면 검색어 저장
-		String id=(String)session.getAttribute("sesson_id");
+	
 		MemberDAO memDao=MemberDAO.newInstance();
-		if(id!=null) {
-			memDao.searchInsert(msg);
-		}else {
+		
+		memDao.searchInsert(msg);
 		Date date=new Date();
 		Calendar cal=Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);
@@ -110,7 +108,7 @@ public class MainModel {
 		System.out.println(top10_list.size());
 		request.setAttribute("tList", top10_list);
 		
-		}
+		
 		request.setAttribute("sList", sList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
