@@ -138,27 +138,26 @@ public class MemberModel {
 		//찜하기 목록
 		List<BookmarkVO> jList=bookmarkdao.bookmarkListData(id);
 		List<ListVO> dList = new ArrayList<ListVO>();
-		for(BookmarkVO vo:jList)
-		{
-			ListVO dvo =dao.BookmarkData(vo.getRecipeno());
-			String poster = dvo.getPoster();
-			dvo.setPoster(poster);
-			
-			dList.add(dvo);
-			
+		if(!jList.isEmpty()) {
+			for(BookmarkVO vo:jList)
+			{
+				ListVO dvo =dao.BookmarkData(vo.getRecipeno());
+				String poster = dvo.getPoster();
+				dvo.setPoster(poster);
+				dList.add(dvo);
+			}
 		}
-		
+
 		//추가
 		UserIngreDAO udao=UserIngreDAO.newInstance();
-		
 		List<UserIngreVO> ulist=udao.ingreListNameData(id);
-		
 		List<UserIngreVO> ulist_cut=new ArrayList<UserIngreVO>();
-		
-		for(int i=0; i<6; i++) {
-			ulist_cut.add(ulist.get(i));
-			
+		if(!ulist.isEmpty()) {
+			for(int i=0; i<6; i++) {
+				ulist_cut.add(ulist.get(i));
+			}
 		}
+
 		request.setAttribute("ulist", ulist_cut);
 		//추가 끝
 		

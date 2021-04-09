@@ -65,12 +65,9 @@
                     <div class="contact__form__title">
                         <h2 class="sectiontitle">문의 내용</h2>
                         <div align="right">
-                          <a href="../boardreply/reply.do?no=${vo.no }" class="btn btn-sm btn-danger">답변</a>
-                          <%-- <c:if test="${sessionScope.id!=null && sessionScope.admin=='y' }">
-			                <c:if test="${bCheck==false }">  <!-- 답변이 이미 적혀져 있을 땐 안보이게 함 -->
-			                  <a href="../boardreply/reply.do?no=${vo.no }" class="btn btn-sm btn-danger">답변</a>
-			                </c:if>
-			              </c:if> --%>
+                          <c:if test="${sessionScope.admin=='Y' }">
+				       		<a href="../boardreply/reply.do?no=${vo.no }" class="btn btn-sm btn-danger">답변</a>
+				       	</c:if>
 						</div>
                     </div>
                 </div>
@@ -101,6 +98,7 @@
         </tr>
        </table>
        <div class="text-right">
+       	
 		  <a href="../boardreply/update.do?no=${vo.no }" class="btn btn-sm btn-success">수정</a>
           <a href="../boardreply/delete.do?no=${vo.no }" class="btn btn-sm btn-info">삭제</a>
           <a href="../boardreply/list.do" class="btn btn-sm btn-warning">목록</a>

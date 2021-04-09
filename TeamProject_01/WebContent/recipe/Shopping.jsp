@@ -168,7 +168,7 @@ $(function(){
                                     
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">${lvo.title }</a></h6>
+                                    <h6><a href="#" style="font-weight: bold;">${lvo.title }</a></h6>
                                     <h6><a href="#"><fmt:formatNumber value="${lvo.price }" pattern="0,000"/>원</a></h6>
                                 </div>
                             </div>
