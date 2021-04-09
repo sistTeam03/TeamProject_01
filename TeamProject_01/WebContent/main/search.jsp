@@ -18,39 +18,57 @@ $(function(){
 	
 	for(let j=0;j<10;j++){
 		let no=$('#state'+j).text();
+		console.log(no);
 		if(no>0){
-			$('#state'+j)
+			$('#state'+j).text(no+"상승")
 			$('#state'+j).css('color','red');
 		}else if(no<0){
 			$('#state'+j).text(no+"하락")
 			$('#state'+j).css('color','#0080ff');
-		}else{
-			$('#state'+j).text(no+"유지")
+		}else if(no==0){
+			$('#state'+j).text("-")
 			$('#state'+j).css('color','black');
-		}
-		
+		} else{
+			$('#state'+j).css('color','red');
+		} 		
 	}
-	
-});
+	$('.keyword_tr').click(function(){
+		let msg=$(this).children('.keyword_td').text();
+		location.href="../main/search.do?msg="+msg;
+	});
+})
 </script>
+<style type="text/css">
+.keyword_tr{
+    height: 2em;
+    border-bottom: 0.5px dotted;
+    border-left: 0.5px solid #00000059;
+    border-right: 0.5px solid #00000059;
+
+}
+.keyword_tr:hover{
+	background-color: #f6ffe9;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 				<section class="product spad">
         <div class="container">
             <div class="row">
                  <div class="col-lg-3 col-md-5">
-                 	<table class="top10" style="width: 16em;">
-                 		<tr>
+                 	<table class="top10" style="width: 17em;">
+                 		<tr style="height: 3em;background-color: #ddf2bc;" >
                  			<th width="20%">순위</th>
                  			<th width="60%">검색어</th>
                  			<th width="20%">비고</th>
                  		</tr>
                  	<c:forEach var="key" items="${tList}" begin="0" end="9" varStatus="s">
-                 				<tr>
+                 				<tr class="keyword_tr" id="keyword_tr"${s.index }>
                  					<td>${s.index+1 }</td>
-                 					<td id="keyword${s.index }">${key}</td>
+                 					<td id="keyword${s.index }" class="keyword_td">${key}</td>
                  					<td id="state${s.index }">      </td>
-                 					<td><img alt="" src="../img/up.jpg"></td>
+                 					
                  				</tr>
                  	</c:forEach>
                  	</table>

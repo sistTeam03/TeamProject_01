@@ -192,9 +192,6 @@ public class MemberDAO {
 			ps.setString(1, today);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
-				System.out.println("테스트");
-				
-				System.out.println(i);
 				String keyword=rs.getString(1);
 				sql="SELECT keyword,TO_NUMBER(rank()OVER( ORDER BY count(keyword) DESC, keyword)) as rank "
 						+"FROM search_keyword "
@@ -207,12 +204,14 @@ public class MemberDAO {
 					String yKeyword=rs2.getString(1);
 					int yRank=rs2.getInt(2);
 					if(keyword.equals(yKeyword)) {
-					int upRank=yRank-i;
-					list.add(keyword+","+upRank);
+						int upRank=yRank-i;
+						list.add(keyword+","+upRank);//어제와 같은 검색어찾기
+						
 					}
 					
-					
 				}
+				if(list.size()+1==i)
+				list.add(keyword+","+"New");
 				i++;
 				if(i==10)break;
 			}

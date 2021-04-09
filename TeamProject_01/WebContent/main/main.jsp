@@ -251,7 +251,7 @@ a.loginco{
                 <div class="col-lg-12">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="../main/search.do">
+                            <form action="../main/search.do"  method="get">
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>

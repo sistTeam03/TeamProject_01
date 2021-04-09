@@ -105,9 +105,8 @@ public class MainModel {
 		cal.add(Calendar.DATE, -1);
 		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd");
 		String today=format.format(date);
-		System.out.println("오늘:"+today);
 		String yesterday=format.format(cal.getTime());
-		System.out.println("어제:"+yesterday);
+		
 		
 		List<String> top10_list=memDao.searchTOP10(today,yesterday);
 		System.out.println(top10_list.size());
