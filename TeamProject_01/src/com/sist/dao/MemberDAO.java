@@ -130,7 +130,7 @@ public class MemberDAO {
 			int count=rs.getInt(1);
 			rs.close();
 			if(count==1) {
-				sql="SELECT pwd,name,NVL(nickname,'^') " //로그인후 가져올 정보
+				sql="SELECT pwd,name,NVL(nickname,'^'),admin " //로그인후 가져올 정보
 						+"from member where id=?";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, id);
@@ -139,12 +139,17 @@ public class MemberDAO {
 				String db_pwd=rs.getString(1);
 				String name=rs.getString(2);
 				String nickname=rs.getString(3);
+				String admin=rs.getString(4);
+				
 				rs.close();
 				if(db_pwd.equals(pwd)) {//로그인성공
 					if(nickname.equals("^")) {//닉네임이 없으면 이름으로 출력
 						result=name;
 					}else {
 						result=nickname;
+					}
+					if(admin.equals("Y")) {
+						result=admin;
 					}
 				}else {
 					result="NOPWD";

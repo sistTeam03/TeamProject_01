@@ -270,7 +270,7 @@ public class CommunityModel {
 		{
 			
 			  request.setCharacterEncoding("UTF-8");
-			  String path="C:\\WebDev\\WebStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\TeamProject_01\\";
+			  String path="C:\\WebDev\\WebStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\TeamProject_01";
 			  int size=1024*1024*100;
 			  String enctype="UTF-8";
 			  //<%= application.getRealPath("/") %>

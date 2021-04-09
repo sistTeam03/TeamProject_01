@@ -92,7 +92,17 @@ public class MemberModel {
 		String pwd=request.getParameter("pwd");
 		MemberDAO dao=MemberDAO.newInstance();
 		String result=dao.loginCheck(id, pwd);
-		String admin=request.getParameter("admin");
+		String admin="";
+		if(result.equals("Y")) {
+			admin="Y";//관리자일때
+			HttpSession session=request.getSession();
+			session.setAttribute("name", result);
+			session.setAttribute("sesson_id", id);
+			session.setAttribute("admin", admin);
+			request.setAttribute("msg", result); //이름,닉네임
+			request.setAttribute("admin", admin);
+		}
+		System.out.println(admin);
 		if(result.equals("NOID")) {
 			request.setAttribute("msg", result);
 		}else if(result.equals("NOPWD")){
@@ -101,6 +111,7 @@ public class MemberModel {
 			HttpSession session=request.getSession();
 			session.setAttribute("name", result);
 			session.setAttribute("sesson_id", id);
+			session.setAttribute("admin", admin);
 			request.setAttribute("msg", result); //이름,닉네임
 			request.setAttribute("admin", admin);
 		}
