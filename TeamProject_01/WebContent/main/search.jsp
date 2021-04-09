@@ -57,7 +57,7 @@ $(function(){
         <div class="container">
             <div class="row">
                  <div class="col-lg-3 col-md-5">
-                 	<table class="top10" style="width: 17em;">
+                 	<table class="top10" style="width: 17em;position: fixed;">
                  		<tr style="height: 3em;background-color: #ddf2bc;" >
                  			<th width="20%">순위</th>
                  			<th width="60%">검색어</th>

@@ -99,18 +99,18 @@ public class MainModel {
 		MemberDAO memDao=MemberDAO.newInstance();
 		if(id!=null) {
 			memDao.searchInsert(msg);
-		}
+		}else {
 		Date date=new Date();
 		Calendar cal=Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);
 		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd");
 		String today=format.format(date);
 		String yesterday=format.format(cal.getTime());
-		
-		
 		List<String> top10_list=memDao.searchTOP10(today,yesterday);
 		System.out.println(top10_list.size());
 		request.setAttribute("tList", top10_list);
+		
+		}
 		request.setAttribute("sList", sList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);

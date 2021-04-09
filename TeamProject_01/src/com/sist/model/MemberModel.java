@@ -102,7 +102,7 @@ public class MemberModel {
 			request.setAttribute("msg", result); //이름,닉네임
 			request.setAttribute("admin", admin);
 		}
-		System.out.println(admin);
+		
 		if(result.equals("NOID")) {
 			request.setAttribute("msg", result);
 		}else if(result.equals("NOPWD")){
@@ -124,7 +124,7 @@ public class MemberModel {
 		session.invalidate();
 		
 		
-		return "redirect: ../main/main.do";//????모르겟음 일단 되긴함??
+		return "redirect: ../main/main.do";
 	}
 	//마이페이지 설정
 	@RequestMapping("mypage/mypage.do")
